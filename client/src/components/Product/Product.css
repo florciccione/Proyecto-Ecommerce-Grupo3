@@ -1,0 +1,62 @@
+.product{
+    height: calc(100vh - 50px);
+    display: flex;
+    font-family: 'Graphik';
+    padding-top: 50px;
+}
+
+.product_left{
+    width: 100%;
+}
+
+.product_right{
+    width: 100%;
+}
+
+.product_name h1{
+    font-size: 20px;
+    font-family: 'Nanum Regular';
+    font-weight: 100;
+}
+
+.product_description p{
+    font-size: 8px;
+    color: #828282;
+    margin: 6px 0;
+}
+
+.product_price span{
+    font-size: 8px;
+}
+
+.product_colors_name{
+    font-size: 8px;
+}
+
+.product_colors_img{
+    width: 20px;
+}
+
+.product_colors_img img{
+    width: 100%;
+}
+
+.product_img{
+    width: 250px;
+    margin: 0 auto;
+}
+
+.product_img img{
+    width: 100%;
+}
+
+.product_colors_list{
+    width: 100%;
+}
+
+.product_colors_list select{
+    width: 100%;
+    padding: 5px 2px;
+    font-size: 8px;
+    border: #ebeced solid .7px;
+}
