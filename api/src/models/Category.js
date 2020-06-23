@@ -11,8 +11,6 @@ const Category = (sequalize, S) =>{
             allowNull: false,
             validate: {noEmpty: true}
         },
-
-
     }),
 
 return C;

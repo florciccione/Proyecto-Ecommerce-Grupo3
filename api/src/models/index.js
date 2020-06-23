@@ -24,5 +24,8 @@ const {
 
 // Add model relationships here
 // product has many category
+Product.hasMany(Colors);
+Product.belongsTo(Colors, {as: 'idColors', })
+Product.hasMany(Category);
 
 module.exports = models;

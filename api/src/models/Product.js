@@ -31,8 +31,9 @@ const Product = (sequelize, S) => {
       allowNull: false,
     },
     idCategory:{
-    //TODO
-
+    type: S.INTEGER,
+    allowNull: false,
+    autoIncrement: true,
     },
     keywords: {
       type: S.STRING,

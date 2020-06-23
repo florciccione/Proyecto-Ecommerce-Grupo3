@@ -11,12 +11,11 @@ const Colors = (sequalize, S) =>{
             allowNull: false,
             validate: {noEmpty: true}
         },
-        image: {
+        hexaColor: {
             type: S.STRING,
             allowNull: false,
             validate: {noEmpty: true}
-        }
-
+        },
     }),
 
 return M;
