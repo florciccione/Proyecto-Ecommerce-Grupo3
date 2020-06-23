@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const db = require('db.js');
+/* const {Product, Colors, Category} = require ('models'); */
 
 const basename = path.basename(__filename);
 const models = {};
@@ -17,9 +18,11 @@ fs.readdirSync(__dirname)
 
 const {
   Product,
+  Category,
+  Colors,
 } = models;
 
 // Add model relationships here
-
+// product has many category
 
 module.exports = models;
