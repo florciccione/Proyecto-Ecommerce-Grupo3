@@ -1,10 +1,11 @@
-const Colors = (sequalize, S) =>{
+const Colors = (sequelize, S) =>{
 
     const M = sequelize.define('color', {
         id: {
             type: S.INTEGER,
             allowNull: false,
             autoIncrement: true,
+            primaryKey: true,
           },
         name: {
             type: S.STRING,
@@ -16,7 +17,7 @@ const Colors = (sequalize, S) =>{
             allowNull: false,
             validate: {noEmpty: true}
         },
-    }),
+    })
 
 return M;
 }

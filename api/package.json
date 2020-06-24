@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": " NODE_PATH=./src nodemon -L",
-    "forever": " NODE_PATH=./src forever index.js",
-    "test": "  NODE_PATH=./src mocha -w ./tests/**/*.spec.js"
+    "start": "  nodemon -L ",
+    "forever": " forever index.js",
+    "test": "  mocha -w ./tests/**/*.spec.js"
   },
   "author": "Dev5",
   "license": "ISC",

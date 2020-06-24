@@ -22,19 +22,10 @@ const Product = (sequelize, S) => {
       allowNull: false,
       validate: {noEmpty: true}
     },
-    idColor:{
-      type: S.INTEGER,
-      allowNull: false,
-      autoIncrement: true
-    },
+    
     image:{
       type: S.STRING,
       allowNull: false,
-    },
-    idCategory:{
-    type: S.INTEGER,
-    allowNull: false,
-    autoIncrement: true,
     },
     keywords: {
       type: S.STRING,
