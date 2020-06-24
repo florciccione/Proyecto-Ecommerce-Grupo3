@@ -1,0 +1,29 @@
+.catalogo_bg{
+    background: url(../../img/portada.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 180px;
+}
+
+.catalogo_title h1{
+    font-size: 20px;
+    font-family: 'Nanum Regular';
+    font-weight: 100;
+    text-align: center;
+    padding: 40px 0;
+}
+
+.catalogo_products{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.catalogo_product{
+    padding: 8px;
+    width: 100px;
+    height: 150px;
+    border: #ebeced solid .7px;
+    margin: 8px;
+}

@@ -34,11 +34,15 @@
 }
 
 .product_colors_img{
-    width: 20px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
-.product_colors_img img{
-    width: 100%;
+.product_color_img{
+    width: 20px;
+    height: 20px;
+    padding: 5px;
 }
 
 .product_img{

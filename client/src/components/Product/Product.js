@@ -5,45 +5,60 @@ import colorPrueba from '../../img/products/colors/hd_mineral_foundation_stick_c
 import './Product.css';
 
 
-export default function Product({arrayColors}){
+export default function Product({id, name, description, price, arrayColors, arrayImages}){
+
+    function showImg(arrayImages){
+        arrayImages.map(image => {
+            if(image.main){
+                return '../../img/products'+image.url;
+            }
+        });
+        return '../../img/products'+arrayImages[0].url;
+    }
+
+    function showColor(arrayColors){
+        arrayColors.map(color => {
+            <div className="product_color_img"  
+            style={{
+                backgroundColor: color.hexaColor
+              }}
+            ></div>
+        });
+    }
+
+    function showColorOption(arrayColors){
+        arrayColors.map(color => {
+            <option>
+                {color.name}
+            </option>
+        });
+    }
 
     return (
         <div className="product container">
             <div className="product_left">
                 <div className="product_img">
-                    <img src={imagenPrueba} alt=""/>
+                    <img src={showImg(arrayImages)} alt=""/>
                 </div>                
             </div>
             <div className="product_right">
                 <div className="product_name">
-                    <h1>Pulsera Quebec</h1>
+                    <h1>{name}</h1>
                 </div>
                 <div className="product_description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum. In culpa qui officia deserunt mollit anim id est laborum.</p>
+                    <p>{description}</p>
                 </div>
                 <div className="product_price">
-                    <span>$500.00</span>
+                    <span>{price}</span>
                 </div>
                 <div className="product_colors">
-                    {/* <span>Color: {color.name}</span>
-                    {arrayColors.forEach(color => {
-                        <span className="product_colors_name">Color: {color}</span>
-                    })}
-                    <select>
-                    {arrayColors.forEach(color => {                    
-                            <option>{color.color} color: {color.name}</option>
-                    })}
-                    </select> */}
-
-                    <span className="product_colors_name">Color: Dorado</span>
+                    <span className="product_colors_name">Color: {}</span>
                     <div className="product_colors_img">
-                        <img src={colorPrueba} alt=""/>
+                        {showColor(arrayColors)}
                     </div>
                     <div className="product_colors_list">
                         <select>
-                            <option>
-                                Dorado
-                            </option>
+                            {showColorOption(arrayColors)}
                         </select>
                     </div>                    
                 </div>
