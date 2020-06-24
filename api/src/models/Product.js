@@ -25,11 +25,11 @@ const Product = (sequelize, S) => {
     
     image:{
       type: S.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     keywords: {
       type: S.STRING,
-      allowNull: false,
+      allowNull: true,
       validate: {noEmpty: true}
     }
   });
