@@ -1,29 +1,48 @@
 .catalogo_bg{
-    background: url(../../img/portada.jpg);
+    background: url(../../img/portada-logo.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    height: 180px;
+    height: 240px;
 }
 
 .catalogo_title h1{
-    font-size: 20px;
+    font-size: 32px;
     font-family: 'Nanum Regular';
-    font-weight: 100;
+    font-weight: 200;
     text-align: center;
-    padding: 40px 0;
+    padding-top: 50px;
+    padding-bottom: 20px ;
+}
+
+.catalogo_title h5{
+    font-size: 18px;
+    color: black;
+    font-family: 'Graphik';
+    font-weight: 300;
+    text-align: center;
+    padding-bottom: 45px;
+}
+
+.catalogo_bar{
+    background-color: #ebeced;
+    background-size: cover;
+    padding: 25px;
+    display: flex;
+    justify-content: center; 
 }
 
 .catalogo_products{
+    padding-top: 30px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
 
 .catalogo_product{
-    padding: 8px;
-    width: 100px;
-    height: 150px;
+    width: 20%;
+    height: 380px;
     border: #ebeced solid .7px;
-    margin: 8px;
+    margin: 18px 0;
+    padding: 8px;
 }

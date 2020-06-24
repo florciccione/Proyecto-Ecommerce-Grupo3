@@ -5,10 +5,10 @@ import colorPrueba from '../../img/products/colors/hd_mineral_foundation_stick_c
 import './Product.css';
 
 
-export default function Product({id, name, description, price, arrayColors, arrayImages}){
+export default function Product({productDetail}){
 
-    function showImg(arrayImages){
-        arrayImages.map(image => {
+/*    function showImg(arrayImages){
+        return arrayImages.map(image => {
             if(image.main){
                 return '../../img/products'+image.url;
             }
@@ -17,7 +17,7 @@ export default function Product({id, name, description, price, arrayColors, arra
     }
 
     function showColor(arrayColors){
-        arrayColors.map(color => {
+        return arrayColors.map(color => {
             <div className="product_color_img"  
             style={{
                 backgroundColor: color.hexaColor
@@ -27,38 +27,38 @@ export default function Product({id, name, description, price, arrayColors, arra
     }
 
     function showColorOption(arrayColors){
-        arrayColors.map(color => {
+       return arrayColors.map(color => {
             <option>
                 {color.name}
             </option>
         });
     }
-
+*/
     return (
         <div className="product container">
             <div className="product_left">
                 <div className="product_img">
-                    <img src={showImg(arrayImages)} alt=""/>
+                   {/*<img src={showImg(arrayImages)} alt=""/>*/} 
                 </div>                
             </div>
             <div className="product_right">
                 <div className="product_name">
-                    <h1>{name}</h1>
+                    <h1>{productDetail.name}</h1>
                 </div>
                 <div className="product_description">
-                    <p>{description}</p>
+                    <p>{productDetail.description}</p>
                 </div>
                 <div className="product_price">
-                    <span>{price}</span>
+                    <span>{productDetail.precio}</span>
                 </div>
                 <div className="product_colors">
                     <span className="product_colors_name">Color: {}</span>
                     <div className="product_colors_img">
-                        {showColor(arrayColors)}
+                        {/*{showColor(arrayColors)}*/}
                     </div>
                     <div className="product_colors_list">
                         <select>
-                            {showColorOption(arrayColors)}
+                           {/* {showColorOption(arrayColors)}*/}
                         </select>
                     </div>                    
                 </div>
