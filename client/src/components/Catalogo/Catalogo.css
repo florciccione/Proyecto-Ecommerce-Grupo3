@@ -45,4 +45,9 @@
     border: #ebeced solid .7px;
     margin: 18px 0;
     padding: 8px;
+    color: black
+}
+
+.catalogo_product:link, .catalogo_product:visited, .catalogo_product:active {
+    text-decoration:none;   
 }

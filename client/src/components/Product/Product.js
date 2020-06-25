@@ -1,6 +1,6 @@
 import React from 'react';
 import imagenPrueba from '../../img/products/pulseras/p-quebec-humo.jpg';
-import colorPrueba from '../../img/products/colors/hd_mineral_foundation_stick_cloud1c-swatch.jpg';
+//import colorPrueba from '../../img/products/colors/hd_mineral_foundation_stick_cloud1c-swatch.jpg';
 // CSS
 import './Product.css';
 
@@ -49,7 +49,7 @@ export default function Product({productDetail}){
                     <p>{productDetail.description}</p>
                 </div>
                 <div className="product_price">
-                    <span>{productDetail.precio}</span>
+                    <span>{'$ '+ productDetail.price}</span>
                 </div>
                 <div className="product_colors">
                     <span className="product_colors_name">Color: {}</span>
