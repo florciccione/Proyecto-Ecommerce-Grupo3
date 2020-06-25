@@ -1,5 +1,6 @@
 
 const {Product, Category} = require('../models');
+const {Op} = require("sequelize");
 const express = require('express').Router();
 //const server = express();
 
@@ -17,7 +18,7 @@ express.get('/', function(req,res){
         description: description,
         price: price,
         idCategory: idCategory,
-        keywords: keywords,
+        keywords:  keywords,
     }, {fields: ['name', 'description', 'price', 'idCategory', 'keywords']})
 
     .then(function(product){
@@ -79,14 +80,33 @@ express.get('/:category', function(req,res){
 })
 
 
-/* express.get('/:keywords', function(req,res){
-    var keys = req.body.split(",");
+express.get('/keys/:keywords', function(req,res){
+    var keys = req.params.keywords.split("-").join(" ").toLowerCase();
+    console.log(keys);
     Product.findAll({
         where:{
-            keywords: 
+            [Op.or]: [
+                {
+                    keywords: {
+                
+                    [Op.iLike]: `${keys}`
+                     }
+                },
+                {
+                    keywords: {
+                        [Op.substring]:  `${keys}`
+                    }
+                }
+            ]
         }
     })
-}) */
+   .then(function(products){
+       res.status(200).json(products);
+   })
+   .catch(function(err){
+       res.status(404).json({data: err});
+   })
+})
 
 express.post('/', function(req, res){
     
