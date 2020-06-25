@@ -25,7 +25,7 @@ const Product = (sequelize, S) => {
      
     },
     idCategory:{
-      type: S.STRING,
+      type: S.INTEGER,
       allowNull: false,
       
     },

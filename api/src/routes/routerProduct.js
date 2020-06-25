@@ -57,19 +57,23 @@ express.post('/modify', function(req,res){
 }) 
 express.get('/:category', function(req,res){
 
-  var category =  Category.findOne({
+  Category.findOne({
         where: {
-            name: req.params.category
+            id: req.params.category
         }
     })
-    console.log(category);
-    Product.findAll({
-        where: {
-            idCategory: category.id
-        }
+    .then(function(category){
+        Product.findAll({
+            where: {
+                idCategory: category.id
+            }
+        })
+        .then(function(products){
+           res.status(200).json(products);
+        })
     })
-    .then(function(catalogo){
-        res.render('catalogo', {catalogo});
+    .catch(function(err){
+        res.status(404).json({err: "No se encontro el id", data: err});
     })
     
 })
