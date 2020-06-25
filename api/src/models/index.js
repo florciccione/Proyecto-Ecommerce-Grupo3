@@ -31,6 +31,5 @@ Product.hasMany(Images);
 Product.hasMany(Category);
 stockXColor.hasMany(Colors);
 Colors.hasMany(Images);
-Product.hasMany(Category);
 
 module.exports = models;

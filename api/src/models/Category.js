@@ -10,7 +10,7 @@ const Category = (sequelize, S) =>{
         name: {
             type: S.STRING,
             allowNull: false,
-            validate: {noEmpty: true}
+            
         },
     })
 

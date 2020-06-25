@@ -10,17 +10,17 @@ const Colors = (sequelize, S) =>{
         name: {
             type: S.STRING,
             allowNull: false,
-            validate: {noEmpty: true}
+           
         },
         hexaColor: {
             type: S.STRING,
             allowNull: false,
-            validate: {noEmpty: true}
+            
         },
         idImage:{
             type: S.INTEGER,
             allowNull: false,
-            validate: {noEmpty: true},
+           
         }
     });
 

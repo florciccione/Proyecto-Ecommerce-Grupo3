@@ -10,17 +10,17 @@ const Images = (sequelize, S) => {
         url: {
             type: S.STRING,
             allowNull: false,
-            validate: {noEmpty: true},
+           
         },
         main: {
             type: S.BOOLEAN,
             allowNull: false,
-            validate: {noEmpty: true},
+            
         },
         idProducto: {
             type: S.INTEGER,
             allowNull: false,
-            validate: {noEmpty: true}
+            
         }
     });
     return I;

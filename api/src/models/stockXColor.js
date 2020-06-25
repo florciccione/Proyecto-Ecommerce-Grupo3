@@ -10,17 +10,17 @@ const stockXColor = (sequelize, S) =>{
         idColor: {
             type: S.INTEGER,
             allowNull: false,
-            validate: {noEmpty: true}
+            
         },
         cantidad: {
             type: S.INTEGER,
             allowNull: false,
-            validate: {noEmpty: true}
+            
         },
         idProducto:{
             type: S.INTEGER,
             allowNull: false,
-            validate: {noEmpty: true},
+            
         }
     });
 
