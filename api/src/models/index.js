@@ -20,11 +20,17 @@ const {
   Product,
   Category,
   Colors,
+  Images,
+  stockXColor,
 } = models;
 
 // Add model relationships here
 // product has many category
-Product.hasMany(Colors);
+Product.hasMany(stockXColor);
+Product.hasMany(Images);
+Product.hasMany(Category);
+stockXColor.hasMany(Colors);
+Colors.hasMany(Images);
 Product.hasMany(Category);
 
 module.exports = models;

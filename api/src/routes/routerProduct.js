@@ -6,11 +6,11 @@ const {Category} = require('../models/Category.js');
 
 express.get('/product', function(req,res){
     Product.findAll()
-    .then(function(product){
-        res.send('Products', {product});
+    .then(function(products){
+        res.send(products);
     })
 })
-/* express.post('/product', function(req,res){
+ express.post('/product', function(req,res){
     const {name, description, price} = req.body;
     const newProduct = Product.create({
         name: name,
@@ -22,7 +22,7 @@ express.get('/product', function(req,res){
         res.status(404).send(err);
     }
     res.status(200).json({message: "Se creo correctamente el producto", data: newProduct});
-}) */
+}) 
 express.get('/:category', function(req,res){
 
   var category =  Category.findOne({
@@ -43,6 +43,7 @@ express.get('/:category', function(req,res){
 })
 
 express.get('/:keywords', function(req,res){
+    var keys = req.body.split(",");
     
 })
 

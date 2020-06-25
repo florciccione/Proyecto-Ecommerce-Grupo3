@@ -1,3 +1,5 @@
+
+
 const Product = (sequelize, S) => {
   // defino el modelo
   const P = sequelize.define('product', {
@@ -22,15 +24,25 @@ const Product = (sequelize, S) => {
       allowNull: false,
       validate: {noEmpty: true}
     },
-    
-    image:{
+    idCategory:{
       type: S.STRING,
-      allowNull: true,
+      allowNull: false,
+      validate: {noEmpty: true}
     },
     keywords: {
       type: S.STRING,
       allowNull: true,
       validate: {noEmpty: true}
+    },
+    createdAt:{
+      type: S.DATE,
+      allowNull: false,
+      defaultValue: S.NOW
+    },
+    updatedAt:{
+      type: S.DATE,
+      allowNull: false,
+      defaultValue: S.NOW
     }
   });
   
