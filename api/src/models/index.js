@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const db = require('db.js');
+const db = require('../db.js');
 /* const {Product, Colors, Category} = require ('models'); */
 
 const basename = path.basename(__filename);
@@ -20,12 +20,16 @@ const {
   Product,
   Category,
   Colors,
+  Images,
+  stockXColor,
 } = models;
 
 // Add model relationships here
 // product has many category
-Product.hasMany(Colors);
-Product.belongsTo(Colors, {as: 'idColors', })
+Product.hasMany(stockXColor);
+Product.hasMany(Images);
 Product.hasMany(Category);
+stockXColor.hasMany(Colors);
+Colors.hasMany(Images);
 
 module.exports = models;

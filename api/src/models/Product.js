@@ -1,3 +1,5 @@
+
+
 const Product = (sequelize, S) => {
   // defino el modelo
   const P = sequelize.define('product', {
@@ -5,41 +7,34 @@ const Product = (sequelize, S) => {
       type: S.INTEGER,
       allowNull: false,
       autoIncrement: true,
+      primaryKey: true,
     },
     name:{
       type: S.STRING,
       allowNull: false,
-      validate: {noEmpty: true}
+      
     },
     description: {
       type: S.STRING,
       allowNull: false,
-      validate: {noEmpty: true}
+     
     },
     price: {
       type: S.INTEGER,
       allowNull: false,
-      validate: {noEmpty: true}
-    },
-    idColor:{
-      type: S.INTEGER,
-      allowNull: false,
-      autoIncrement: true
-    },
-    image:{
-      type: S.STRING,
-      allowNull: false,
+     
     },
     idCategory:{
-    type: S.INTEGER,
-    allowNull: false,
-    autoIncrement: true,
+      type: S.INTEGER,
+      allowNull: false,
+      
     },
     keywords: {
       type: S.STRING,
-      allowNull: false,
-      validate: {noEmpty: true}
+      allowNull: true,
+      
     }
+   
   });
   
   return P;
