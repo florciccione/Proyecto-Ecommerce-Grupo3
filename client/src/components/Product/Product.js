@@ -1,44 +1,49 @@
-import React from 'react';
-import imagenPrueba from '../../img/products/pulseras/p-quebec-humo.jpg';
+import React, {useState} from 'react';
+//import imagenPrueba from '../../img/products/pulseras/p-quebec-humo.jpg';
 //import colorPrueba from '../../img/products/colors/hd_mineral_foundation_stick_cloud1c-swatch.jpg';
 // CSS
 import './Product.css';
 
 
 export default function Product({productDetail}){
-
-/*    function showImg(arrayImages){
+var [selectedColor, setSelectedColor] = useState(productDetail.arrayColors[0].name);
+    //retorna la imagen de portada del producto 
+    function showImg(arrayImages){
         return arrayImages.map(image => {
-            if(image.main){
-                return '../../img/products'+image.url;
+            if(image){
+                return arrayImages[0];
             }
         });
-        return '../../img/products'+arrayImages[0].url;
     }
+
+    function colorActive(colorName){
+        setSelectedColor(colorName);
+        var option = document.querySelector('#'+colorName);
+        option.selected = 'selected';
+    };
 
     function showColor(arrayColors){
-        return arrayColors.map(color => {
+        return arrayColors.map(color => 
             <div className="product_color_img"  
-            style={{
-                backgroundColor: color.hexaColor
-              }}
-            ></div>
-        });
-    }
+                 style = {{ backgroundColor: color.hexaColor }}
+                 onClick = {e => colorActive(color.name)}>
+            </div>
+        );
+    };
 
     function showColorOption(arrayColors){
-       return arrayColors.map(color => {
-            <option>
+       return arrayColors.map(color => 
+            <option id={color.name} value={color.name} className='product_colors_option'>
                 {color.name}
             </option>
-        });
+        );
     }
-*/
+
     return (
         <div className="product container">
             <div className="product_left">
                 <div className="product_img">
-                   {/*<img src={showImg(arrayImages)} alt=""/>*/} 
+                   {<img src={showImg(productDetail.arrayImages)} alt=""/>} 
                 </div>                
             </div>
             <div className="product_right">
@@ -52,13 +57,13 @@ export default function Product({productDetail}){
                     <span>{'$ '+ productDetail.price}</span>
                 </div>
                 <div className="product_colors">
-                    <span className="product_colors_name">Color: {}</span>
+                    <span className="product_colors_name">Color: {selectedColor}</span>
                     <div className="product_colors_img">
-                        {/*{showColor(arrayColors)}*/}
+                        {showColor(productDetail.arrayColors)}
                     </div>
                     <div className="product_colors_list">
-                        <select>
-                           {/* {showColorOption(arrayColors)}*/}
+                        <select onChange = {e => colorActive(e.target.value)}>
+                           {showColorOption(productDetail.arrayColors)}
                         </select>
                     </div>                    
                 </div>

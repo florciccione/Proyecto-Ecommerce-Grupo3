@@ -1,11 +1,19 @@
 import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
 // CSS
 import './Catalogo.css';
 // Components
 // import Product from '../Product/Product.js';
 import SearchBar from '../SearchBar/SearchBar.js';
+import ProductCard from './ProductCard.js';
 
 export default function Catalogo({arrayProductos,showProducts,onSearch}){
+  //muestra todos los productos
+  function showProducts(arrayProductos){
+    return arrayProductos.map(product => <Link to={'/producto/' + product.id} className="catalogo_product"> 
+    <ProductCard product={product}/>
+    </Link> );
+  }; 
 
     return(
         <div className="catalogo">

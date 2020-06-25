@@ -2,7 +2,7 @@
     height: calc(100vh - 50px);
     display: flex;
     font-family: 'Graphik';
-    padding-top: 150px;
+    padding-top: 180px;
 }
 
 .product_left{
@@ -14,6 +14,7 @@
 }
 
 .product_name h1{
+    padding-top: 20px;
     font-size: 28px;
     font-family: 'Nanum Regular';
     font-weight: 300;
@@ -27,6 +28,7 @@
 
 .product_price span{
     font-size: 16px;
+    padding-bottom: 10px;
 }
 .product_colors {
     padding: 20px 0;
@@ -39,17 +41,17 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    padding: 4px 0;
+    margin: 8px 0;
 }
 
 .product_color_img{
-    width: 20px;
-    height: 20px;
-    padding: 5px;
+    width: 33px;
+    height: 33px;
+    margin-right: 8px;
 }
 
 .product_img{
-    width: 250px;
+    width: 450px;
     margin: 0 auto;
 }
 
@@ -64,8 +66,11 @@
 .product_colors_list select{
     width: 100%;
     padding: 15px 2px;
-    font-size: 8px;
     border: #ebeced solid .7px;
+}
+.product_colors_list select > option{
+   font-size: 14px;
+   padding: 20px 0;
 }
 
 select:focus{

@@ -1,5 +1,5 @@
 .catalogo_bg{
-    background: url(../../img/portada-logo.jpg);
+    background: url(../../portada-logo.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
@@ -7,9 +7,9 @@
 }
 
 .catalogo_title h1{
-    font-size: 32px;
+    font-size: 44px;
     font-family: 'Nanum Regular';
-    font-weight: 200;
+    font-weight: 250;
     text-align: center;
     padding-top: 50px;
     padding-bottom: 20px ;
@@ -32,6 +32,13 @@
     justify-content: center; 
 }
 
+.catalogo_search{
+    padding-top: 130px;
+    font-size: 24px;
+    color: black;
+    font-family: 'Graphik';
+
+}
 .catalogo_products{
     padding-top: 30px;
     display: flex;
@@ -50,4 +57,24 @@
 
 .catalogo_product:link, .catalogo_product:visited, .catalogo_product:active {
     text-decoration:none;   
+}
+
+.catalogo_product_img img{
+    width: 100%;
+}
+.catalogo_product_name {
+    padding-top: 20px;
+    padding-left: 5px;
+    font-family: 'Graphik';
+    font-size: 20px;
+}
+.catalogo_product_price{
+    padding-top: 8px;
+    padding-left: 5px;
+    font-family: 'Graphik';
+}
+.catalogo_product_description{
+    padding-left: 5px;
+    padding-top: 15px;
+    font-family: 'Graphik';
 }
