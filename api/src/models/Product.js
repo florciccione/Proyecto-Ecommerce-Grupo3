@@ -1,6 +1,4 @@
-
-
-const Product = (sequelize, S) => {
+Product = (sequelize, S) => {
   // defino el modelo
   const P = sequelize.define('product', {
     id: {
