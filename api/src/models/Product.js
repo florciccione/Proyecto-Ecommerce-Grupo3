@@ -24,11 +24,6 @@ const Product = (sequelize, S) => {
       allowNull: false,
      
     },
-    idCategory:{
-      type: S.INTEGER,
-      allowNull: false,
-      
-    },
     keywords: {
       type: S.STRING,
       allowNull: true,

@@ -6,7 +6,13 @@ const express = require('express').Router();
 
 
 express.get('/', function(req,res){
-    Product.findAll()
+    Product.findAll({
+        include: {
+            model: Category,
+            as:"categoria",
+            attributes: ['name']
+        }
+    })
     .then(function(catalogo){
         res.status(200).json(catalogo);
     })

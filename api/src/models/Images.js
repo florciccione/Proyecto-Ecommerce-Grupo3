@@ -17,11 +17,6 @@ const Images = (sequelize, S) => {
             allowNull: false,
             
         },
-        idProducto: {
-            type: S.INTEGER,
-            allowNull: false,
-            
-        }
     });
     return I;
 }
