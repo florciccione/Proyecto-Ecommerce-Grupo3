@@ -28,14 +28,14 @@ const productos = [
 ]
 const stockColor = [
   // 3 colores para un mismo producto
-  {idColor: "1", cantidad: "3", idProducto: "1", image: "urlDePrueba"}, // collar tiene 3u. y es rojo
-  {idColor: "2", cantidad: "7", idProducto: "1",  image: "urlDePrueba"},//imagen de idProducto y ID color
-  {idColor: "3", cantidad: "5", idProducto: "1", image: "urlDePrueba"},
+  {idColor: "1", cantidad: "3",image: "urlDePrueba", productId: "1", colorId: "1"}, // collar tiene 3u. y es rojo
+  {idColor: "2", cantidad: "7",image: "urlDePrueba", productId: "1", colorId: "2"},//imagen de idProducto y ID color
+  {idColor: "3", cantidad: "5", image: "urlDePrueba",productId: "1", colorId: "3"},
   // cambio de producto
-  {idColor: "1", cantidad: "1", idProducto: "2", image: "urlDePrueba"},
-  {idColor: "2", cantidad: "8", idProducto: "2", image: "urlDePrueba"},
+  {idColor: "1", cantidad: "1", image: "urlDePrueba", productId: "2",colorId: "1"},
+  {idColor: "2", cantidad: "8", image: "urlDePrueba",productId: "2", colorId: "2"},
   // cambio de producto
-  {idColor: "3", cantidad: "16", idProducto: "3", image: "urlDePrueba"}
+  {idColor: "3", cantidad: "16", image: "urlDePrueba",productId: "3", colorId: "3" }
  
 ]
 

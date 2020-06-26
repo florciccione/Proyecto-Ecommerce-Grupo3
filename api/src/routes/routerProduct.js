@@ -13,19 +13,23 @@ express.get('/', function(req,res){
             attributes: ['name']
         },
         {
-           model: stockXColor,
-           attributes: ['cantidad', 'image'],
-            include: [
-                {
-                model: Colors
-                }
-            ]
+          model: Colors
+          
         }
         ]
     })
     .then(function(catalogo){
         res.status(200).json(catalogo);
     })
+})
+express.get('/stockXColor', function(req,res){
+stockXColor.findAll()
+.then(function(colores){
+    res.status(200).json(colores);
+})
+.catch(function(err){
+    res.status(404).json({data: err});
+})
 })
  express.post('/add', function(req,res){
     const {name, description, price, idCategory, keywords} = req.body;

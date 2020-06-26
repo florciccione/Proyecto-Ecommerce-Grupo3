@@ -15,7 +15,8 @@ const stockXColor = (sequelize, S) =>{
         image: {
             type: S.STRING,
             allowNull: false
-        }
+        },
+        
     });
 
 return M;

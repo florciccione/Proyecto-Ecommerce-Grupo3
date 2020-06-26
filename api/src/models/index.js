@@ -25,11 +25,12 @@ const {
 
 // Add model relationships here
 // product has many category
-stockXColor.belongsTo(Product);
-stockXColor.belongsTo(Colors);
-Product.hasMany(stockXColor);
-//Product.belongsToMany(Colors, {through: 'stockXColor'});
-//Colors.belongsToMany(Product, {through: 'stockXColor'});
+
+//Product.hasMany(stockXColor);
+Product.belongsToMany(Colors, {through: stockXColor});
+Colors.belongsToMany(Product, {through: stockXColor});
+//stockXColor.belongsTo(Product);
+//stockXColor.belongsTo(Colors);
 //Product.hasOne(Category);
 Category.hasMany(Product, {as: "productos", foreignKey: "idCategory"});
 Product.belongsTo(Category, {as: "categoria", foreignKey: "idCategory"});

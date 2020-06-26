@@ -17,7 +17,7 @@ const Colors = (sequelize, S) =>{
             allowNull: false,
             
         }
-    });
+    }, {timestamp: false});
 
 return M;
 }
