@@ -28,6 +28,10 @@ const Product = (sequelize, S) => {
       type: S.STRING,
       allowNull: true,
       
+    },
+    image: {
+      type: S.STRING,
+      allowNull: false
     }
    
   });

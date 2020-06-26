@@ -1,5 +1,5 @@
 
-const {Product, Category} = require('../models');
+const {Product, Category, stockXColor, Colors} = require('../models');
 const {Op} = require("sequelize");
 const express = require('express').Router();
 //const server = express();
@@ -7,11 +7,21 @@ const express = require('express').Router();
 
 express.get('/', function(req,res){
     Product.findAll({
-        include: {
+        include: [{
             model: Category,
             as:"categoria",
             attributes: ['name']
+        },
+        {
+           model: stockXColor,
+           attributes: ['cantidad', 'image'],
+            include: [
+                {
+                model: Colors
+                }
+            ]
         }
+        ]
     })
     .then(function(catalogo){
         res.status(200).json(catalogo);
