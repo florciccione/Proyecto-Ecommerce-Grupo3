@@ -5,6 +5,7 @@ import { Route } from 'react-router-dom';
 // Componentes
 import Product from './components/Product/Product.js';
 import Catalogo from './components/Catalogo/Catalogo.js';
+import Crud from './components/Crud/Crud.js';
 import FormCreate from './components/Crud/FormCreate.js';
 
 function App() {
@@ -49,9 +50,15 @@ function onFilter(id){
      />
      <Route
       exact
-      path='/nuevoProducto'
+      path='/panel-admin'
+      component={() => <Crud arrayProductos={arrayProductos}/>}
+     />
+     <Route
+      exact
+      path='/panel-admin/agregar-producto/'
       component={() => <FormCreate />}
      />
+    
     </div>
   );
 }

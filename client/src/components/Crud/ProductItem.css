@@ -1,0 +1,39 @@
+.list-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 20px 10px ;
+    font-size: 16px;
+    color: black;
+    font-family: 'Graphik';
+    border: .6px solid #ebeced;
+}
+.item_list_description{
+    position: absolute;
+    left: 570px;
+}
+.item_list_price{
+    position: absolute;
+    left: 1200px;
+}
+.btn_ver{
+    background-color: white;
+    border: .6px solid #ebeced;
+    padding: 8px;
+    position: absolute;
+    left: 1320px; 
+}
+.btn_modificar{
+    background-color: white;
+    border: .6px solid #ebeced;
+    padding: 8px;
+    position: absolute;
+    left: 1350px; 
+}
+.btn_eliminar{
+    background-color: white;
+    border: .6px solid #ebeced;
+    padding: 8px;
+    position: absolute;
+    left: 1385px; 
+}

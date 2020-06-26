@@ -7,7 +7,7 @@ import './Catalogo.css';
 import SearchBar from '../SearchBar/SearchBar.js';
 import ProductCard from './ProductCard.js';
 
-export default function Catalogo({arrayProductos,showProducts,onSearch}){
+export default function Catalogo({arrayProductos,onSearch}){
   //muestra todos los productos
   function showProducts(arrayProductos){
     return arrayProductos.map(product => <Link to={'/producto/' + product.id} className="catalogo_product"> 

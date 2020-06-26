@@ -18,7 +18,8 @@ if (e.target.value.length > 10) {
 }
 
 return (
-  <form onSubmit={handleSubmit}>
+  <form onSubmit={handleSubmit} className='container'>
+    <h4 className='titulo_form'>Agregar producto nuevo</h4>
     <div>
       <label>Nombre:</label>
         <input 
@@ -35,7 +36,6 @@ return (
             <textarea 
               name ="description" 
               placeholder = "Descripción del producto"
-              
               className = 'product_description'
               onChange = {handleInputChange} 
               />
