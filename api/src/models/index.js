@@ -20,16 +20,19 @@ const {
   Product,
   Category,
   Colors,
-  Images,
   stockXColor,
 } = models;
 
 // Add model relationships here
 // product has many category
-Product.hasMany(stockXColor);
-Product.hasMany(Images);
-Product.hasMany(Category);
-stockXColor.hasMany(Colors);
-Colors.hasMany(Images);
+
+//Product.hasMany(stockXColor);
+Product.belongsToMany(Colors, {through: stockXColor});
+Colors.belongsToMany(Product, {through: stockXColor});
+//stockXColor.belongsTo(Product);
+//stockXColor.belongsTo(Colors);
+//Product.hasOne(Category);
+Category.hasMany(Product, {as: "productos", foreignKey: "idCategory"});
+Product.belongsTo(Category, {as: "categoria", foreignKey: "idCategory"});
 
 module.exports = models;

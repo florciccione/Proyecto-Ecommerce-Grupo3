@@ -1,12 +1,10 @@
-const { Product, Category } = require("../models");
-const express = require("express").Router();
+const {Product, Category, stockXColor, Colors} = require('../models');
+const {Op} = require("sequelize");
+const express = require('express').Router();
+
 //const server = express();
 
-express.get("/", function (req, res) {
-  Product.findAll().then(function (catalogo) {
-    res.status(200).json(catalogo);
-  });
-});
+
 express.post("/add", function (req, res) {
   const { name, description, price, idCategory, keywords } = req.body;
   Product.create(
@@ -18,16 +16,46 @@ express.post("/add", function (req, res) {
       keywords: keywords,
     },
     { fields: ["name", "description", "price", "idCategory", "keywords"] }
-  )
+  );
+});
 
-    .then(function (product) {
-      res
-        .status(200)
-        .json({ message: "Se creo correctamente el producto", data: product });
+
+express.get('/', function(req,res){
+    Product.findAll({
+        include: [{
+            model: Category,
+            as:"categoria",
+            attributes: ['name']
+        },
+        {
+          model: Colors
+          
+        }
+        ]
     })
-    .catch(function (err) {
-      res.status(404).json({ err: "No se creó el producto" });
-    });
+    .then(function(catalogo){
+        res.status(200).json(catalogo);
+    })
+})
+express.get('/stockXColor', function(req,res){
+stockXColor.findAll()
+.then(function(colores){
+    res.status(200).json(colores);
+})
+.catch(function(err){
+    res.status(404).json({data: err});
+})
+})
+ express.post('/add', function(req,res){
+    const {name, description, price, idCategory, keywords} = req.body;
+     Product.create({
+        name: name,
+        description: description,
+        price: price,
+        idCategory: idCategory,
+        keywords:  keywords,
+    }, {fields: ['name', 'description', 'price', 'idCategory', 'keywords']})
+
 
   /* if(!newProduct){
         var err = new Error("No se creo el producto");
@@ -74,14 +102,32 @@ express.get("/:category", function (req, res) {
     });
 });
 
-/* express.get('/:keywords', function(req,res){
-    var keys = req.body.split(",");
-    Product.findAll({
-        where:{
-            keywords: 
-        }
+express.get("/keys/:keywords", function (req, res) {
+  var keys = req.params.keywords.split("-").join(" ").toLowerCase();
+  console.log(keys);
+  Product.findAll({
+    where: {
+      [Op.or]: [
+        {
+          keywords: {
+            [Op.iLike]: `${keys}`,
+          },
+        },
+        {
+          keywords: {
+            [Op.substring]: `${keys}`,
+          },
+        },
+      ],
+    },
+  })
+    .then(function (products) {
+      res.status(200).json(products);
     })
-}) */
+    .catch(function (err) {
+      res.status(404).json({ data: err });
+    });
+});
 
 express.get("/keys/:keywords", function (req, res) {
   var keys = req.params.keywords.split("-");

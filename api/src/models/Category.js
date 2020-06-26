@@ -12,7 +12,8 @@ const Category = (sequelize, S) =>{
             allowNull: false,
             
         },
-    })
+        
+    },{timestamp: false})
 
 return C;
 }

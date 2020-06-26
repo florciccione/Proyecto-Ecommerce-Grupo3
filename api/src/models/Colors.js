@@ -16,13 +16,8 @@ const Colors = (sequelize, S) =>{
             type: S.STRING,
             allowNull: false,
             
-        },
-        idImage:{
-            type: S.INTEGER,
-            allowNull: false,
-           
         }
-    });
+    }, {timestamp: false});
 
 return M;
 }
