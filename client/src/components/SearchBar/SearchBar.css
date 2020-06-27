@@ -1,0 +1,15 @@
+.search_bar{
+    width: 300px;
+    border: none;
+    padding: 10px;
+
+    }
+    
+.search_btn {
+    padding: 10px;
+    border: none; 
+}
+
+.search_btn:focus, .search_bar:focus  {
+    outline: none;
+}

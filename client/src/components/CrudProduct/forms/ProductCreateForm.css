@@ -1,0 +1,22 @@
+.danger {
+    color: red;
+}
+.titulo_form h1{
+    font-size: 18px;
+    color: black;
+    font-family: 'Graphik';
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 45px;
+
+}
+.product_description {
+    padding: 8px;
+}
+label {
+    font-family: 'Graphik';
+}
+
+.crud_create_product_form{
+    
+}
