@@ -1,25 +1,22 @@
-const stockXColor = (sequelize, S) =>{
+const stockXColor = (sequelize, S) => {
+  const M = sequelize.define("stockXColor", {
+    id: {
+      type: S.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    cantidad: {
+      type: S.INTEGER,
+      allowNull: false,
+    },
+    image: {
+      type: S.STRING,
+      allowNull: false,
+    },
+  });
 
-    const M = sequelize.define('stockXColor', {
-        id: {
-            type: S.INTEGER,
-            allowNull: false,
-            autoIncrement: true,
-            primaryKey: true,
-          },
-        cantidad: {
-            type: S.INTEGER,
-            allowNull: false,
-            
-        },
-        image: {
-            type: S.STRING,
-            allowNull: false
-        },
-        
-    });
-
-return M;
-}
+  return M;
+};
 
 module.exports = stockXColor;
