@@ -129,7 +129,7 @@ express.get("/keys/:keywords", function (req, res) {
     });
 });
 
-express.get("/keys/:keywords", function (req, res) {
+/* express.get("/keys/:keywords", function (req, res) {
   var keys = req.params.keywords.split("-");
   console.log(keys);
   Product.findAll({
@@ -145,7 +145,7 @@ express.get("/keys/:keywords", function (req, res) {
     .catch(function (err) {
       res.status(404).json({ data: err });
     });
-});
+}); */
 
 express.put("/:id", (req, res) => {
   const { id } = req.params;

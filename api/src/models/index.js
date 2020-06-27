@@ -35,4 +35,14 @@ Colors.belongsToMany(Product, {through: stockXColor});
 Category.hasMany(Product, {as: "productos", foreignKey: "idCategory"});
 Product.belongsTo(Category, {as: "categoria", foreignKey: "idCategory"});
 
+//Product.hasMany(stockXColor);
+Product.belongsToMany(Colors, {through: stockXColor});
+Colors.belongsToMany(Product, {through: stockXColor});
+//stockXColor.belongsTo(Product);
+//stockXColor.belongsTo(Colors);
+//Product.hasOne(Category);
+Category.hasMany(Product, {as: "productos", foreignKey: "idCategory"});
+Product.belongsTo(Category, {as: "categoria", foreignKey: "idCategory"});
+
+
 module.exports = models;
