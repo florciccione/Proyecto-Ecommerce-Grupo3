@@ -2,7 +2,7 @@
     color: red;
 }
 .titulo_form {
-    font-size: 18px;
+    font-size: 20px;
     color: black;
     font-family: 'Graphik';
     font-weight: 400;
@@ -10,9 +10,18 @@
     padding-bottom: 45px;
 
 }
-.product_description {
-    padding: 8px;
-}
-label {
+label{
     font-family: 'Graphik';
+}
+.container_form{
+    width: 50%;
+    background-color: thistle;
+    display:flex;
+    flex-direction: column;
+    margin: auto;
+}
+.form_name, .form_description, .form_price{
+    text-align: center;
+    margin:auto;
+    padding:8px 0px;
 }
