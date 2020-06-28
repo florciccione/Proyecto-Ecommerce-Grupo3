@@ -10,8 +10,9 @@ import ProductCard from './ProductCard.js';
 export default function Catalogo({arrayProductos,onSearch}){
   //muestra todos los productos
   function showProducts(arrayProductos){
-    return arrayProductos.map(product => <Link to={'/producto/' + product.id} className="catalogo_product"> 
-    <ProductCard product={product}/>
+    return arrayProductos.map(product => 
+    <Link to={'/producto/' + product.id} className="catalogo_product"> 
+        <ProductCard product={product}/>
     </Link> );
   }; 
 

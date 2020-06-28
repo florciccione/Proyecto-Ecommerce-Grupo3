@@ -6,7 +6,8 @@ export default function ProductCard({product}) {
     return (
     <div>
         <div className='catalogo_product_img'>
-            <img src={'producto/'+product.arrayImages[0]} alt=""/>
+            {/* <img src={'producto/'+product.arrayImages[0]} alt=""/> */}
+            <img src={'producto/'+product.image} alt=""/>
         </div>
         <div className='catalogo_product_name'>
             {product.name}

@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import { Route } from 'react-router-dom';
 
-//import { arrayProductos } from './data.js';
+import axios from 'axios';
+// import {productos} from './data.js';
+// var productos = axios.get('/');
 // Componentes
 import Product from './components/Product/Product.js';
 import Catalogo from './components/Catalogo/Catalogo.js';
@@ -11,19 +13,8 @@ import ProductCreateForm from './components/CrudProduct/forms/ProductCreateForm.
 
 
 function App() {
-  var [arrayProductos, setArrayProductos] = useState([{name:'Pulsera Noruega',price:1050, id:1, arrayImages: ['img/pulseras/p-noruega-negro.jpg'], 
-  arrayColors:[{name: 'Negro', hexaColor: '#000000'}, {name: 'Rojo', hexaColor: '#ff3636'}], 
-  description:"Pulsera en gamuza con cristal de roca facetado, agatas y detalles de metal.", keywords: ['pulseras', 'gamuza', 'agatas', 'metal', 'piedras', 'cristales']}, 
-  {name:'Pulsera Cubos',price:1150, id:2, arrayImages: ['img/pulseras/cubos-gamuza.jpg'], 
-  arrayColors:[{name: 'Aqua', hexaColor: '#9bcfcb'}, {name: 'Rojo', hexaColor: '#ff3636'}], 
-  description:"Pulsera en gamuza con cristales cúbicos y detalles de metal.", keywords: ['pulseras', 'gamuza', 'metal', 'cristales', 'cubos', 'cúbicos', 'cuadrados']},
-  {name:'Pulsera Quebec',price:850, id:3, arrayImages: ['img/pulseras/p-quebec-humo.jpg'], 
-  arrayColors:[{name: 'Humo', hexaColor: '#b4b0b0'}, {name: 'Rojo', hexaColor: '#ff3636'}], 
-  description:"Pulsera elastizada triple de cristal de roca facetado, con detalles de metal.", keywords: ['pulseras', 'elastizada', 'triple', 'metal', 'cristales', 'brazalete', 'fiesta', 'noche']},
-  {name:'Pulsera Medieval',price:990, id:4, arrayImages: ['img/pulseras/p-medieval-ambar.jpg'], 
-  arrayColors:[{name: 'Ambar', hexaColor: '#f5b277'}, {name: 'Rojo', hexaColor: '#ff3636'}], 
-  description:"Pulsera diseñada con cristales de roca facetados y detalles de metal.", keywords: ['pulseras', 'metal', 'cristales']}]);
-  var categories = [' ','pulseras','collares cortos','collares largos','rosarios','chokers','aros']
+  var [arrayProductos, setArrayProductos] = useState(productos);
+  var categories = ['pulseras','collares cortos','collares largos','rosarios','chokers','aros']
 //devuelve el producto buscado o mensaje 
 function onSearch(keyword) {
   if(keyword){
@@ -40,6 +31,7 @@ function onFilter(id){
 }; 
   return (
     <div className="App">
+    {console.log(productos)}
        {/* PRODUCT Routes */}
       <Route
       exact
@@ -57,22 +49,6 @@ function onFilter(id){
       exact
       path='/panel-admin/producto/'
       component={() => <CrudProduct arrayProductos={arrayProductos} categories={categories}/>}
-     />
-     {/*ESTO NO ESTA DE MAS AHORA?????????????????????????? */}
-     <Route
-      exact
-      path='/panel-admin/producto/agregar-producto/'
-      component={() => <ProductCreateForm />}
-     />     
-     <Route
-      exact
-      path='/panel-admin/producto/modificar-producto/'
-      component={() => <ProductCreateForm />}
-     />
-     <Route
-      exact
-      path='/panel-admin/producto/eliminar-producto/'
-      component={() => <ProductCreateForm />}
      />
     </div>
   );

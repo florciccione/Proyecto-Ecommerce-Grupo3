@@ -13,9 +13,9 @@ export default function Crud({arrayProductos, categories}){
     const [productSelected, setProductSelected] = useState('');
     
     function showCategoryOption(categories) { 
-        return categories.map(categories => 
-        <option value={categories} className='product_category_option'>
-            {categories}
+        return categories.map(categorie => 
+        <option value={categorie} className='product_category_option'>
+            {categorie}
         </option>
         );
       };

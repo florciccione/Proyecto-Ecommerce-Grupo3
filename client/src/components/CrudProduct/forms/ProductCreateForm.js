@@ -1,11 +1,9 @@
 import React from 'react';
 import './ProductCreateForm.css';
+import {regNombre, regPrecio} from './regex';
 
 export default function FormCreate({categories, showCategoryOption}){
   var errors = [];
-  
-  const regNombre = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
-  const regPrecio = /^[0123456789]+$/u;
 
   function handleSubmit(e){
     e.preventDefault();
@@ -20,6 +18,7 @@ export default function FormCreate({categories, showCategoryOption}){
     var errorName = document.querySelector('.errorName');
     var errorDescription = document.querySelector('.errorDescription');
     var errorPrice = document.querySelector('.errorPrice');
+    var errorKeywords = document.querySelector('.errorKeywords');
     let input = e.target;
     
     // Errores para el campo Name:
@@ -91,6 +90,31 @@ export default function FormCreate({categories, showCategoryOption}){
         removeErrors('precio');
       }     
     }
+
+    // Errores para el campo Keywords:
+    if(input.name === 'keywords'){
+
+      // Si supera la longitud de 100 caracteres. ERROR!
+      if(input.value.length > 15) { // 15 para probar
+        errorKeywords.innerHTML = 'Demasiado largo. Máx: 100 caracteres';
+        errors.push('keywordsLargo');       
+
+      // Si está vacío
+      } else if(input.value.length === 0){
+        errorKeywords.innerHTML = 'Campo obligatorio';
+        errors.push('keywordsVacio');
+
+        // Si no cumple con la funcion Regex. ERROR!
+      } else if(!regNombre.test(input.value)){
+        errorKeywords.innerHTML = 'No debe contener caracteres especiales';
+        errors.push('keywordsInvalido');
+
+        // Sino, todo bien
+      } else{
+        errorKeywords.innerHTML = '';
+        removeErrors('keywords');
+      }     
+    }
   };
   
   return (
@@ -131,6 +155,7 @@ export default function FormCreate({categories, showCategoryOption}){
                   placeholder="Etiquetas del producto"
                   onChange={handleInputChange} 
                 />
+                <p className="errorKeywords danger"></p>
             </div>
 
             <div className="form_input_submit">

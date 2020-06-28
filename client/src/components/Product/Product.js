@@ -41,7 +41,8 @@ var [selectedColor, setSelectedColor] = useState(productDetail.arrayColors[0].na
         <div className="product container">
             <div className="product_left">
                 <div className="product_img">
-                   {<img src={showImg(productDetail.arrayImages)} alt=""/>} 
+                   {/* <img src={showImg(productDetail.arrayImages)} alt=""/>  */}
+                   <img src={productDetail.image} alt=""/>
                 </div>                
             </div>
             <div className="product_right">
@@ -55,14 +56,14 @@ var [selectedColor, setSelectedColor] = useState(productDetail.arrayColors[0].na
                     <span>{'$ '+ productDetail.price}</span>
                 </div>
                 <div className="product_colors">
-                    <span className="product_colors_name">Color: {selectedColor}</span>
+                    {/* <span className="product_colors_name">Color: {selectedColor}</span> */}
                     <div className="product_colors_img">
-                        {showColor(productDetail.arrayColors)}
+                        {/* {showColor(productDetail.arrayColors)} */}
                     </div>
                     <div className="product_colors_list">
-                        <select onChange = {e => colorActive(e.target.value)}>
+                        {/* <select onChange = {e => colorActive(e.target.value)}>
                            {showColorOption(productDetail.arrayColors)}
-                        </select>
+                        </select> */}
                     </div>                    
                 </div>
             </div>
