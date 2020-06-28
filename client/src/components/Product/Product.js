@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-//import imagenPrueba from '../../img/products/pulseras/p-quebec-humo.jpg';
-//import colorPrueba from '../../img/products/colors/hd_mineral_foundation_stick_cloud1c-swatch.jpg';
 // CSS
 import './Product.css';
 
@@ -9,12 +7,11 @@ export default function Product({productDetail}){
 var [selectedColor, setSelectedColor] = useState(productDetail.arrayColors[0].name);
     //retorna la imagen de portada del producto 
     function showImg(arrayImages){
-    /*CORREGIR RUTA DE LAS IMAGENES AHORA ESTAN EN EL ARRAY DE COLORES - MOSTRAR POR DEFAUL SEGUN MAIN */
-        return arrayImages.map(image => {
-            if(image){
+        // return arrayImages.map(image => {
+        //     if(image){
                 return arrayImages[0];
-            }
-        });
+        //     }
+        // });
     }
 
     function colorActive(colorName){

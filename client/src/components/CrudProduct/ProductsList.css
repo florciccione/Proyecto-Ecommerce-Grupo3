@@ -1,0 +1,33 @@
+.products_list{  
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.crud_products_list {
+    margin-top: 60px;
+}
+
+/* Header */
+.crud_products_header{
+    display: flex;
+    justify-content: space-between;    
+    font-family: 'Graphik';
+    font-weight: 400;
+    height: 50px;
+    align-items: center;
+}
+
+.crud_products_header h1{
+    font-weight: 400;
+}
+
+/* Header btn */
+.btn_create_product{
+    padding: 15px;
+    background-color: #EBECED;
+    cursor: pointer;
+}
