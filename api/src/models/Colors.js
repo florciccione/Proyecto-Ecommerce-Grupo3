@@ -1,24 +1,26 @@
-const Colors = (sequalize, S) =>{
+const Colors = (sequelize, S) => {
+  const M = sequelize.define(
+    "color",
+    {
+      id: {
+        type: S.INTEGER,
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+      },
+      name: {
+        type: S.STRING,
+        allowNull: false,
+      },
+      hexaColor: {
+        type: S.STRING,
+        allowNull: false,
+      },
+    },
+    { timestamp: false }
+  );
 
-    const M = sequelize.define('color', {
-        id: {
-            type: S.INTEGER,
-            allowNull: false,
-            autoIncrement: true,
-          },
-        name: {
-            type: S.STRING,
-            allowNull: false,
-            validate: {noEmpty: true}
-        },
-        hexaColor: {
-            type: S.STRING,
-            allowNull: false,
-            validate: {noEmpty: true}
-        },
-    }),
-
-return M;
-}
+  return M;
+};
 
 module.exports = Colors;

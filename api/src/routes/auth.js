@@ -1,15 +1,15 @@
-const server = require('express').Router();
+const server = require("express").Router();
 
-server.post('/changepassword');
+server.post("/changepassword");
 
-server.post('/login');
+server.post("/login");
 
-server.get('/logout');
+server.get("/logout");
 
-server.post('/register');
+server.post("/register");
 
-server.get('/me');
+server.get("/me");
 
-server.put('/promote');
+server.put("/promote");
 
 module.exports = server;
