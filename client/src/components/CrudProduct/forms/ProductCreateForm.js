@@ -1,7 +1,7 @@
 import React from 'react';
 import './ProductCreateForm.css';
 
-export default function FormCreate(){
+export default function FormCreate({categories, showCategoryOption}){
   var errors = [];
   
   const regNombre = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
@@ -14,7 +14,7 @@ export default function FormCreate(){
 
   function removeErrors(str){
     errors = errors.filter(error => !error.includes(str));
-  }
+  };
 
   function handleInputChange(e){
     var errorName = document.querySelector('.errorName');
@@ -91,8 +91,7 @@ export default function FormCreate(){
         removeErrors('precio');
       }     
     }
-  }
-  
+  };
   
   return (
     <div>
@@ -154,10 +153,23 @@ export default function FormCreate(){
 
             <div className="form_input_category">
                 <label>Categoría:</label>
+{/*INVENTE UN PRIMER ELEMENTO VACIO PARA QUE APAREZCA EN BLANCO EL SELECT, SE PUEDE VALIDAD AL ENVIAR??*/}
                 <select name="category" className='select_category' onChange= {e => (e.target.value)}> 
-                  {/*showCategoryOption()*/}
+                  {showCategoryOption(categories)}
                 </select>
             </div>
+
+            <div className="form_input_image">
+                <label>Imagen:</label>
+                <input 
+                  type="file" 
+                  name="image" 
+                  onChange={handleInputChange} 
+                  accept="image/png, image/jpeg"
+                />
+                <p className="errorImage danger"></p>
+            </div>
+
         </div>
         
       </form>

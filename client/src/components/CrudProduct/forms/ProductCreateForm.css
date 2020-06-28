@@ -31,7 +31,7 @@
     flex-direction: column;
 }
 
-.form_input_name, .form_input_desc, .form_input_price, .form_input_category, .form_input_keywords, .form_input_submit{
+.form_input_name, .form_input_desc, .form_input_price, .form_input_category, .form_input_keywords, .form_input_submit, .form_input_image{
     padding-top: 27px;
     display: flex;
     justify-content: space-around;
@@ -59,8 +59,11 @@
     padding: 8px;
 }
 .form_input_category select{
+    width: 72%;
+    padding: 0 5px;
+    font-family: 'Graphik';
+    font-size: 16px ;
     border: .8px solid #d7d8da;
-    padding: 5px;
 }
 .form_input_submit{
     justify-content: center;

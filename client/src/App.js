@@ -23,7 +23,7 @@ function App() {
   {name:'Pulsera Medieval',price:990, id:4, arrayImages: ['img/pulseras/p-medieval-ambar.jpg'], 
   arrayColors:[{name: 'Ambar', hexaColor: '#f5b277'}, {name: 'Rojo', hexaColor: '#ff3636'}], 
   description:"Pulsera diseñada con cristales de roca facetados y detalles de metal.", keywords: ['pulseras', 'metal', 'cristales']}]);
-
+  var categories = [' ','pulseras','collares cortos','collares largos','rosarios','chokers','aros']
 //devuelve el producto buscado o mensaje 
 function onSearch(keyword) {
   if(keyword){
@@ -56,8 +56,9 @@ function onFilter(id){
      <Route
       exact
       path='/panel-admin/producto/'
-      component={() => <CrudProduct arrayProductos={arrayProductos}/>}
+      component={() => <CrudProduct arrayProductos={arrayProductos} categories={categories}/>}
      />
+     {/*ESTO NO ESTA DE MAS AHORA?????????????????????????? */}
      <Route
       exact
       path='/panel-admin/producto/agregar-producto/'

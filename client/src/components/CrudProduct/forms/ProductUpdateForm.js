@@ -1,9 +1,8 @@
 import React from 'react';
 import './ProductUpdateForm.css';
 
-export default function ProductUpdateForm(product){
+export default function ProductUpdateForm({productSelected,categories,showCategoryOption}){
   var errors = [];
-  console.log(product);
   const regNombre = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
   const regPrecio = /^[0123456789]+$/u;
 
@@ -92,8 +91,7 @@ export default function ProductUpdateForm(product){
       }     
     }
   }
-  
-  
+   
   return (
     <div>
       <div className="container_form">
@@ -107,7 +105,7 @@ export default function ProductUpdateForm(product){
             <input
               type="text" 
               name="name" 
-              value={product.productSelected.name}
+              value={productSelected.name}
               onChange={handleInputChange}
             />
             <p className="errorName danger"></p>
@@ -117,7 +115,7 @@ export default function ProductUpdateForm(product){
             <label>Descripción:</label>
             <textarea 
               name ="description" 
-              value={product.productSelected.description}          
+              value={productSelected.description}          
               className = 'product_description'
               onChange = {handleInputChange} 
               />
@@ -129,7 +127,7 @@ export default function ProductUpdateForm(product){
             <input 
               type="text" 
               name="keywords" 
-              value={product.productSelected.keywords}
+              value={productSelected.keywords}
               onChange={handleInputChange} 
             />
           </div>
@@ -145,7 +143,7 @@ export default function ProductUpdateForm(product){
             <input 
               type="number" 
               name="price" 
-              value={product.productSelected.price}
+              value={productSelected.price}
               onChange={handleInputChange} 
             />
             <p className="errorPrice danger"></p>
@@ -154,12 +152,12 @@ export default function ProductUpdateForm(product){
           <div className="form_input_category">
             <label>Categoría:</label>
             <select name="category" className='select_category' onChange= {e => (e.target.value)}> 
-              {/*showCategoryOption()*/}
+              {showCategoryOption(categories)}
             </select>
           </div>
 
         </div>           
-      </form>
+  </form>
       </div>
     </div>
             

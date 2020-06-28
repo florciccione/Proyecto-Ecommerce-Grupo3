@@ -7,10 +7,19 @@ import ProductCreateForm from './forms/ProductCreateForm.js';
 import ProductUpdateForm from './forms/ProductUpdateForm.js';
 import ProductsList from './ProductsList.js';
 
-export default function Crud({arrayProductos}){
+export default function Crud({arrayProductos, categories}){
   //muestra por defecto la lista de productos + opciones para agregar categoria o productos
     const [componentName, setComponentName] = useState('default');
     const [productSelected, setProductSelected] = useState('');
+    
+    function showCategoryOption(categories) { 
+        return categories.map(categories => 
+        <option value={categories} className='product_category_option'>
+            {categories}
+        </option>
+        );
+      };
+
     function deleteItem(){
         setComponentName('deleteItem');
     }
@@ -24,10 +33,10 @@ export default function Crud({arrayProductos}){
         if(componentName === 'default'){
             return (<ProductsList arrayProductos={arrayProductos} deleteItem={deleteItem} updateItem={updateItem}/>)
         }else if(componentName === 'createForm'){
-            return (<ProductCreateForm />)
+            return (<ProductCreateForm categories={categories} showCategoryOption={showCategoryOption}/>)
 
         }else if(componentName === 'updateForm'){
-            return (<ProductUpdateForm productSelected={productSelected}/>)
+            return (<ProductUpdateForm productSelected={productSelected} categories={categories} showCategoryOption={showCategoryOption}/>)
         }else if(componentName === 'deleteItem'){
             alert('Ojo');
             setComponentName('default');
