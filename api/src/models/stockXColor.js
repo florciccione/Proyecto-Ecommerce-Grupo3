@@ -14,6 +14,10 @@ const stockXColor = (sequelize, S) => {
       type: S.STRING,
       allowNull: false,
     },
+    main: {
+      type: S.BOOLEAN,
+      allowNull: false,
+    },
   });
 
   return M;
