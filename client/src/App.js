@@ -2,14 +2,11 @@ import React, {useState, useEffect} from 'react';
 import { Route } from 'react-router-dom';
 
 import axios from 'axios';
-// import {productos} from './data.js';
 
 // Componentes
 import Product from './components/Product/Product.js';
 import Catalogo from './components/Catalogo/Catalogo.js';
-
 import CrudProduct from './components/CrudProduct/CrudProduct.js';
-import ProductCreateForm from './components/CrudProduct/forms/ProductCreateForm.js';
 
 function App() {
 
@@ -20,7 +17,6 @@ function App() {
       method:'GET',
       url:'http://localhost:3001/product/'
       }).then(function(res){
-        // console.log(res.data);
         setArrayProductos(res.data);
       });
     axios({
@@ -32,11 +28,10 @@ function App() {
       });
   }, []);
 
-  // var categories = ['pulseras','collares cortos','collares largos','rosarios','chokers','aros']
 //devuelve el producto buscado o mensaje 
 function onSearch(keyword) {
   if(keyword){
-    var arraySearched = arrayProductos.filter(product => product.name.toLowerCase().includes(keyword.toLowerCase()));
+    var arraySearched = arrayProductos.filter(product => product.name.toLowerCase().includes(keyword.toLowerCase()) || product.keywords.toLowerCase().includes(keyword.toLowerCase()));
     setArrayProductos(arraySearched);
   } else {
     alert("No se han encontrado productos");

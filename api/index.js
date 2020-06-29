@@ -54,8 +54,8 @@ const productos = [
     idCategory: "5",
     keywords:
       "pulseras,elastizada,triple,metal,cristales,brazalete,fiesta,noche",
-    image: "urlFotoAritos",
-  },
+    image: "urlFoto",
+  },//3
   {
     name: "Pulsera Medieval",
     description:
@@ -63,18 +63,50 @@ const productos = [
     price: "990",
     idCategory: "5",
     keywords: "pulseras,metal,cristales",
+    image: "urlFoto",
+  },//4
+  {
+    name:"Aro Argolla Strass",
+    description:"Aro argollas de cristal facetado con strass.",
+    price:"650", 
+    idCategory: "6",
+    keywords: "strass,aros,argollas,fiesta,noche",
     image: "urlFotoAritos",
-  },
+  },//5
+  {
+    name:"Choker zig-zag",
+    description:"Choker con diseño en zig-zag y detalles de metal, confeccionado en perlas o metal color niquel.",
+    price:"690",
+    idCategory: "3",
+    keywords: "chokers,perlas,metal,niquel,gargantillas",
+    image: "urlFoto",
+  },//6
+  {
+    name:"Collar Rusia",
+    description:"Collar de cristal de roca facetado con detalles de metal.",
+    price:"1490", 
+    idCategory: "1",
+    keywords: "collares,cortos,cristales,negro,noche,fiesta",
+    image: 'img/collares_cortos/c-rusia-boreal2.jpg',
+  },//7
+  {
+    name:"Collar India",
+    description:"Collar largo de madera, critales y hematite con borla y detalles de metal.",
+    price:"870", 
+    idCategory: "2",
+    keywords: "collares,largos,cristales,negro,blanco,madera,bohemio,hippie",
+    image: 'img/collares_largos/c-india_bco2.jpg',
+  }//8
 ];
 const stockColor = [
-  // 3 colores para un mismo producto
+  // 2 colores para un mismo producto
   {
     cantidad: "3",
     image: "img/pulseras/p-noruega-negro.jpg",
     main: true,
     productId: "1",
     colorId: "1",
-  }, // collar tiene 3u. y es rojo
+  }, // collar tiene 3u. y es negro
   {
     cantidad: "7",
     image: "img/pulseras/p-noruega-rojo.jpg",
@@ -126,6 +158,34 @@ const stockColor = [
     productId: "4",
     colorId: "5",
     main: false,
+  },//======================================================================================
+  {
+    cantidad: "3",
+    image: "img/aros/a-argolla-strass-negro.jpg",
+    main: true,
+    productId: "5",
+    colorId: "1",
+  },//======================================================================================
+  {
+    cantidad: "3",
+    image: "img/chokers/ch-zz-niquel.jpg",
+    main: true,
+    productId: "6",
+    colorId: "5",
+  },//======================================================================================
+  {
+    cantidad: "2",
+    image: "img/collares_cortos/c-rusia-boreal.jpg",
+    main: true,
+    productId: "7",
+    colorId: "5",
+  },//======================================================================================
+  {
+    cantidad: "2",
+    image: "img/collares_largos/c-india-bco.jpg",
+    main: true,
+    productId: "8",
+    colorId: "1",
   },
 ];
 
