@@ -4,45 +4,41 @@ import './Product.css';
 
 
 export default function Product({productDetail}){
-var [selectedColor, setSelectedColor] = useState(productDetail.arrayColors[0].name);
+// var [selectedColor, setSelectedColor] = useState(productDetail.arrayColors[0].name);
     //retorna la imagen de portada del producto 
-    function showImg(arrayImages){
-        // return arrayImages.map(image => {
-        //     if(image){
-                return arrayImages[0];
-        //     }
-        // });
+    function showImg(colors){
+        return colors.find(color => color.stockXColor.main).stockXColor.image;
     }
 
-    function colorActive(colorName){
-        setSelectedColor(colorName);
-        var option = document.querySelector('#'+colorName);
-        option.selected = 'selected';
-    };
+    // function colorActive(colorName){
+    //     setSelectedColor(colorName);
+    //     var option = document.querySelector('#'+colorName);
+    //     option.selected = 'selected';
+    // };
 
-    function showColor(arrayColors){
-        return arrayColors.map(color => 
-            <div className="product_color_img"  
-                 style = {{ backgroundColor: color.hexaColor }}
-                 onClick = {e => colorActive(color.name)}>
-            </div>
-        );
-    };
+    // function showColor(arrayColors){
+    //     return arrayColors.map(color => 
+    //         <div className="product_color_img"  
+    //              style = {{ backgroundColor: color.hexaColor }}
+    //              onClick = {e => colorActive(color.name)}>
+    //         </div>
+    //     );
+    // };
 
-    function showColorOption(arrayColors){
-       return arrayColors.map(color => 
-            <option id={color.name} value={color.name} className='product_colors_option'>
-                {color.name}
-            </option>
-        );
-    }
+    // function showColorOption(arrayColors){
+    //    return arrayColors.map(color => 
+    //         <option id={color.name} value={color.name} className='product_colors_option'>
+    //             {color.name}
+    //         </option>
+    //     );
+    // }
 
     return (
         <div className="product container">
             <div className="product_left">
                 <div className="product_img">
                    {/* <img src={showImg(productDetail.arrayImages)} alt=""/>  */}
-                   <img src={productDetail.image} alt=""/>
+                   <img src={showImg(productDetail.colors)} alt=""/>
                 </div>                
             </div>
             <div className="product_right">

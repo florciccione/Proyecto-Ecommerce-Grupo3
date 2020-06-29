@@ -1,13 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 // CSS
-import './Catalogo.css';
+import "./Catalogo.css";
 // Components
 // import Product from '../Product/Product.js';
 import SearchBar from '../SearchBar/SearchBar.js';
 import ProductCard from './ProductCard.js';
 
 export default function Catalogo({arrayProductos,onSearch}){
+    console.log(arrayProductos);
   //muestra todos los productos
   function showProducts(arrayProductos){
     return arrayProductos.map(product => 
@@ -17,6 +18,7 @@ export default function Catalogo({arrayProductos,onSearch}){
   }; 
 
     return(
+        
         <div className="catalogo">
 
             <div className="catalogo_bg"></div>
@@ -37,5 +39,5 @@ export default function Catalogo({arrayProductos,onSearch}){
             </div>
 
         </div>
-    )
+  );
 }

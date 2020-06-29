@@ -3,7 +3,58 @@ const { Op } = require("sequelize");
 const express = require("express").Router();
 
 //const server = express();
-
+/*
+{
+        "id": 1,
+        "name": "Pulsera Noruega",
+        "description": "Pulsera en gamuza con cristal de roca facetado, agatas y detalles de metal.",
+        "price": 1050,
+        "keywords": "[pulseras, gamuza, agatas, metal, piedras, cristales]",
+        "image": "urlFotoCollar",
+        "createdAt": "2020-06-28T02:17:53.028Z",
+        "updatedAt": "2020-06-28T02:17:53.028Z",
+        "idCategory": 5,
+        "categoria": {
+            "name": "Pulseras"
+        },
+        "colors": [
+            {
+                "id": 1,
+                "name": "Negro",
+                "hexaColor": "#000000",
+                "createdAt": "2020-06-28T02:17:53.026Z",
+                "updatedAt": "2020-06-28T02:17:53.026Z",
+                "stockXColor": {
+                    "id": 1,
+                    "cantidad": 3,
+                    "image": "../../",
+                    "main": true,
+                    "createdAt": "2020-06-28T02:17:53.028Z",
+                    "updatedAt": "2020-06-28T02:17:53.028Z",
+                    "productId": 1,
+                    "colorId": 1
+                }
+            },
+            {
+                "id": 2,
+                "name": "Rojo",
+                "hexaColor": "#ff3636",
+                "createdAt": "2020-06-28T02:17:53.026Z",
+                "updatedAt": "2020-06-28T02:17:53.026Z",
+                "stockXColor": {
+                    "id": 2,
+                    "cantidad": 7,
+                    "image": "img/pulseras/p-noruega-rojo.jpg",
+                    "main": false,
+                    "createdAt": "2020-06-28T02:17:53.028Z",
+                    "updatedAt": "2020-06-28T02:17:53.028Z",
+                    "productId": 1,
+                    "colorId": 2
+                }
+            }
+        ]
+    },
+*/
 //prueba
 
 express.post("/add", function (req, res) {
@@ -64,19 +115,19 @@ express.get("/stockXColor", function (req, res) {
     });
 });
 
-express.post("/add", function (req, res) {
-  const { name, description, price, idCategory, keywords } = req.body;
-  Product.create(
-    {
-      name: name,
-      description: description,
-      price: price,
-      idCategory: idCategory,
-      keywords: keywords,
-    },
-    { fields: ["name", "description", "price", "idCategory", "keywords"] }
-  );
-});
+// express.post("/add", function (req, res) {
+//   const { name, description, price, idCategory, keywords } = req.body;
+//   Product.create(
+//     {
+//       name: name,
+//       description: description,
+//       price: price,
+//       idCategory: idCategory,
+//       keywords: keywords,
+//     },
+//     { fields: ["name", "description", "price", "idCategory", "keywords"] }
+//   );
+// });
 
 express.post("/modify", function (req, res) {
   Product.findOne({
@@ -99,7 +150,7 @@ express.post("/modify", function (req, res) {
     .catch(function (reason) {
       res
         .status(404)
-        .json({ message: "No se obtuvieron los productos", data: reason });
+        .json({ message: "No se pudo actualizar el producto", data: reason });
     });
 });
 
@@ -124,7 +175,7 @@ express.get("/:category", function (req, res) {
 });
 
 express.get("/keys/:keywords", function (req, res) {
-  var keys = req.params.keywords.split("-").join(" ").toLowerCase();
+  var keys = req.params.keywords.split("-").join(",").toLowerCase();
   console.log(keys);
   Product.findAll({
     where: {

@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Route } from 'react-router-dom';
 
 import axios from 'axios';
 // import {productos} from './data.js';
-// var productos = axios.get('/');
+
 // Componentes
 import Product from './components/Product/Product.js';
 import Catalogo from './components/Catalogo/Catalogo.js';
@@ -11,10 +11,28 @@ import Catalogo from './components/Catalogo/Catalogo.js';
 import CrudProduct from './components/CrudProduct/CrudProduct.js';
 import ProductCreateForm from './components/CrudProduct/forms/ProductCreateForm.js';
 
-
 function App() {
-  var [arrayProductos, setArrayProductos] = useState(productos);
-  var categories = ['pulseras','collares cortos','collares largos','rosarios','chokers','aros']
+
+  var [arrayProductos, setArrayProductos] = useState([]);
+  var [categories, setCategories] = useState([]);
+  useEffect(() => {
+    axios({
+      method:'GET',
+      url:'http://localhost:3001/product/'
+      }).then(function(res){
+        // console.log(res.data);
+        setArrayProductos(res.data);
+      });
+    axios({
+      method:'GET',
+      url:'http://localhost:3001/category/'
+      }).then(function(res){
+        // console.log(res.data);
+        setCategories(res.data);
+      });
+  }, []);
+
+  // var categories = ['pulseras','collares cortos','collares largos','rosarios','chokers','aros']
 //devuelve el producto buscado o mensaje 
 function onSearch(keyword) {
   if(keyword){
@@ -31,9 +49,8 @@ function onFilter(id){
 }; 
   return (
     <div className="App">
-    {console.log(productos)}
        {/* PRODUCT Routes */}
-      <Route
+     <Route
       exact
       path='/'
       component={() => <Catalogo arrayProductos={arrayProductos} onSearch={onSearch} />}

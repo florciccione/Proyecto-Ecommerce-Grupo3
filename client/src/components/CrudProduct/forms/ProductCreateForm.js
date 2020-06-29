@@ -1,13 +1,38 @@
 import React from 'react';
+import axios from 'axios';
 import './ProductCreateForm.css';
 import {regNombre, regPrecio} from './regex';
 
-export default function FormCreate({categories, showCategoryOption}){
+export default function FormCreate({categories, showCategoryOption}){  
+
   var errors = [];
 
   function handleSubmit(e){
     e.preventDefault();
-
+    var name = document.querySelector('#name').value;
+    var description = document.querySelector('#description').value;
+    var keywords = document.querySelector('#keywords').value;
+    var price = document.querySelector('#price').value;
+    var idCategory = 5;
+    var body = {name, description, price, idCategory, keywords};
+    // console.log(body);
+    axios({
+        method:'POST',
+        url:'http://localhost:3001/product/add',
+        data:body
+        })
+        .then(function(res){
+          console.log(res.data);
+          alert("Se guardó el producto");
+        })
+        .catch(reason => alert("No se pudo guardar "+reason));
+        // axios.post('http://localhost:3001/product/add', {
+        //   data: body,
+        //   headers: {
+        //     'Content-Type': 'application/json;charset=UTF-8',
+        //     "Access-Control-Allow-Origin": "*",
+        //   }
+    // }).then(res => alert("se guardo el producto")).catch(reason => alert("no se pudo guardar "+ reason));
   };
 
   function removeErrors(str){
@@ -128,6 +153,7 @@ export default function FormCreate({categories, showCategoryOption}){
             <div className="form_input_name">
                 <label>Nombre:</label>
                 <input
+                  id='name'
                   type="text" 
                   name="name" 
                   placeholder="Nombre del producto"
@@ -139,6 +165,7 @@ export default function FormCreate({categories, showCategoryOption}){
             <div className="form_input_desc">
                 <label>Descripción:</label>
                 <textarea 
+                  id='description'
                   name ="description" 
                   placeholder = "Descripción del producto"          
                   className = 'product_description'
@@ -150,6 +177,7 @@ export default function FormCreate({categories, showCategoryOption}){
             <div className="form_input_keywords">
                 <label>Keywords:</label>
                 <input 
+                  id='keywords'
                   type="text" 
                   name="keywords" 
                   placeholder="Etiquetas del producto"
@@ -168,6 +196,7 @@ export default function FormCreate({categories, showCategoryOption}){
             <div className="form_input_price">
                 <label>Precio:  $</label>
                 <input 
+                  id='price'
                   type="number" 
                   name="price" 
                   placeholder="Precio del producto"
@@ -178,13 +207,12 @@ export default function FormCreate({categories, showCategoryOption}){
 
             <div className="form_input_category">
                 <label>Categoría:</label>
-{/*INVENTE UN PRIMER ELEMENTO VACIO PARA QUE APAREZCA EN BLANCO EL SELECT, SE PUEDE VALIDAD AL ENVIAR??*/}
-                <select name="category" className='select_category' onChange= {e => (e.target.value)}> 
+                <select id="category" name="category" className='select_category' onChange= {e => (e.target.value)}> 
                   {showCategoryOption(categories)}
                 </select>
             </div>
 
-            <div className="form_input_image">
+            {/* <div className="form_input_image">
                 <label>Imagen:</label>
                 <input 
                   type="file" 
@@ -193,7 +221,7 @@ export default function FormCreate({categories, showCategoryOption}){
                   accept="image/png, image/jpeg"
                 />
                 <p className="errorImage danger"></p>
-            </div>
+            </div> */}
 
         </div>
         

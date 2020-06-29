@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import axios from 'axios';
 // import {Link} from 'react-router-dom';
 // CSS
 import './CrudProduct.css';
@@ -13,20 +14,31 @@ export default function Crud({arrayProductos, categories}){
     const [productSelected, setProductSelected] = useState('');
     
     function showCategoryOption(categories) { 
-        return categories.map(categorie => 
-        <option value={categorie} className='product_category_option'>
-            {categorie}
+        return categories.map(category => 
+        <option value={category.id} className='product_category_option'>
+            {category.name}
         </option>
         );
       };
 
-    function deleteItem(){
-        setComponentName('deleteItem');
+    function deleteItem(productSelected){
+        // setComponentName('deleteItem');
+        setProductSelected(productSelected);
+        console.log(productSelected);
+        axios({
+            method:'DELETE',
+            url:'localhost:3001/product/'+productSelected.id,
+            })
+            .then(function(res){
+              console.log(res.data);
+              alert("Se borró el producto");
+            })
+            .catch(reason => alert("No se pudo borrar "+reason));
     }
 
     function updateItem(productSelected){
         setComponentName('updateForm');
-        setProductSelected(productSelected) ;
+        setProductSelected(productSelected);
     }
 
     function showComponent(componentName){        
@@ -38,7 +50,6 @@ export default function Crud({arrayProductos, categories}){
         }else if(componentName === 'updateForm'){
             return (<ProductUpdateForm productSelected={productSelected} categories={categories} showCategoryOption={showCategoryOption}/>)
         }else if(componentName === 'deleteItem'){
-            alert('Ojo');
             setComponentName('default');
         }
     }

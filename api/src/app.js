@@ -3,11 +3,13 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const routes = require('./routes/index.js');
 const morgan = require('morgan');
+var cors = require('cors');
 
 require('./models');
 
 const server = express();
-
+server.use(cors({origin: true, credentials: true}));
+// server.use(cors());
 server.name = 'API';
 
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));

@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import './ProductUpdateForm.css';
 
 export default function ProductUpdateForm({productSelected,categories,showCategoryOption}){
@@ -8,7 +9,24 @@ export default function ProductUpdateForm({productSelected,categories,showCatego
 
   function handleSubmit(e){
     e.preventDefault();
-
+    var id = productSelected.id;
+    var name = document.querySelector('#name').value;
+    var description = document.querySelector('#description').value;
+    var keywords = document.querySelector('#keywords').value;
+    var price = document.querySelector('#price').value;
+    var idCategory = 5;
+    var body = {id, name, description, price, idCategory, keywords};
+    // console.log(body);
+    axios({
+        method:'PUT',
+        url:'http://localhost:3001/product/'+id,
+        data:body
+        })
+        .then(function(res){
+          console.log(res.data);
+          alert("Se actualizó el producto");
+        })
+        .catch(reason => alert("No se pudo actualizar "+reason));
   };
 
   function removeErrors(str){
@@ -25,7 +43,7 @@ export default function ProductUpdateForm({productSelected,categories,showCatego
     if(input.name === 'name'){
 
       // Si supera la longitud de 100 caracteres. ERROR!
-      if(input.value.length > 5) { // 5 para probar
+      if(input.value.length > 25) { // 5 para probar
         errorName.innerHTML = 'Demasiado largo. Máx: 100 caracteres';
         errors.push('nombreLargo');       
 
@@ -50,7 +68,7 @@ export default function ProductUpdateForm({productSelected,categories,showCatego
     if(input.name === 'description'){
 
       // Si supera la longitud de 300 caracteres. ERROR!
-      if(input.value.length > 5) { // 5 para probar
+      if(input.value.length > 25) { // 5 para probar
         errorDescription.innerHTML = 'Demasiado largo. Máx: 300 caracteres';
         errors.push('descripcionLargo');       
 
@@ -70,7 +88,7 @@ export default function ProductUpdateForm({productSelected,categories,showCatego
     if(input.name === 'price'){
 
       // Si supera la longitud de 100000 caracteres. ERROR!
-      if(input.value.length > 5) { // 5 para probar
+      if(input.value.length > 25) { // 5 para probar
         errorPrice.innerHTML = 'Demasiado largo. Máx: 100000 dígitos';
         errors.push('precioLargo');       
 
@@ -103,9 +121,10 @@ export default function ProductUpdateForm({productSelected,categories,showCatego
         <div className="form_input_name">
             <label>Nombre:</label>
             <input
+              id='name'
               type="text" 
               name="name" 
-              value={productSelected.name}
+              placeholder={productSelected.name}
               onChange={handleInputChange}
             />
             <p className="errorName danger"></p>
@@ -114,8 +133,9 @@ export default function ProductUpdateForm({productSelected,categories,showCatego
           <div className="form_input_desc">
             <label>Descripción:</label>
             <textarea 
+              id='description'
               name ="description" 
-              value={productSelected.description}          
+              placeholder={productSelected.description}          
               className = 'product_description'
               onChange = {handleInputChange} 
               />
@@ -125,9 +145,10 @@ export default function ProductUpdateForm({productSelected,categories,showCatego
           <div className="form_input_keywords">
             <label>Keywords:</label>
             <input 
+              id='keywords'
               type="text" 
               name="keywords" 
-              value={productSelected.keywords}
+              placeholder={productSelected.keywords}
               onChange={handleInputChange} 
             />
           </div>
@@ -141,9 +162,10 @@ export default function ProductUpdateForm({productSelected,categories,showCatego
         <div className="form_input_price">
             <label>Precio: $</label>
             <input 
+              id='price'
               type="number" 
               name="price" 
-              value={productSelected.price}
+              placeholder={productSelected.price}
               onChange={handleInputChange} 
             />
             <p className="errorPrice danger"></p>
