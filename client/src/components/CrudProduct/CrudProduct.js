@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-// import {Link} from 'react-router-dom';
+
 // CSS
 import './CrudProduct.css';
+
 // Components
 import ProductCreateForm from './forms/ProductCreateForm.js';
 import ProductUpdateForm from './forms/ProductUpdateForm.js';
@@ -12,11 +13,12 @@ import CategoryList from './CategoryList.js';
 import CategoryUpdateForm from './forms/CategoryUpdateForm.js';
 
 export default function Crud({arrayProductos, categories}){
-  //muestra por defecto la lista de productos + opciones para agregar categoria o productos
+//muestra por defecto la lista de productos + opciones para agregar categoria o productos
     const [componentName, setComponentName] = useState('default');
     const [productSelected, setProductSelected] = useState('');
     const [categorySelected, setCategorySelected] = useState('');
     
+    //MUESTRA EN EL SELECT EL LISTADO DE LAS CATEGORIAS EXISTENTES
     function showCategoryOption(categories) { 
         return categories.map(category => 
         <option value={category.id} className='product_category_option'>
@@ -25,9 +27,8 @@ export default function Crud({arrayProductos, categories}){
         );
       };
 
-    //   Productos
+    // CRUD PRODUCTO
     function deleteItem(productSelected){
-        // setComponentName('deleteItem');
         setProductSelected(productSelected);
         console.log(productSelected);
         axios({
@@ -48,7 +49,7 @@ export default function Crud({arrayProductos, categories}){
 
     
 
-    // Categorías
+    // CRUD CATEGORIA
     function deleteCategory(categorySelected){
         // setComponentName('deleteItem');
         setCategorySelected(categorySelected);
@@ -68,13 +69,12 @@ export default function Crud({arrayProductos, categories}){
         setComponentName('updateCategory');
         setCategorySelected(categorySelected);
     }
-
+    //EVALUA EL COMPONENTE QUE SE MOSTRARA EN EL PANEL DE ADMINISTRACION
     function showComponent(componentName){        
         if(componentName === 'default'){
             return (<ProductsList arrayProductos={arrayProductos} deleteItem={deleteItem} updateItem={updateItem}/>)
         }else if(componentName === 'createForm'){
             return (<ProductCreateForm categories={categories} showCategoryOption={showCategoryOption}/>)
-
         }else if(componentName === 'updateForm'){
             return (<ProductUpdateForm productSelected={productSelected} categories={categories} showCategoryOption={showCategoryOption}/>)
         }else if(componentName === 'deleteItem'){
