@@ -18,7 +18,7 @@ export default function FormCreate({categories, showCategoryOption}){
     // console.log(body);
     axios({
         method:'POST',
-        url:'http://localhost:3001/product/add',
+        url:'http://localhost:3001/product/add/producto',
         data:body
         })
         .then(function(res){

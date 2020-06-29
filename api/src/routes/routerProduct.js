@@ -57,7 +57,7 @@ const express = require("express").Router();
 */
 //prueba
 
-express.post("/add", function (req, res) {
+express.post("/add/producto", function (req, res) {
   const { name, description, price, idCategory, keywords } = req.body;
   Product.create(
     {
