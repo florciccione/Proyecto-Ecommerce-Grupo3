@@ -1,37 +1,43 @@
-import React from "react";
+import React from 'react';
+import {Link} from 'react-router-dom';
 // CSS
 import "./Catalogo.css";
 // Components
-//import Product from "../Product/Product.js";
+// import Product from '../Product/Product.js';
+import SearchBar from '../SearchBar/SearchBar.js';
+import ProductCard from './ProductCard.js';
 
-export default function Catalogo() {
-  var arrayProductos = [
-    "producto1",
-    "producto2",
-    "producto3",
-    "producto4",
-    "producto4",
-    "producto4",
-    "producto4",
-    "producto4",
-    "producto4",
-  ];
-  function showProducts(arrayProductos) {
-    return arrayProductos.map((product) => (
-      <div className="catalogo_product">{product}</div>
-    ));
-  }
+export default function Catalogo({arrayProductos,onSearch}){
+    console.log(arrayProductos);
+  //muestra todos los productos
+  function showProducts(arrayProductos){
+    return arrayProductos.map(product => 
+    <Link to={'/producto/' + product.id} className="catalogo_product"> 
+        <ProductCard product={product}/>
+    </Link> );
+  }; 
 
-  return (
-    <div className="catalogo">
-      <div className="catalogo_bg"></div>
-      <div className="container">
-        <div className="catalogo_title">
-          <h1>Tienda Online</h1>
+    return(
+        
+        <div className="catalogo">
+
+            <div className="catalogo_bg"></div>
+
+            <div className="catalogo_title">
+                <h1>Shop Online</h1>
+                <h5>En nuestra tienda vas a encontrar accesorios de diseño exclusivo, confeccionados a mano con una visión que conjuga moda, belleza y pasión.</h5>
+            </div>
+
+            <div className="catalogo_bar">
+                <SearchBar onSearch={onSearch}/>
+            </div>
+            
+            <div className="container">
+                <div className="catalogo_products">
+                    {showProducts(arrayProductos)}
+                </div>
+            </div>
+
         </div>
-        {/* <CatalogoBar /> */}
-        <div className="catalogo_products">{showProducts(arrayProductos)}</div>
-      </div>
-    </div>
   );
 }

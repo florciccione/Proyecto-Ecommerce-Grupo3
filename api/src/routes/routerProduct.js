@@ -115,19 +115,19 @@ express.get("/stockXColor", function (req, res) {
     });
 });
 
-express.post("/add", function (req, res) {
-  const { name, description, price, idCategory, keywords } = req.body;
-  Product.create(
-    {
-      name: name,
-      description: description,
-      price: price,
-      idCategory: idCategory,
-      keywords: keywords,
-    },
-    { fields: ["name", "description", "price", "idCategory", "keywords"] }
-  );
-});
+// express.post("/add", function (req, res) {
+//   const { name, description, price, idCategory, keywords } = req.body;
+//   Product.create(
+//     {
+//       name: name,
+//       description: description,
+//       price: price,
+//       idCategory: idCategory,
+//       keywords: keywords,
+//     },
+//     { fields: ["name", "description", "price", "idCategory", "keywords"] }
+//   );
+// });
 
 express.post("/modify", function (req, res) {
   Product.findOne({
@@ -150,7 +150,7 @@ express.post("/modify", function (req, res) {
     .catch(function (reason) {
       res
         .status(404)
-        .json({ message: "No se obtuvieron los productos", data: reason });
+        .json({ message: "No se pudo actualizar el producto", data: reason });
     });
 });
 

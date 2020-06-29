@@ -35,7 +35,7 @@ const productos = [
       "Pulsera en gamuza con cristal de roca facetado, agatas y detalles de metal.",
     price: "1050",
     idCategory: "5",
-    keywords: "[pulseras, gamuza, agatas, metal, piedras, cristales]",
+    keywords: "pulseras,gamuza,agatas,metal,piedras,cristales",
     image: "urlFotoCollar",
   }, //1
   {
@@ -43,7 +43,7 @@ const productos = [
     description: "Pulsera en gamuza con cristales cúbicos y detalles de metal.",
     price: "1150",
     idCategory: "5",
-    keywords: "[pulseras, gamuza, metal, cristales, cubos, cúbicos, cuadrados]",
+    keywords: "pulseras,gamuza,metal,cristales,cubos,cúbicos,cuadrados",
     image: "urlFotoPulsera",
   }, //2
   {
@@ -53,7 +53,7 @@ const productos = [
     price: "850",
     idCategory: "5",
     keywords:
-      "[pulseras, elastizada, triple, metal, cristales, brazalete, fiesta, noche]",
+      "pulseras,elastizada,triple,metal,cristales,brazalete,fiesta,noche",
     image: "urlFotoAritos",
   },
   {
@@ -62,7 +62,7 @@ const productos = [
       "Pulsera diseñada con cristales de roca facetados y detalles de metal.",
     price: "990",
     idCategory: "5",
-    keywords: "[pulseras, metal, cristales]",
+    keywords: "pulseras,metal,cristales",
     image: "urlFotoAritos",
   },
 ];
@@ -70,7 +70,7 @@ const stockColor = [
   // 3 colores para un mismo producto
   {
     cantidad: "3",
-    image: "../../",
+    image: "img/pulseras/p-noruega-negro.jpg",
     main: true,
     productId: "1",
     colorId: "1",
@@ -152,7 +152,7 @@ conn.sync({ force: true }).then(() => {
   categorias.forEach((cat) => Category.create(cat));
   productos.forEach((pro) => Product.create(pro));
   stockColor.forEach((sto) => stockXColor.create(sto));
-  server.listen(3000, () => {
-    console.log("%s listening at 3000"); // eslint-disable-line no-console
+  server.listen(3001, () => {
+    console.log("%s listening at 3001"); // eslint-disable-line no-console
   });
 });
