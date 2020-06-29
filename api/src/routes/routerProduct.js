@@ -57,8 +57,8 @@ const express = require("express").Router();
 */
 //prueba
 
-express.post("/add/producto", function (req, res) {
-  const { name, description, price, idCategory, keywords } = req.body;
+express.post("/add", function (req, res) {
+  const { name, description, price, idCategory, keywords, image } = req.body;
   Product.create(
     {
       name: name,
@@ -66,8 +66,18 @@ express.post("/add/producto", function (req, res) {
       price: price,
       idCategory: idCategory,
       keywords: keywords,
+      image: image,
     },
-    { fields: ["name", "description", "price", "idCategory", "keywords"] }
+    {
+      fields: [
+        "name",
+        "description",
+        "price",
+        "idCategory",
+        "keywords",
+        "image",
+      ],
+    }
   )
     .then(function (response) {
       res
