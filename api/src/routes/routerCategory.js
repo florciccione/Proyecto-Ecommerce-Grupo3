@@ -16,12 +16,10 @@ express.post("/add", function (req, res) {
     { fields: ["name"] }
   )
     .then(function (category) {
-      res
-        .status(200)
-        .json({
-          message: "Se creo correctamente la categoria",
-          data: category,
-        });
+      res.status(200).json({
+        message: "Se creo correctamente la categoria",
+        data: category,
+      });
     })
     .catch(function (err) {
       res.status(404).json({ err: "No se creó la categoria" });
@@ -46,8 +44,8 @@ express.put("/modify", function (req, res) {
   });
 });
 
-express.delete("/delete/:id", function (req, res) {
-  const id = req.params.id;
+express.delete("/delete", function (req, res) {
+  const id = req.body.id;
   Category.destroy({
     where: {
       id: id,
