@@ -55,39 +55,62 @@ const express = require("express").Router();
         ]
     },
 */
-//prueba
+/* const amidala = await User.create(
+  {
+    username: "p4dm3",
+    points: 1000,
+    profiles: [
+      {
+        name: "Queen",
+        User_Profile: {
+          selfGranted: true,
+        },
+      },
+    ],
+  },
+  {
+    include: Profile,
+  }
+);
+ */
+/* const result = await User.findOne({
+  where: { username: "p4dm3" },
+  include: Profile,
+}); */
 
 express.post("/add", function (req, res) {
-  const { name, description, price, idCategory, keywords, image } = req.body;
+  const { name, description, price, keywords, image, idCategory } = req.body;
   Product.create(
     {
       name: name,
       description: description,
       price: price,
-      idCategory: idCategory,
       keywords: keywords,
       image: image,
+      idCategory: idCategory,
+      colors: [
+        {
+          name: req.body.colors[0].name,
+          hexaColor: req.body.colors[0].hexaColor,
+          stockXColor: {
+            cantidad: req.body.colors[0].stockXColor.cantidad,
+            image: req.body.colors[0].stockXColor.image,
+            main: req.body.colors[0].stockXColor.main,
+          },
+        },
+      ],
     },
     {
-      fields: [
-        "name",
-        "description",
-        "price",
-        "idCategory",
-        "keywords",
-        "image",
-      ],
+      include: Colors,
     }
   )
-    .then(function (response) {
-      res
-        .status(200)
-        .json({ message: "Se creó el producto con exito", data: response });
+    .then(function (product) {
+      res.status(200).json(product);
     })
     .catch(function (reason) {
       res
         .status(404)
-        .json({ message: "No se pudo crear el producto", data: reason });
+        .json({ message: "No se obtuvieron los productos", data: reason });
     });
 });
 
