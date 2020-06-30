@@ -1,7 +1,11 @@
 import React from "react";
 import axios from "axios";
-import "./ProductCreateForm.css";
 import { regNombre, regPrecio } from "./regex";
+
+//CSS
+import "./ProductCreateForm.css";
+//COMPONENTES
+import ColorsCreate from "./ColorsCreate.js"
 
 export default function FormCreate({ categories, showCategoryOption }) {
   var errors = [];
@@ -15,7 +19,6 @@ export default function FormCreate({ categories, showCategoryOption }) {
     var idCategory = 5;
     var image = "hola";
     var body = { name, description, price, keywords, idCategory, image };
-    // console.log(body);
     axios({
       method: "POST",
       url: "http://localhost:3001/product/add",
@@ -30,10 +33,7 @@ export default function FormCreate({ categories, showCategoryOption }) {
         alert("Se guardó el producto");
       })
       .catch((reason) => alert("No se pudo guardar " + reason));
-    // axios.post('http://localhost:3001/product/add', {
-    //   data: body,
 
-    // }).then(res => alert("se guardo el producto")).catch(reason => alert("no se pudo guardar "+ reason));
   }
 
   function removeErrors(str) {
@@ -151,6 +151,7 @@ export default function FormCreate({ categories, showCategoryOption }) {
           <h1>Agregar nuevo producto</h1>
         </div>
         <form className="crud_create_product_form" onSubmit={handleSubmit}>
+          {/*FORM LEFT*/}
           <div className="form_left">
             <div className="form_input_name">
               <label>Nombre:</label>
@@ -163,7 +164,6 @@ export default function FormCreate({ categories, showCategoryOption }) {
               />
               <p className="errorName danger"></p>
             </div>
-
             <div className="form_input_desc">
               <label>Descripción:</label>
               <textarea
@@ -175,7 +175,6 @@ export default function FormCreate({ categories, showCategoryOption }) {
               />
               <p className="errorDescription danger"></p>
             </div>
-
             <div className="form_input_keywords">
               <label>Keywords:</label>
               <input
@@ -187,12 +186,9 @@ export default function FormCreate({ categories, showCategoryOption }) {
               />
               <p className="errorKeywords danger"></p>
             </div>
-
-            <div className="form_input_submit">
-              <input type="submit" name="submit" value="Guardar producto" />
-            </div>
           </div>
 
+          {/*FORM RIGHT*/}
           <div className="form_right">
             <div className="form_input_price">
               <label>Precio: $</label>
@@ -217,18 +213,16 @@ export default function FormCreate({ categories, showCategoryOption }) {
                 {showCategoryOption(categories)}
               </select>
             </div>
-
-            {/* <div className="form_input_image">
-                <label>Imagen:</label>
-                <input 
-                  type="file" 
-                  name="image" 
-                  onChange={handleInputChange} 
-                  accept="image/png, image/jpeg"
-                />
-                <p className="errorImage danger"></p>
-            </div> */}
           </div>
+
+          <div className="colors_form">
+             <ColorsCreate />
+          </div>
+          
+          <div className="form_input_submit">
+              <input type="submit" name="submit" value="Guardar producto" />
+          </div>
+          
         </form>
       </div>
     </div>

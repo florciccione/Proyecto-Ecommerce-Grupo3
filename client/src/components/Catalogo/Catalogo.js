@@ -2,14 +2,15 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 // CSS
 import "./Catalogo.css";
+
 // Components
-// import Product from '../Product/Product.js';
+import CategoryFilter from '../CategoryFilter/CategoryFilter.js';
 import SearchBar from '../SearchBar/SearchBar.js';
 import ProductCard from './ProductCard.js';
 
-export default function Catalogo({arrayProductos,onSearch}){
-    console.log(arrayProductos);
-  //muestra todos los productos
+export default function Catalogo({arrayProductos,onSearch, onFilter, categories, showCategoryOption}){
+  
+    //muestra todos los productos
   function showProducts(arrayProductos){
     return arrayProductos.map(product => 
     <Link to={'/producto/' + product.id} className="catalogo_product"> 
@@ -30,6 +31,7 @@ export default function Catalogo({arrayProductos,onSearch}){
 
             <div className="catalogo_bar">
                 <SearchBar onSearch={onSearch}/>
+                <CategoryFilter onFilter={onFilter} categories={categories} showCategoryOption={showCategoryOption}/>
             </div>
             
             <div className="container">

@@ -1,14 +1,12 @@
-.search_bar{
+.select_category {
     width: 300px;
     border: none;
     padding: 10px;
 }
-    
-.search_btn {
+.filter_btn {
     padding: 10px;
     border: none; 
 }
-
-.search_btn:focus, .search_bar:focus  {
+.filter_btn:focus {
     outline: none;
 }
