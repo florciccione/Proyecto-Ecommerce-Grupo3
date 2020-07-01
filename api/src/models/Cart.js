@@ -6,10 +6,6 @@ Cart = (sequelize, S) => {
         autoIncrement: true,
         primaryKey: true,
       },
-      idProducto: {
-        type: S.INTEGER,
-        allowNull: false,
-      },
       cantidad: {
         type: S.INTEGER,
         allowNull: false,
