@@ -150,72 +150,77 @@ export default function FormCreate({ categories, showCategoryOption }) {
         <div className="titulo_form">
           <h1>Agregar nuevo producto</h1>
         </div>
+
         <form className="crud_create_product_form" onSubmit={handleSubmit}>
-          {/*FORM LEFT*/}
-          <div className="form_left">
-            <div className="form_input_name">
-              <label>Nombre:</label>
-              <input
-                id="name"
-                type="text"
-                name="name"
-                placeholder="Nombre del producto"
-                onChange={handleInputChange}
-              />
-              <p className="errorName danger"></p>
+          <div className="basic_data_product">
+            {/*FORM LEFT*/}
+            <div className="form_left">
+              <div className="form_input_name">
+                <label>Nombre:</label>
+                <input
+                  id="name"
+                  type="text"
+                  name="name"
+                  placeholder="Nombre del producto"
+                  onChange={handleInputChange}
+                />
+                <p className="errorName danger"></p>
+              </div>
+              <div className="form_input_desc">
+                <label>Descripción:</label>
+                <textarea
+                  id="description"
+                  name="description"
+                  placeholder="Descripción del producto"
+                  className="product_description"
+                  onChange={handleInputChange}
+                />
+                <p className="errorDescription danger"></p>
+              </div>
+              <div className="form_input_keywords">
+                <label>Keywords:</label>
+                <input
+                  id="keywords"
+                  type="text"
+                  name="keywords"
+                  placeholder="Etiquetas del producto"
+                  onChange={handleInputChange}
+                />
+                <p className="errorKeywords danger"></p>
+              </div>
             </div>
-            <div className="form_input_desc">
-              <label>Descripción:</label>
-              <textarea
-                id="description"
-                name="description"
-                placeholder="Descripción del producto"
-                className="product_description"
-                onChange={handleInputChange}
-              />
-              <p className="errorDescription danger"></p>
-            </div>
-            <div className="form_input_keywords">
-              <label>Keywords:</label>
-              <input
-                id="keywords"
-                type="text"
-                name="keywords"
-                placeholder="Etiquetas del producto"
-                onChange={handleInputChange}
-              />
-              <p className="errorKeywords danger"></p>
-            </div>
-          </div>
 
           {/*FORM RIGHT*/}
-          <div className="form_right">
-            <div className="form_input_price">
-              <label>Precio: $</label>
-              <input
-                id="price"
-                type="number"
-                name="price"
-                placeholder="Precio del producto"
-                onChange={handleInputChange}
-              />
-              <p className="errorPrice danger"></p>
-            </div>
+            <div className="form_right">
+              <div className="form_input_price">
+                <label>Precio: $</label>
+                <input
+                  id="price"
+                  type="number"
+                  name="price"
+                  placeholder="Precio del producto"
+                  onChange={handleInputChange}
+                />
+                <p className="errorPrice danger"></p>
+              </div>
 
-            <div className="form_input_category">
-              <label>Categoría:</label>
-              <select
-                id="category"
-                name="category"
-                className="select_category"
-                onChange={(e) => e.target.value}
-              >
-                {showCategoryOption(categories)}
-              </select>
+              <div className="form_input_category">
+                <label>Categoría:</label>
+                <select
+                  id="category"
+                  name="category"
+                  className="select_category"
+                  onChange={(e) => e.target.value}
+                >
+                  {showCategoryOption(categories)}
+                </select>
+              </div>
             </div>
-          </div>
+            </div>
+          
 
           <div className="colors_form">
+            <h6 className="title_colors">Color del producto</h6>
              <ColorsCreate />
           </div>
           

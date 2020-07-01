@@ -16,9 +16,12 @@
 }
 /*FORMULARIO*/
 .crud_create_product_form{
-    padding-top: 15px;
-    display: flex;   
+    padding-top: 15px; 
     font-family: 'Graphik'; 
+}
+.basic_data_product{
+    display: flex;  
+    width: 100%;
 }
 .form_left{
     display: flex;
@@ -73,4 +76,16 @@
     margin-top: 20px;
     align-self: center;
     justify-content: center;
+}
+/*COMPONENTE COLORSCREATE*/
+.colors_form{
+    margin-top: 35px;
+    width: 100%;
+    background-color: #ebeced;
+}
+.title_colors{
+    padding: 20px;
+    font-family: 'Graphik';
+    font-size: 16px ;
+    font-weight: 450;
 }

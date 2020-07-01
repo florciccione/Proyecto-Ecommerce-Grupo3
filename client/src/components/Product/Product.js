@@ -15,9 +15,10 @@ var [selectedColor, setSelectedColor] = useState('');
          setSelectedColor(colorName);
          var option = document.querySelector('#'+colorName);
          option.selected = 'selected';
+         
      };
 
-     function showColor(colors){
+    function showColor(colors){
          return colors.map(color => 
              <div className="product_color_img"  
                   style = {{ backgroundColor: color.hexaColor }}
@@ -26,13 +27,16 @@ var [selectedColor, setSelectedColor] = useState('');
          );
      };
 
-     function showColorOption(colors){
+    function showColorOption(colors){
         return colors.map(color => 
              <option id={color.name} value={color.name} className='product_colors_option'>
                  {color.name}
              </option>
          );
-     }
+     };
+    function addToCart(productDetail,selectedColor){
+        //ENVIARA LOS DATOS DEL PRODUCTO EN CUESTION JUNTO CON EL COLOR SELECCIONADO A LA BD (+ LOS DATOS DEL USUARIO)
+    }
 
     return (
         <div className="product container">
@@ -61,6 +65,9 @@ var [selectedColor, setSelectedColor] = useState('');
                            {showColorOption(productDetail.colors)}
                         </select> 
                     </div>                    
+                </div>
+                <div className="product_cart-btn">
+                    <div onClick={e => addToCart(productDetail,selectedColor)}>Agregar al carrito</div>
                 </div>
             </div>
         </div>

@@ -1,0 +1,30 @@
+
+.inputs{
+    display: flex;  
+    width: 100%;
+}
+.form_input{
+    background-color: thistle;
+    width: 35%;
+    display: flex;
+}
+.form_input input{
+    padding: 8px;
+}
+.form_input label{
+  
+}
+.colors_submit{
+    width: 35%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+.form_input_color{
+    width: 20%;
+    display: flex;
+    align-items:center;
+}
+.form_input_color label{
+    width: 80px;
+}
