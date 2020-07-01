@@ -10,10 +10,10 @@ function NavBar({arrayProductos,showProducts}) {
     <div className="bar">
 
         <div className="nav_bar">
-                <Link to={'/'} onClick={() => showProducts(arrayProductos)} className="bar_home"> 
+                <Link to={'/'}  className="bar_home"> 
                     <span> Home </span>  
                 </Link>
-                <Link to ='/' onClick={() => showProducts(arrayProductos)} className="bar_shop"> 
+                <Link to ='/' className="bar_shop"> 
                     <span> Shop </span>
                 </Link>
         </div>
@@ -21,7 +21,7 @@ function NavBar({arrayProductos,showProducts}) {
                 <Link to ='/' className="login"> 
                     <span> Login </span>  
                 </Link>
-                <Link to ='/' className="register"> 
+                <Link to ='/usuario/registrarse' className="register"> 
                     <span> Registrarse </span>  
                 </Link>
                 <Link to ='/' className="cart"> 

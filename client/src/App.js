@@ -8,6 +8,7 @@ import Product from './components/Product/Product.js';
 import Catalogo from './components/Catalogo/Catalogo.js';
 import CrudProduct from './components/CrudProduct/CrudProduct.js';
 import ProductCard from './components/Catalogo/ProductCard.js';
+import FormCreateUsuario from './components/CrudUsuario/FormCreateUsuario.js';
 
 function App() {
   var [arrayProductos, setArrayProductos] = useState([]);
@@ -90,6 +91,12 @@ function onSelect(id){
       exact
       path='/panel-admin/producto/'
       component={() => <CrudProduct arrayProductos={arrayProductos} categories={categories} showCategoryOption={showCategoryOption}/>}
+     />
+     {/* CRUD USUARIO */}
+      <Route
+      exact
+      path='/usuario/registrarse/'
+      component={() => <FormCreateUsuario/>}
      />
     </div>
   );
