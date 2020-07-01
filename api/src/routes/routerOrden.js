@@ -2,34 +2,47 @@ const { Orden } = require("../models");
 const { Op } = require("sequelize");
 const express = require("express").Router();
 
-// No se bien que debería ir en este get, no se si sea necesario traer sólo un carrito (o todos) cuando ya lo traemos en las rutas del usuario
-// idUsuario AND state: abierto
 express.get("/:idUsuario", function (req, res) {
-  Cart.findOne().then(function (cart) {
-    res.status(200).json(cart);
-  });
-});
-//Crea carrito
-express.post("/add", function (req, res) {});
-
-//Nos falta el modelo Pedido/orden para verificar cual carrito esta abierto
-express.put("/empty/:idUsuario", function (req, res) {
-  const id = req.params.idUsuario;
   Cart.findOne({
     where: {
-      idUsuario: id,
+      idUsuario: req.params.idUsuario,
     },
   }).then(function (cart) {
     res.status(200).json(cart);
   });
 });
+express.get("/", function (req, res) {
+  Orden.findAll()
+    .then(function (ordenes) {
+      res.status(200).json(ordenes);
+    })
+    .catch(function (reason) {
+      res
+        .status(404)
+        .json({ message: "No se pudo obtener las ordenes", data: reason });
+    });
+});
 
-// falta la de crear y actualizar carrito que incluye los productos
-// nota mental de gise para gise: en sí un carrito siempre está creado pero con 0 productos, así que si es un usuario invitado (no registrado) se debería crear cuando ingresa a la pagina por primera vez, y si lleno el carrito y se registra debería mantener sus productos
+express.put("/modify", function (req, res) {
+  const { id, state, fecha } = req.body;
+  Orden.update(
+    {
+      state: state,
+      fecha: fecha,
+    },
+    {
+      where: {
+        id: id,
+      },
+    }
+  ).then(function (cart) {
+    res.status(200).json(cart);
+  });
+});
 
 express.delete("/delete/:id", function (req, res) {
   const id = req.params.id;
-  Cart.destroy({
+  Orden.destroy({
     where: {
       id: id,
     },

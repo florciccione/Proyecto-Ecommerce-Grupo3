@@ -9,10 +9,6 @@ const orden = (sequelize, S) => {
     state: {
       type: S.ENUM("creado", "procesando", "cancelado", "completo"),
     },
-    price: {
-      type: S.INTEGER,
-      allowNull: false,
-    },
     fecha: {
       type: S.STRING,
       allowNull: false,
