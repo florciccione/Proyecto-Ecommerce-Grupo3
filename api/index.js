@@ -206,6 +206,17 @@ const categorias = [
   { name: "Pulseras" },
   { name: "Aros" },
 ];
+
+const usuarios = [
+  { name: "Gisella Alaniz", email: "gisella@gmail.com", 
+  password: "cualquiera", adress: "calle1"},
+  { name: "Leandro Arévalo", email: "leandro@gmail.com", 
+  password: "cualquiera", adress: "calle2"},
+  { name: "Florencia Ciccione", email: "florencia@gmail.com", 
+  password: "cualquiera", adress: "calle3"},
+  { name: "Juan Galarce", email: "juan@gmail.com", 
+  password: "cualquiera", adress: "calle4"}
+]
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
   colores.forEach((col) => Colors.create(col));
