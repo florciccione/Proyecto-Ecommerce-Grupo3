@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -7,9 +7,9 @@ import axios from 'axios';
 import Product from './components/Product/Product.js';
 import Catalogo from './components/Catalogo/Catalogo.js';
 import CrudProduct from './components/CrudProduct/CrudProduct.js';
+import ProductCard from './components/Catalogo/ProductCard.js';
 
 function App() {
-
   var [arrayProductos, setArrayProductos] = useState([]);
   var [categories, setCategories] = useState([]);
   useEffect(() => {
@@ -23,11 +23,18 @@ function App() {
       method:'GET',
       url:'http://localhost:3001/category/'
       }).then(function(res){
-        // console.log(res.data);
         setCategories(res.data);
       });
   }, []);
 
+
+//muestra todos los productos
+function showProducts(arrayProductos){
+  return arrayProductos.map(product => 
+  <Link to={'/producto/' + product.id} className="catalogo_product"> 
+      <ProductCard product={product}/>
+  </Link> );
+}; 
 //devuelve el producto buscado o mensaje 
 function onSearch(keyword) {
   if(keyword){
@@ -70,7 +77,7 @@ function onSelect(id){
      <Route
       exact
       path='/'
-      component={() => <Catalogo arrayProductos={arrayProductos} onSearch={onSearch} onFilter={onFilter} categories={categories} showCategoryOption={showCategoryOption}/>}
+      component={() => <Catalogo arrayProductos={arrayProductos} showProducts={showProducts} onSearch={onSearch} onFilter={onFilter} categories={categories} showCategoryOption={showCategoryOption}/>}
      />
      <Route
       exact

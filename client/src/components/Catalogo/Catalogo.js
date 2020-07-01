@@ -1,27 +1,18 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 // CSS
 import "./Catalogo.css";
 
 // Components
 import CategoryFilter from '../CategoryFilter/CategoryFilter.js';
 import SearchBar from '../SearchBar/SearchBar.js';
-import ProductCard from './ProductCard.js';
+import NavBar from '../NavBar/NavBar.js';
 
-export default function Catalogo({arrayProductos,onSearch, onFilter, categories, showCategoryOption}){
-  
-    //muestra todos los productos
-  function showProducts(arrayProductos){
-    return arrayProductos.map(product => 
-    <Link to={'/producto/' + product.id} className="catalogo_product"> 
-        <ProductCard product={product}/>
-    </Link> );
-  }; 
+export default function Catalogo({arrayProductos,onSearch, onFilter, categories, showCategoryOption, showProducts, allProducts}){
 
     return(
         
         <div className="catalogo">
-
+            <NavBar arrayProductos={arrayProductos} showProducts={showProducts}/>
             <div className="catalogo_bg"></div>
 
             <div className="catalogo_title">
@@ -31,8 +22,8 @@ export default function Catalogo({arrayProductos,onSearch, onFilter, categories,
 
             <div className="catalogo_bar">
                 <div className="volver_catalogo_bar">Volver al listado completo</div>
-                <CategoryFilter onFilter={onFilter} categories={categories} showCategoryOption={showCategoryOption}/>
-                <SearchBar onSearch={onSearch}/>
+                <CategoryFilter onFilter={onFilter} showProducts={showProducts} categories={categories} showCategoryOption={showCategoryOption}/>
+                <SearchBar showProducts={showProducts} onSearch={onSearch}/>
             </div>
             
             <div className="container">
