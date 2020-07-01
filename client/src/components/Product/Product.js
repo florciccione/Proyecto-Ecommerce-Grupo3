@@ -14,8 +14,7 @@ var [selectedColor, setSelectedColor] = useState('');
     function colorActive(colorName){
          setSelectedColor(colorName);
          var option = document.querySelector('#'+colorName);
-         option.selected = 'selected';
-         
+         option.selected = 'selected';   
      };
 
     function showColor(colors){

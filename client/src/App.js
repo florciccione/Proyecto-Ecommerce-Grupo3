@@ -37,11 +37,23 @@ function onSearch(keyword) {
     alert("No se han encontrado productos");
   }
 };
+//MUESTRA EN EL SELECT EL LISTADO DE LAS CATEGORIAS EXISTENTES
+function showCategoryOption(categories) { 
+  return categories.map(category => 
+  <option value={category.id} className='product_category_option'>
+      {category.name}
+  </option>
+  );
+};
 //devuelve los productos de la categoria seleccionada
-function onFilter(categories) {
-  if(categories){ 
-    var arrayFiltered =  arrayProductos.filter(product => product.categoria.name === categories) 
-    setArrayProductos(arrayFiltered);
+function onFilter(category) {
+  if(category){ 
+    var arrayFiltered = arrayProductos.filter(product => product.idCategory === parseInt(category)) 
+    if(arrayFiltered) {
+      setArrayProductos(arrayFiltered);
+    } else {
+      alert("No se encontraron productos para esa categoría");
+    }
   } else {
     alert("No se encontraron productos para esa categoría");
   }  
@@ -58,7 +70,7 @@ function onSelect(id){
      <Route
       exact
       path='/'
-      component={() => <Catalogo arrayProductos={arrayProductos} onSearch={onSearch} onFilter={onFilter} categories={categories}/>}
+      component={() => <Catalogo arrayProductos={arrayProductos} onSearch={onSearch} onFilter={onFilter} categories={categories} showCategoryOption={showCategoryOption}/>}
      />
      <Route
       exact
@@ -70,7 +82,7 @@ function onSelect(id){
      <Route
       exact
       path='/panel-admin/producto/'
-      component={() => <CrudProduct arrayProductos={arrayProductos} categories={categories}/>}
+      component={() => <CrudProduct arrayProductos={arrayProductos} categories={categories} showCategoryOption={showCategoryOption}/>}
      />
     </div>
   );

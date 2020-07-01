@@ -12,20 +12,12 @@ import CategoryCreateForm from './forms/CategoryCreateForm';
 import CategoryList from './CategoryList.js';
 import CategoryUpdateForm from './forms/CategoryUpdateForm.js';
 
-export default function Crud({arrayProductos, categories}){
+export default function Crud({arrayProductos, categories, showCategoryOption}){
 //muestra por defecto la lista de productos + opciones para agregar categoria o productos
     const [componentName, setComponentName] = useState('default');
     const [productSelected, setProductSelected] = useState('');
     const [categorySelected, setCategorySelected] = useState('');
     
-    //MUESTRA EN EL SELECT EL LISTADO DE LAS CATEGORIAS EXISTENTES
-    function showCategoryOption(categories) { 
-        return categories.map(category => 
-        <option value={category.id} className='product_category_option'>
-            {category.name}
-        </option>
-        );
-      };
 
     // CRUD PRODUCTO
     function deleteItem(productSelected){
@@ -47,13 +39,9 @@ export default function Crud({arrayProductos, categories}){
         setProductSelected(productSelected);
     }
 
-    
-
     // CRUD CATEGORIA
     function deleteCategory(categorySelected){
-        // setComponentName('deleteItem');
         setCategorySelected(categorySelected);
-        console.log(categorySelected);
         axios({
             method:'DELETE',
             url:'http://localhost:3001/category/delete/'+categorySelected.id,

@@ -30,8 +30,9 @@ export default function Catalogo({arrayProductos,onSearch, onFilter, categories,
             </div>
 
             <div className="catalogo_bar">
-                <SearchBar onSearch={onSearch}/>
+                <div className="volver_catalogo_bar">Volver al listado completo</div>
                 <CategoryFilter onFilter={onFilter} categories={categories} showCategoryOption={showCategoryOption}/>
+                <SearchBar onSearch={onSearch}/>
             </div>
             
             <div className="container">

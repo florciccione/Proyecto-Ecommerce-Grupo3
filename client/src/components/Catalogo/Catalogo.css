@@ -29,16 +29,18 @@
     background-size: cover;
     padding: 25px;
     display: flex;
+    align-items: center;
     justify-content: center; 
+    width: 100%;
 }
-
-/*.catalogo_search{
-    padding-top: 130px;
-    font-size: 24px;
-    color: black;
+.volver_catalogo_bar{
+    padding: 11px;
+    border: none; 
+    cursor: pointer;
     font-family: 'Graphik';
-
-}*/
+    font-size: 14px;
+    background-color: white;
+}
 .catalogo_products{
     padding-top: 30px;
     display: flex;

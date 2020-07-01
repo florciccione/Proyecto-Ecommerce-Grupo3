@@ -14,8 +14,8 @@ export default function ProductsList({arrayProductos, deleteItem, updateItem}){
   return(
       <div className="crud_products_list">
           <div className="crud_products_header">
-              <h1>Productos</h1>
-              <div className="btn_create_product">Nuevo Producto</div>
+              <h2>Listado de Productos</h2>
+              {/*<div className="btn_create_product">Nuevo Producto</div>*/}
           </div>
           <div className="products_list">
               {showProducts(arrayProductos)}

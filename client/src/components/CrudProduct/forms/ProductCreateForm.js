@@ -7,9 +7,11 @@ import "./ProductCreateForm.css";
 //COMPONENTES
 import ColorsCreate from "./ColorsCreate.js"
 
+
+
 export default function FormCreate({ categories, showCategoryOption }) {
   var errors = [];
-
+  
   function handleSubmit(e) {
     e.preventDefault();
     var name = document.querySelector("#name").value;
@@ -147,6 +149,7 @@ export default function FormCreate({ categories, showCategoryOption }) {
   return (
     <div>
       <div className="container_form">
+        
         <div className="titulo_form">
           <h1>Agregar nuevo producto</h1>
         </div>
@@ -218,10 +221,13 @@ export default function FormCreate({ categories, showCategoryOption }) {
             </div>
             </div>
           
-
+          {/*COMPONENTE COLORES*/}
           <div className="colors_form">
             <h6 className="title_colors">Color del producto</h6>
-             <ColorsCreate />
+             <ColorsCreate/>
+             <div className="colors_submit">
+                <div className="colors_btn">Agregar otro color</div>
+            </div>
           </div>
           
           <div className="form_input_submit">

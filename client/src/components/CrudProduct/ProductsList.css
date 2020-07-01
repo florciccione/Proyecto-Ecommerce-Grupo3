@@ -21,8 +21,8 @@
     align-items: center;
 }
 
-.crud_products_header h1{
-    font-weight: 400;
+.crud_products_header h2{
+    font-weight: 350;
 }
 
 /* Header btn */
