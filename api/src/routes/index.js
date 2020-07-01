@@ -6,7 +6,7 @@ const routerCategory = require("./routerCategory.js");
 const authRouter = require("./auth.js");
 const routerColor = require("./routerColors.js");
 const routerUser = require("./routerUser.js");
-const routerCart = require("./routerCart.js");
+//const routerOrden = require("./routerOrden.js");
 
 const router = Router();
 
@@ -17,6 +17,6 @@ router.use("/product", routerProduct);
 router.use("/category", routerCategory);
 router.use("/color", routerColor);
 router.use("/user", routerUser);
-router.use("/user", routerCart);
+//router.use("/user/cart", routerOrden);
 
 module.exports = router;

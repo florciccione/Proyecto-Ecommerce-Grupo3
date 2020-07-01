@@ -67,16 +67,10 @@ express.post("/add", function (req, res) {
       idCategory: idCategory,
       keywords: keywords,
       image: image,
+      colors: req.body.colors,
     },
     {
-      fields: [
-        "name",
-        "description",
-        "price",
-        "idCategory",
-        "keywords",
-        "image",
-      ],
+      include: Colors,
     }
   )
     .then(function (response) {
@@ -221,6 +215,7 @@ express.put("/:id", (req, res) => {
       price: req.body.price,
       idCategory: req.body.idCategory,
       keywords: req.body.keywords,
+      colors: req.body.colors,
     },
     {
       where: {
@@ -229,6 +224,7 @@ express.put("/:id", (req, res) => {
       returning: true,
     }
   )
+
     .then((response) => {
       const product = response[1][0];
       res.json(product);

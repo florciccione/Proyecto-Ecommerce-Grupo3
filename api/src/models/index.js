@@ -20,28 +20,38 @@ fs.readdirSync(__dirname)
     models[name] = model;
   });
 
-const { Product, Category, Colors, stockXColor, User, Cart } = models;
+const {
+  Product,
+  Category,
+  Colors,
+  stockXColor,
+  User,
+  Orden,
+  lineaDeOrden,
+} = models;
 
 // Add model relationships here
 // product has many category
 
 //Product.hasMany(stockXColor);
-Product.belongsToMany(Colors, { through: stockXColor });
+Product.belongsToMany(Colors, { through: stockXColor, onUpdate: "cascade" });
 Colors.belongsToMany(Product, { through: stockXColor });
 //stockXColor.belongsTo(Product);
 //stockXColor.belongsTo(Colors);
 //Product.hasOne(Category);
-Category.hasMany(Product, { as: "productos", foreignKey: "idCategory" });
+Category.hasMany(Product, {
+  as: "productos",
+  foreignKey: "idCategory",
+  onDelete: "cascade",
+});
 Product.belongsTo(Category, { as: "categoria", foreignKey: "idCategory" });
 
-
-
-User.hasOne(Cart, {as: "carrito", foreignKey: "idUsuario"});
-Cart.belongsTo(User, {as: "usuario", foreignKey: "idUsuario"});
+Orden.hasMany(User, { as: "usuarios", foreignKey: "idOrden" });
+User.belongsTo(Orden, { as: "orden", foreignKey: "idOrden" });
 
 // NOTA: un carrito tiene muchos productos, y estos pertenecen a varios carritos (hay que hacer otra tabla para relacionar cartXproduct) por las dudas si no lo ves así te explico lo que yo entiendo:
 // un usuario guarda en su carrito 1 cuaderno, 1 lapiz y 1 mochila y viene otro usuario y quiere guardar otros productos y además alguno de esos 3 que te menciono, ese producto va a pertencer a 2 carritos a la vez
-Cart.belongsToMany(Product, { through: cartXProduct });
-Product.belongsToMany(Cart, { through: cartXProduct });
+Product.belongsToMany(Orden, { through: lineaDeOrden });
+Orden.belongsToMany(Product, { through: lineaDeOrden });
 
 module.exports = models;
