@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { fetchProducts } from "../redux/actions/productsAction";
+
 // CSS
 import "./Catalogo.css";
 
@@ -7,8 +10,12 @@ import CategoryFilter from '../CategoryFilter/CategoryFilter.js';
 import SearchBar from '../SearchBar/SearchBar.js';
 import NavBar from '../NavBar/NavBar.js';
 
-export default function Catalogo({arrayProductos,onSearch, onFilter, categories, showCategoryOption, showProducts, allProducts}){
+function Catalogo({arrayProductos, fetchProducts, showProducts, onFilter, categories, showCategoryOption, onSearch}){
 
+    useEffect(() => {
+        fetchProducts();
+      }, []);
+     
     return(
         
         <div className="catalogo">
@@ -32,6 +39,19 @@ export default function Catalogo({arrayProductos,onSearch, onFilter, categories,
                 </div>
             </div>
 
-        </div>
+    </div>
   );
 }
+const mapStateToProps = (state) => {
+    return {
+        arrayProductos: state.products.products,
+    };
+  };
+  
+  const mapDispatchToProps = (dispatch) => {
+    return {
+      fetchProducts: () => dispatch(fetchProducts()),
+    };
+  };
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Catalogo);
