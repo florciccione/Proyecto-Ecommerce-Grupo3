@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { Route, Link } from 'react-router-dom';
-import { useSelector } from "react-redux";
+//import { useSelector } from "react-redux";
+import { connect } from "react-redux";
+import { fetchProducts } from "./components/redux/actions/productsAction";
 
 import axios from 'axios';
 
@@ -12,29 +14,17 @@ import ProductCard from './components/Catalogo/ProductCard.js';
 import FormCreateUsuario from './components/CrudUsuario/FormCreateUsuario.js';
 import Carrito from './components/Carrito/Carrito.js';
 
-function App() {
-  var [arrayProductos, setArrayProductos] = useState([]);
-  var [categories, setCategories] = useState([]);
+function App({arrayProductos, fetchProducts}) {
+
+ var [categories, setCategories] = useState([]); //CUANDO SE HAGA EL GET DE CATEGORIAS ESTO YA NO VA MAS!!!!!!!!!!!!!
   
-/*  useEffect(() => {
-    axios({
-      method:'GET',
-      url:'http://localhost:3001/product/'
-      }).then(function(res){
-        setArrayProductos(res.data);
-      });
-    axios({
-      method:'GET',
-      url:'http://localhost:3001/category/'
-      }).then(function(res){
-        setCategories(res.data);
-      });
+  useEffect(() => {
+    fetchProducts();
   }, []);
-*/
+
 
 //muestra todos los productos
 function showProducts(arrayProductos){
-  console.log(arrayProductos)
   return arrayProductos.map(product => 
   <Link to={'/producto/' + product.id} className="catalogo_product"> 
       <ProductCard product={product}/>
@@ -44,7 +34,7 @@ function showProducts(arrayProductos){
 function onSearch(keyword) {
   if(keyword){
     var arraySearched = arrayProductos.filter(product => product.name.toLowerCase().includes(keyword.toLowerCase()) || product.keywords.toLowerCase().includes(keyword.toLowerCase()));
-    setArrayProductos(arraySearched);
+    showProducts(arraySearched);
   } else {
     alert("No se han encontrado productos");
   }
@@ -62,7 +52,7 @@ function onFilter(category) {
   if(category){ 
     var arrayFiltered = arrayProductos.filter(product => product.idCategory === parseInt(category)) 
     if(arrayFiltered) {
-      setArrayProductos(arrayFiltered);
+      showProducts(arrayFiltered);
     } else {
       alert("No se encontraron productos para esa categoría");
     }
@@ -111,5 +101,16 @@ function onSelect(id){
     </div>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+      arrayProductos: state.products.products,
+  };
+};
 
-export default App;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchProducts: () => dispatch(fetchProducts()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
