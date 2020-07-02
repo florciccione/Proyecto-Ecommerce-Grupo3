@@ -1,14 +1,14 @@
-const { Orden } = require("../models");
+const { Orden, User } = require("../models");
 const { Op } = require("sequelize");
 const express = require("express").Router();
 
 express.get("/:idUsuario", function (req, res) {
-  Cart.findOne({
+  Orden.findAll({
     where: {
       idUsuario: req.params.idUsuario,
     },
-  }).then(function (cart) {
-    res.status(200).json(cart);
+  }).then(function (orden) {
+    res.status(200).json(orden);
   });
 });
 express.get("/", function (req, res) {
@@ -21,6 +21,32 @@ express.get("/", function (req, res) {
         .status(404)
         .json({ message: "No se pudo obtener las ordenes", data: reason });
     });
+});
+
+//TODO: Controlar que no existe una orden ya creada para un usuario usar método findOrCreate
+express.post("/add", function (req, res) {
+  const { idUsuario, fecha } = req.body;
+  User.findOne({
+    where: {id: idUsuario}, include: [{model: Orden,as: "ordenes"}],
+  }).then(user => {
+    var ordenes = JSON.stringify(user.ordenes);
+    var ordenActivaExistente = JSON.parse(ordenes).find(orden => orden.state === "creado");
+    console.log(ordenActivaExistente);
+    if(!ordenActivaExistente){
+      Orden.create(
+        {
+          state: "creado",
+          fecha: fecha,
+          idUsuario: idUsuario
+        }
+      ).then(function (orden) {
+        res.status(200).json(orden);
+      });
+    }else{
+      res.status(401).json(orden);
+    }
+  }).catch(err => res.status(404).json({message: "Ocurrió un error, no se pudo agregar usuario", data: err}))
+  
 });
 
 express.put("/modify", function (req, res) {
