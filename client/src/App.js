@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Route, Link } from 'react-router-dom';
+import { useSelector } from "react-redux";
 
 import axios from 'axios';
 
@@ -14,7 +15,8 @@ import Carrito from './components/Carrito/Carrito.js';
 function App() {
   var [arrayProductos, setArrayProductos] = useState([]);
   var [categories, setCategories] = useState([]);
-  useEffect(() => {
+  
+/*  useEffect(() => {
     axios({
       method:'GET',
       url:'http://localhost:3001/product/'
@@ -28,7 +30,7 @@ function App() {
         setCategories(res.data);
       });
   }, []);
-
+*/
 
 //muestra todos los productos
 function showProducts(arrayProductos){
