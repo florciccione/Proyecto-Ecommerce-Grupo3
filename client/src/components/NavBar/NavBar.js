@@ -24,7 +24,7 @@ function NavBar({arrayProductos,showProducts}) {
                 <Link to ='/usuario/registrarse' className="register"> 
                     <span> Registrarse </span>  
                 </Link>
-                <Link to ='/' className="cart"> 
+                <Link to ='/usuario/cart' className="cart"> 
                     <span> <i className="fas fa-shopping-cart"></i> </span>  
                 </Link>
         </div>

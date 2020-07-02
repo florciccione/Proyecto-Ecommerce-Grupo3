@@ -9,6 +9,7 @@ import Catalogo from './components/Catalogo/Catalogo.js';
 import CrudProduct from './components/CrudProduct/CrudProduct.js';
 import ProductCard from './components/Catalogo/ProductCard.js';
 import FormCreateUsuario from './components/CrudUsuario/FormCreateUsuario.js';
+import Carrito from './components/Carrito/Carrito.js';
 
 function App() {
   var [arrayProductos, setArrayProductos] = useState([]);
@@ -31,6 +32,7 @@ function App() {
 
 //muestra todos los productos
 function showProducts(arrayProductos){
+  console.log(arrayProductos)
   return arrayProductos.map(product => 
   <Link to={'/producto/' + product.id} className="catalogo_product"> 
       <ProductCard product={product}/>
@@ -98,6 +100,12 @@ function onSelect(id){
       path='/usuario/registrarse/'
       component={() => <FormCreateUsuario/>}
      />
+      <Route
+      exact
+      path='/usuario/cart/'
+      component={() => <Carrito/>}
+     />
+     
     </div>
   );
 }

@@ -22,14 +22,13 @@ export default function Crud({arrayProductos, categories, showCategoryOption}){
     // CRUD PRODUCTO
     function deleteItem(productSelected){
         setProductSelected(productSelected);
-        console.log(productSelected);
         axios({
             method:'DELETE',
             url:'http://localhost:3001/product/'+productSelected.id,
             })
             .then(function(res){
               console.log(res.data);
-              alert("Se borró la categoría");
+              alert("El producto fue eliminado");
             })
             .catch(reason => alert("No se pudo borrar "+reason));
     }

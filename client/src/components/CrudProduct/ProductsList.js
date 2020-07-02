@@ -8,6 +8,7 @@ import ProductItem from './ProductItem.js';
 export default function ProductsList({arrayProductos, deleteItem, updateItem}){
   //muestra una lista de todos los productos (ver/modifica/borrar)
   function showProducts(arrayProductos){
+    console.log(arrayProductos);
     return arrayProductos.map( product => <ProductItem product={product} deleteItem={deleteItem} updateItem={updateItem}/> );
   }; 
 

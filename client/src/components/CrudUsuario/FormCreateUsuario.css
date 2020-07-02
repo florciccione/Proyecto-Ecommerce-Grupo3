@@ -24,7 +24,7 @@
 .form_input_submit input{
     width: 250px;
     color: white;
-    background-color: rgb(46, 46, 46);
+    background-color: #2e2e2e;
     border: none;
     cursor: pointer;
 }
