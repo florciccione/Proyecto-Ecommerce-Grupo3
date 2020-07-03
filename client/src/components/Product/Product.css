@@ -1,8 +1,7 @@
 .product{
-    height: calc(100vh - 50px);
     display: flex;
     font-family: 'Graphik';
-    padding-top: 180px;
+    padding-top: 30px;
 }
 
 .product_left{
@@ -15,7 +14,7 @@
 
 .product_name h1{
     padding-top: 20px;
-    font-size: 28px;
+    font-size: 24px;
     font-family: 'Nanum Regular';
     font-weight: 300;
 }

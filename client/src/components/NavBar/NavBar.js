@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import './NavBar.css';
 
 //BARRA DE NAVEGACION DEL SITIO
-function NavBar({arrayProductos,showProducts}) {
+function NavBar() {
   return (
     <div className="bar">
 

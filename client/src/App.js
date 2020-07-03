@@ -1,47 +1,35 @@
-import React, {useState, useEffect} from 'react';
-import { Route, Link } from 'react-router-dom';
-//import { useSelector } from "react-redux";
+import React, {useEffect} from "react";
 import { connect } from "react-redux";
+import { Route } from 'react-router-dom';
+//import { useSelector } from "react-redux";
 import { fetchProducts } from "./components/redux/actions/productsAction";
 
-import axios from 'axios';
+
 
 // Componentes
 import Product from './components/Product/Product.js';
 import Catalogo from './components/Catalogo/Catalogo.js';
 import CrudProduct from './components/CrudProduct/CrudProduct.js';
-import ProductCard from './components/Catalogo/ProductCard.js';
 import FormCreateUsuario from './components/CrudUsuario/FormCreateUsuario.js';
 import Carrito from './components/Carrito/Carrito.js';
 
-function App({arrayProductos, fetchProducts}) {
-
- var [categories, setCategories] = useState([]); //CUANDO SE HAGA EL GET DE CATEGORIAS ESTO YA NO VA MAS!!!!!!!!!!!!!
-  
+function App({arrayProductos,fetchProducts}) {
   useEffect(() => {
     fetchProducts();
-  }, []);
-
-
-//muestra todos los productos
-function showProducts(arrayProductos){
-  return arrayProductos.map(product => 
-  <Link to={'/producto/' + product.id} className="catalogo_product"> 
-      <ProductCard product={product}/>
-  </Link> );
-}; 
+}, []);
+/*
 //devuelve el producto buscado o mensaje 
 function onSearch(keyword) {
   if(keyword){
     var arraySearched = arrayProductos.filter(product => product.name.toLowerCase().includes(keyword.toLowerCase()) || product.keywords.toLowerCase().includes(keyword.toLowerCase()));
-    showProducts(arraySearched);
+    setProductsSuccess(arraySearched);
   } else {
     alert("No se han encontrado productos");
   }
 };
 //MUESTRA EN EL SELECT EL LISTADO DE LAS CATEGORIAS EXISTENTES
-function showCategoryOption(categories) { 
-  return categories.map(category => 
+function showCategoryOption(arrayCategories) { 
+  return arrayCategories.map(category => 
   <option value={category.id} className='product_category_option'>
       {category.name}
   </option>
@@ -59,12 +47,12 @@ function onFilter(category) {
   } else {
     alert("No se encontraron productos para esa categoría");
   }  
-}
-//devuelve el producto seleccionado
-function onSelect(id){
-  let producto = arrayProductos.filter(producto => producto.id === parseInt(id));
-  return producto[0];
-}; 
+}*/
+  //devuelve el producto seleccionado
+  function onSelect(id){
+    let producto = arrayProductos.filter(producto => producto.id === parseInt(id));
+    return producto[0];
+    }; 
 
   return (
     <div className="App">
@@ -72,7 +60,7 @@ function onSelect(id){
      <Route
       exact
       path='/'
-      component={() => <Catalogo arrayProductos={arrayProductos} showProducts={showProducts} onSearch={onSearch} onFilter={onFilter} categories={categories} showCategoryOption={showCategoryOption}/>}
+      component={() => <Catalogo />}
      />
      <Route
       exact
@@ -84,7 +72,7 @@ function onSelect(id){
      <Route
       exact
       path='/panel-admin/producto/'
-      component={() => <CrudProduct arrayProductos={arrayProductos} categories={categories} showCategoryOption={showCategoryOption}/>}
+      component={() => <CrudProduct />}
      />
      {/* CRUD USUARIO */}
       <Route

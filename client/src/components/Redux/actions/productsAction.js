@@ -16,7 +16,7 @@ export const fetchProductsRequest = () => {
   };
 };
 
-const fetchProductsSuccess = (products) => {
+export const setProductsSuccess = (products) => {
   return {
     type: FETCH_PRODUCTS_SUCCESS,
     payload: products,
@@ -37,7 +37,7 @@ export const fetchProducts = () => {
       .get("http://localhost:3001/product/")
       .then((res) => {
         const products = res.data;
-        dispatch(fetchProductsSuccess(products));
+        dispatch(setProductsSuccess(products));
       })
       .catch((error) => {
         const errorMsg = error.message;
