@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 // export const GET_PRODUCTS = "GET_PRODUCTS";
 // export const ADD_PRODUCTS = "ADD_PRODUCTS";
@@ -16,7 +16,7 @@ export const fetchProductsRequest = () => {
   };
 };
 
-const fetchProductsSuccess = (products) => {
+export const setProductsSuccess = (products) => {
   return {
     type: FETCH_PRODUCTS_SUCCESS,
     payload: products,
@@ -29,19 +29,22 @@ const fetchUsersError = (error) => {
     payload: error,
   };
 };
-
-export const fetchProducts = () => {
-  return (dispatch) => {
-    dispatch(fetchProductsRequest);
-    axios
-      .get("http://localhost:3001/product/")
-      .then((res) => {
-        const products = res.data;
-        dispatch(fetchProductsSuccess(products));
-      })
-      .catch((error) => {
-        const errorMsg = error.message;
-        dispatch(fetchUsersError(errorMsg));
-      });
+export function getProducts() {
+  return (dispatch, getState) => {
+    axios.get(`http://localhost:3001/product`).then((response) => {
+      dispatch({ type: FETCH_PRODUCTS_SUCCESS, payload: response.data });
+      // console.log(response.data)
+    });
   };
-};
+}
+/* export const getProducts = () => (dispatch) => {
+  axios
+    .get("http://localhost:3001/product")
+    .then((res) => {
+      dispatch(setProductsSuccess(res.data));
+    })
+    .catch((error) => {
+      const errorMsg = error.message;
+      dispatch(fetchUsersError(errorMsg));
+    });
+}; */

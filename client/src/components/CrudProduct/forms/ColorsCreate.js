@@ -44,6 +44,7 @@ export default function ColorsCreate() {
               accept="image/png, image/jpeg"
             />
         </div>
+        <input type="checkbox" className="main"></input>
       </div>
     </div>
           
