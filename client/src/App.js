@@ -22,7 +22,7 @@ export default function App() {
      <Route
       exact
       path='/producto/:id'
-      component={() => <Product  />}
+      component={() => <Product />}
      />
 
       {/* ADMIN Routes */}
