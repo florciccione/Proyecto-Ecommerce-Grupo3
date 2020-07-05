@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import './CategoryFilter.css';
 
 
-export default function CategoryFilter({onFilter,categories,showCategoryOption}){
+export default function CategoryFilter({onFilter,arrayCategories,showCategoryOption}){
   //estado local de la categoria seleccionada para realizar el filtro
   var [category, setCategory] = useState ('');
   
@@ -13,7 +13,7 @@ export default function CategoryFilter({onFilter,categories,showCategoryOption})
         className="select_category"
         onChange={(e) => setCategory(e.target.value)}
         >
-        {showCategoryOption(categories)}
+        {showCategoryOption(arrayCategories)}
       </select>
       <button className="filter_btn" onClick={e => onFilter(category)}>Filtrar</button>
   </div>

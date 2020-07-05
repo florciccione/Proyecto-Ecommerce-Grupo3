@@ -1,10 +1,5 @@
-import React, {useEffect} from "react";
-import { connect } from "react-redux";
+import React from "react";
 import { Route } from 'react-router-dom';
-//import { useSelector } from "react-redux";
-import { fetchProducts } from "./components/redux/actions/productsAction";
-
-
 
 // Componentes
 import Product from './components/Product/Product.js';
@@ -15,36 +10,6 @@ import Carrito from './components/Carrito/Carrito.js';
 
 export default function App() {
 /*
-//devuelve el producto buscado o mensaje 
-function onSearch(keyword) {
-  if(keyword){
-    var arraySearched = arrayProductos.filter(product => product.name.toLowerCase().includes(keyword.toLowerCase()) || product.keywords.toLowerCase().includes(keyword.toLowerCase()));
-    setProductsSuccess(arraySearched);
-  } else {
-    alert("No se han encontrado productos");
-  }
-};
-//MUESTRA EN EL SELECT EL LISTADO DE LAS CATEGORIAS EXISTENTES
-function showCategoryOption(arrayCategories) { 
-  return arrayCategories.map(category => 
-  <option value={category.id} className='product_category_option'>
-      {category.name}
-  </option>
-  );
-};
-//devuelve los productos de la categoria seleccionada
-function onFilter(category) {
-  if(category){ 
-    var arrayFiltered = arrayProductos.filter(product => product.idCategory === parseInt(category)) 
-    if(arrayFiltered) {
-      showProducts(arrayFiltered);
-    } else {
-      alert("No se encontraron productos para esa categoría");
-    }
-  } else {
-    alert("No se encontraron productos para esa categoría");
-  }  
-}
   //devuelve el producto seleccionado
   function onSelect(id){
     let producto = arrayProductos.filter(producto => producto.id === parseInt(id));

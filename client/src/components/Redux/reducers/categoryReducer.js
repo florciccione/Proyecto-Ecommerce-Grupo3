@@ -31,12 +31,12 @@ import {
           categories: [],
           error: action.payload,
         };
-      case FILTER_CATEGORIES:
-        return {
-          loading: false,
-          categories: [],
-          error: action.payload,
-        };  
+    //  case FILTER_CATEGORIES:
+    //    return {
+    //      loading: false,
+    //      categories: [],
+    //     error: action.payload,
+    //    };  
       // case DELETE_CATEGORIES: {
       //   return {
       //     ...state,
