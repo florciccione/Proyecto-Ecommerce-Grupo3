@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const FETCH_PRODUCTS_REQUEST = "FETCH_PRODUCTS_REQUEST";
 export const FETCH_PRODUCTS_SUCCESS = "FETCH_PRODUCTS_SUCCESS";
@@ -38,4 +38,5 @@ export function getProducts() {
         dispatch(fetchUsersError(errorMsg));
       });
   };
-};
+}
+

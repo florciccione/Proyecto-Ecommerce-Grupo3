@@ -84,9 +84,8 @@ export default function Catalogo(){
                     {showProducts(arrayProductos)}
                 </div>
             </div>
-
-    </div>
-  );
+        </div>
+      );
 }
   
 
