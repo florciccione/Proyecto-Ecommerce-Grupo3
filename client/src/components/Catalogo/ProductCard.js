@@ -3,6 +3,7 @@ import React from 'react';
 import './Catalogo.css';
 
 export default function ProductCard({product}) {
+    
     function showImg(colors){
         return colors.find(color => color.stockXColor.main).stockXColor.image;
     }

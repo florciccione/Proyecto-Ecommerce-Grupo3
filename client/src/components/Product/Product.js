@@ -4,9 +4,9 @@ import './Product.css';
 //COMPONENTES
 import NavBar from '../NavBar/NavBar.js';
 
-export default function Product({productDetail,arrayProductos,showProducts}){
+export default function Product({productDetail}){
 var [selectedColor, setSelectedColor] = useState('');
-    
+    console.log(productDetail);
     //RETORNA LA IMAGEN DE PORTADA DEL PRODUCTO
     function showImg(colors){
       return colors.find(color => color.stockXColor.main).stockXColor.image;
@@ -41,7 +41,7 @@ var [selectedColor, setSelectedColor] = useState('');
 
     return (
         <div className="catalogo">
-            <NavBar arrayProductos={arrayProductos} showProducts={showProducts}/>
+            <NavBar />
             <div className="catalogo_bg"></div>
 
             <div className="catalogo_title">

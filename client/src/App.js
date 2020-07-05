@@ -13,10 +13,7 @@ import CrudProduct from './components/CrudProduct/CrudProduct.js';
 import FormCreateUsuario from './components/CrudUsuario/FormCreateUsuario.js';
 import Carrito from './components/Carrito/Carrito.js';
 
-function App({arrayProductos,fetchProducts}) {
-  useEffect(() => {
-    fetchProducts();
-}, []);
+export default function App() {
 /*
 //devuelve el producto buscado o mensaje 
 function onSearch(keyword) {
@@ -47,13 +44,13 @@ function onFilter(category) {
   } else {
     alert("No se encontraron productos para esa categoría");
   }  
-}*/
+}
   //devuelve el producto seleccionado
   function onSelect(id){
     let producto = arrayProductos.filter(producto => producto.id === parseInt(id));
     return producto[0];
     }; 
-
+*/
   return (
     <div className="App">
        {/* PRODUCT Routes */}
@@ -65,7 +62,7 @@ function onFilter(category) {
      <Route
       exact
       path='/producto/:id'
-      component={({match}) => <Product productDetail={onSelect(match.params.id)} />}
+      component={() => <Product  />}
      />
 
      {/* CRUD Routes */}
@@ -89,16 +86,4 @@ function onFilter(category) {
     </div>
   );
 }
-const mapStateToProps = (state) => {
-  return {
-      arrayProductos: state.products.products,
-  };
-};
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    fetchProducts: () => dispatch(fetchProducts()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);

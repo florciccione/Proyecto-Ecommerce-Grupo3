@@ -1,10 +1,5 @@
 import axios from 'axios';
 
-// export const GET_PRODUCTS = "GET_PRODUCTS";
-// export const ADD_PRODUCTS = "ADD_PRODUCTS";
-// export const UPDATE_PRODUCTS = "UPDATE_PRODUCTS";
-// export const DELETE_PRODUCTS = "DELETE_PRODUCTS";
-
 export const FETCH_PRODUCTS_REQUEST = "FETCH_PRODUCTS_REQUEST";
 export const FETCH_PRODUCTS_SUCCESS = "FETCH_PRODUCTS_SUCCESS";
 export const FETCH_PRODUCTS_ERROR = "FETCH_PRODUCTS_ERROR";
@@ -30,9 +25,8 @@ const fetchUsersError = (error) => {
   };
 };
 
-export const fetchProducts = () => {
-  return (dispatch) => {
-    dispatch(fetchProductsRequest);
+export function getProducts() {
+  return (dispatch, getSate) => {
     axios
       .get("http://localhost:3001/product/")
       .then((res) => {

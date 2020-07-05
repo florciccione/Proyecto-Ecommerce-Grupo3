@@ -41,9 +41,8 @@ export const showCategories = (categories) => {
   };
 };
 
-export const fetchCategories = () => {
-  return (dispatch) => {
-    dispatch(fetchCategoriesRequest);
+export const getCategories = () => {
+  return (dispatch, getState) => {
     axios
       .get('http://localhost:3001/category/')
       .then((res) => {

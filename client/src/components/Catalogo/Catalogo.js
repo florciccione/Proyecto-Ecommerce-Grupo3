@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {Link} from 'react-router-dom';
-import { connect } from "react-redux";
-import { fetchProducts, setProductsSuccess } from "../redux/actions/productsAction.js";
+import { useSelector, useDispatch } from "react-redux";
+import { getProducts, setProductsSuccess } from "../redux/actions/productsAction.js";
 import { fetchCategories } from "../redux/actions/categoryAction";
 
 // CSS
@@ -14,14 +14,15 @@ import NavBar from '../NavBar/NavBar.js';
 import ProductCard from './ProductCard.js';
 
 
-function Catalogo({fetchProducts, arrayProductos}){
-    
-    useEffect(() => {
-        fetchProducts();
-        fetchCategories();
-    }, []);
+export default function Catalogo(){
+    const dispatch = useDispatch();
+    const products = useSelector((state) => state.products);
+    const arrayProductos = products.products;
 
-    //muestra todos los productos
+    useEffect(() => dispatch(getProducts()), []);
+    
+
+    //MUESTRA TODOS LOS PRODUCTOS
     function showProducts(arrayProductos){
         return arrayProductos.map(product => 
         <Link to={'/producto/' + product.id} className="catalogo_product"> 
@@ -56,20 +57,5 @@ function Catalogo({fetchProducts, arrayProductos}){
     </div>
   );
 }
-const mapStateToProps = (state) => {
-    return {
-        arrayProductos: state.products.products,
-    };
-  };
-  
-  const mapDispatchToProps = (dispatch) => {
-    return {
-      fetchProducts: () => dispatch(fetchProducts()),
-      fetchCategories: () => dispatch(fetchCategories()),
-      setProductsSuccess: (products) => dispatch(setProductsSuccess(products))
-    };
-  };
-  
-export default connect(mapStateToProps, mapDispatchToProps)(Catalogo);
   
 
