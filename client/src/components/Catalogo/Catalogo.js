@@ -15,9 +15,10 @@ import ProductCard from './ProductCard.js';
 
 
 export default function Catalogo(){
+    
     const dispatch = useDispatch();
     const arrayProductos = useSelector((state) => state.products.products);
-    const arrayCategories = useSelector((state) => state.categories.categories);
+ 
     useEffect(() => dispatch(getProducts()), []);
     useEffect(() => dispatch(getCategories()), []);
     
@@ -51,21 +52,21 @@ export default function Catalogo(){
     };
     //FILTRA LOS PRODUCTOS POR CATEGORIA
     function onFilter(category) {
-        /*if(category){ 
+        if(category){ 
         var arrayFiltered = arrayProductos.filter(product => product.idCategory === parseInt(category)) 
-        if(arrayFiltered) {
-            setProductsSuccess(arrayFiltered);
-        } else {
-            alert("No se encontraron productos para esa categoría");
-        }
+            if(arrayFiltered) {
+                dispatch(setProductsSuccess(arrayFiltered));
+            } else {
+                alert("No se encontraron productos para esa categoría");
+            }
         } else {
         alert("No se encontraron productos para esa categoría");
-        }  */
+        }  
     };
     return(
         
         <div className="catalogo">
-            <NavBar arrayProductos={arrayProductos} showProducts={showProducts}/>
+            <NavBar />
             <div className="catalogo_bg"></div>
 
             <div className="catalogo_title">
@@ -74,8 +75,8 @@ export default function Catalogo(){
             </div>
 
             <div className="catalogo_bar">
-                <div className="volver_catalogo_bar" onClick={e => getProducts()}>Volver al listado completo</div>
-               <CategoryFilter arrayCategories={arrayCategories} onFilter={onFilter} showProducts={showProducts} showCategoryOption={showCategoryOption}/>
+                <div className="volver_catalogo_bar" onClick={e => dispatch(getProducts())}>Volver al listado completo</div>
+               <CategoryFilter onFilter={onFilter} showProducts={showProducts} showCategoryOption={showCategoryOption}/>
                <SearchBar showProducts={showProducts} onSearch={onSearch}/>
             </div>
             

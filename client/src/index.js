@@ -11,7 +11,7 @@ import "./fonts/Graphik/stylesheet.css";
 import "./fonts/Nanum/stylesheet.css";
 
 // Redux
-import store from "./components/Redux/store.js";
+import store from "./components/redux/store.js";
 import { Provider } from "react-redux";
 
 ReactDOM.render(

@@ -1,19 +1,21 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { getProducts } from "../redux/actions/productsAction.js";
 //CSS
 import './NavBar.css';
 
 //BARRA DE NAVEGACION DEL SITIO
 function NavBar() {
+  const dispatch = useDispatch();
   return (
     <div className="bar">
 
         <div className="nav_bar">
-                <Link to={'/'}  className="bar_home"> 
+                <Link to='/'  onClick={e => dispatch(getProducts())} className="bar_home"> 
                     <span> Home </span>  
                 </Link>
-                <Link to ='/' className="bar_shop"> 
+                <Link to ='/' onClick={e => dispatch(getProducts())} className="bar_shop"> 
                     <span> Shop </span>
                 </Link>
         </div>

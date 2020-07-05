@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
+import { useSelector } from "react-redux";
 // CSS
 import './CategoryFilter.css';
 
 
-export default function CategoryFilter({onFilter,arrayCategories,showCategoryOption}){
+export default function CategoryFilter({onFilter, showCategoryOption}){
   //estado local de la categoria seleccionada para realizar el filtro
   var [category, setCategory] = useState ('');
-  
+  const arrayCategories = useSelector((state) => state.categories.categories);
   return(
     <div className="form_category">
       <select

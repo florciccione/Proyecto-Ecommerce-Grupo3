@@ -2,8 +2,6 @@ import {
     FETCH_CATEGORIES_REQUEST,
     FETCH_CATEGORIES_SUCCESS,
     FETCH_CATEGORIES_ERROR,
-    FILTER_CATEGORIES,
-    SHOW_CATEGORIES,
   } from "../actions/categoryAction";
   
   const initialState = {
@@ -31,20 +29,7 @@ import {
           categories: [],
           error: action.payload,
         };
-    //  case FILTER_CATEGORIES:
-    //    return {
-    //      loading: false,
-    //      categories: [],
-    //     error: action.payload,
-    //    };  
-      // case DELETE_CATEGORIES: {
-      //   return {
-      //     ...state,
-      //     categories: state.categories.filter((categories) => {
-      //       return categories.id !== action.payload.id;
-      //     }),
-      //   };
-      //}
+
       default:
         return state;
     }

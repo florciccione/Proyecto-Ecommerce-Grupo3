@@ -3,8 +3,7 @@ import axios from 'axios';
 export const FETCH_CATEGORIES_REQUEST = "FETCH_CATEGORIES_REQUEST";
 export const FETCH_CATEGORIES_SUCCESS = "FETCH_CATEGORIES_SUCCESS";
 export const FETCH_CATEGORIES_ERROR = "FETCH_CATEGORIES_ERROR";
-export const FILTER_CATEGORIES = "FILTER_CATEGORIES";
-export const SHOW_CATEGORIES = "SHOW_CATEGORIES";
+
 
 // Funcion creadora de la accion
 export const fetchCategoriesRequest = () => {
@@ -27,19 +26,6 @@ export const fetchCategoriesError = (error) => {
   };
 };
 
-export const filterCategories = (category, arrayProductos) => {
-  return {
-    type: FILTER_CATEGORIES,
-    payload: arrayProductos,
-  };
-};
-
-export const showCategories = (categories) => {
-  return {
-    type: SHOW_CATEGORIES,
-    payload: categories,
-  };
-};
 
 export const getCategories = () => {
   return (dispatch, getState) => {

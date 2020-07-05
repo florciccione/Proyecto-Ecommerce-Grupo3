@@ -3,11 +3,13 @@ import React from "react";
 import "./Catalogo.css";
 
 export default function ProductCard({product}) {
-    
+   
     function showImg(colors){
+      if(colors){
         return colors.find(color => color.stockXColor.main).stockXColor.image;
-    }
-  }
+      } 
+    };
+  
   return (
     <div>
       <div className="catalogo_product_img">
