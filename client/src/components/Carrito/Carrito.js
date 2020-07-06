@@ -45,19 +45,6 @@ export default function Carrito(){
                 ]
     }]
       
- /*   function deleteItem(productSelected){
-    setProductSelected(productSelected);
-    axios({
-        method:'DELETE',
-        url:'http://localhost:3001/carrito/ + productSelected.id,
-        })
-        .then(function(res){
-            console.log(res.data);
-            alert("Se quito el producto del carrito");
-        })
-        .catch(reason => alert("No se pudo borrar "+reason));
-    }
-*/  
     axios({
         method:'GET',
         url:'http://localhost:3001/orden/2'
@@ -70,7 +57,6 @@ export default function Carrito(){
     function showProducts(arrayProductosCart){
         return arrayProductosCart.map( product => <ProductItemCart product={product} totalCart={totalCart} setTotalCart={setTotalCart} /> );
     };
-
 
     return (
         <div className="container_add_user">

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import { useSelector } from "react-redux";
-
+import { useSelector, useDispatch } from "react-redux";
+import { addToCart } from "../redux/actions/cartAction.js";
 
 // CSS
 import './Product.css';
@@ -11,7 +11,10 @@ export default function Product({id}){
 var [selectedColor, setSelectedColor] = useState('');
 
 const arrayProductos = useSelector((state) => state.products.products);
+const items = useSelector((state) => state.cart);
+
 const productDetail = arrayProductos.find(product => parseInt(product.id) == id);
+const dispatch = useDispatch();
 
     //RETORNA LA IMAGEN DE PORTADA DEL PRODUCTO
     function showImg(colors){
@@ -34,16 +37,20 @@ const productDetail = arrayProductos.find(product => parseInt(product.id) == id)
      };
 
     function showColorOption(colors){
-        return colors.map(color => 
-             <option id={color.name} value={color.name} className='product_colors_option'>
-                 {color.name}
-             </option>
-         );
+        if (colors) {
+            return colors.map(color => 
+                <option id={color.name} value={color.name} className='product_colors_option'>
+                    {color.name}
+                </option>
+            );
+        }
      };
-    function addToCart(productDetail,selectedColor){
-        //ENVIARA LOS DATOS DEL PRODUCTO EN CUESTION JUNTO CON EL COLOR SELECCIONADO A LA BD (+ LOS DATOS DEL USUARIO)
-        alert('El producto se agrego al carrito de compras');
-    };
+     function colorSelected(selectedColor, productDetail, items){
+        if (productDetail && selectedColor) {
+            var product = {id: productDetail.id, name: productDetail.name, description: productDetail.description, price: productDetail.price};
+            dispatch(addToCart(items,product,selectedColor));
+        };
+     };
 
     return (
         <div className="catalogo">
@@ -82,7 +89,7 @@ const productDetail = arrayProductos.find(product => parseInt(product.id) == id)
                             </div>                    
                         </div>
                         <div className="product_cart-btn">
-                            <div onClick={e => addToCart(productDetail,selectedColor)}>Agregar al carrito</div>
+                            <div onClick={e => colorSelected(selectedColor,productDetail,items)}>Agregar al carrito</div>
                         </div>
                     </div>
                 </div>

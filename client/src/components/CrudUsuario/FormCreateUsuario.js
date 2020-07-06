@@ -1,5 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { useDispatch } from "react-redux";
+import { getProducts } from "../redux/actions/productsAction.js";
 
 // CSS
 import './FormCreateUsuario.css';
@@ -7,6 +10,8 @@ import './FormCreateUsuario.css';
 import NavBar from '../NavBar/NavBar.js';
 
 export default function FormCreateUsuario(){
+    const dispatch = useDispatch();
+
     function handleSubmit(e){
         e.preventDefault();
         var name = document.querySelector('#name').value;
@@ -23,6 +28,8 @@ export default function FormCreateUsuario(){
             .then(function(res){
               console.log(res.data);
               alert("La cuenta se creo con éxito");
+            }).then(function (){
+                window.location.replace("../../"); 
             })
             .catch(reason => alert("No se pudo crear la cuenta de usuario "+reason));
       };
