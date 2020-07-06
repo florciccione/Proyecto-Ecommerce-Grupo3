@@ -9,7 +9,7 @@ import ColorsCreate from "./ColorsCreate.js"
 
 
 
-export default function FormCreate({ categories, showCategoryOption }) {
+export default function FormCreate({ arrayCategories, showCategoryOption }) {
   var errors = [];
   
   function handleSubmit(e) {
@@ -215,7 +215,7 @@ export default function FormCreate({ categories, showCategoryOption }) {
                   className="select_category"
                   onChange={(e) => e.target.value}
                 >
-                  {showCategoryOption(categories)}
+                  {/*showCategoryOption(arrayCategories)*/}
                 </select>
               </div>
             </div>

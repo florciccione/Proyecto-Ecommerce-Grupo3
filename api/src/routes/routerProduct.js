@@ -66,7 +66,9 @@ express.post("/add", function (req, res) {
       price: price,
       keywords: keywords,
       image: image,
+
       idCategory: idCategory,
+
       colors: req.body.colors,
     },
     {
@@ -187,6 +189,7 @@ express.put("/modify", (req, res) => {
       include: Colors,
     }
   )
+
     .then((response) => {
       const product = response[1][0];
       res.json(product);
