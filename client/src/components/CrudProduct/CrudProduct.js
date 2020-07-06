@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useSelector } from "react-redux";
 import axios from 'axios';
 
 // CSS
@@ -12,32 +13,23 @@ import CategoryCreateForm from './forms/CategoryCreateForm';
 import CategoryList from './CategoryList.js';
 import CategoryUpdateForm from './forms/CategoryUpdateForm.js';
 
-export default function Crud({arrayProductos, categories}){
+export default function Crud({showCategoryOption}){
 //muestra por defecto la lista de productos + opciones para agregar categoria o productos
     const [componentName, setComponentName] = useState('default');
     const [productSelected, setProductSelected] = useState('');
     const [categorySelected, setCategorySelected] = useState('');
     
-    //MUESTRA EN EL SELECT EL LISTADO DE LAS CATEGORIAS EXISTENTES
-    function showCategoryOption(categories) { 
-        return categories.map(category => 
-        <option value={category.id} className='product_category_option'>
-            {category.name}
-        </option>
-        );
-      };
-
+    const arrayCategories = useSelector((state) => state.categories.categories);
     // CRUD PRODUCTO
     function deleteItem(productSelected){
         setProductSelected(productSelected);
-        console.log(productSelected);
         axios({
             method:'DELETE',
             url:'http://localhost:3001/product/'+productSelected.id,
             })
             .then(function(res){
               console.log(res.data);
-              alert("Se borró la categoría");
+              alert("El producto fue eliminado");
             })
             .catch(reason => alert("No se pudo borrar "+reason));
     }
@@ -47,13 +39,9 @@ export default function Crud({arrayProductos, categories}){
         setProductSelected(productSelected);
     }
 
-    
-
     // CRUD CATEGORIA
     function deleteCategory(categorySelected){
-        // setComponentName('deleteItem');
         setCategorySelected(categorySelected);
-        console.log(categorySelected);
         axios({
             method:'DELETE',
             url:'http://localhost:3001/category/delete/'+categorySelected.id,
@@ -70,17 +58,17 @@ export default function Crud({arrayProductos, categories}){
         setCategorySelected(categorySelected);
     }
     //EVALUA EL COMPONENTE QUE SE MOSTRARA EN EL PANEL DE ADMINISTRACION
-    function showComponent(componentName){        
+    function showComponent(componentName){    
         if(componentName === 'default'){
-            return (<ProductsList arrayProductos={arrayProductos} deleteItem={deleteItem} updateItem={updateItem}/>)
+            return (<ProductsList deleteItem={deleteItem} updateItem={updateItem}/>)
         }else if(componentName === 'createForm'){
-            return (<ProductCreateForm categories={categories} showCategoryOption={showCategoryOption}/>)
+            return (<ProductCreateForm arrayCategories={arrayCategories} showCategoryOption={showCategoryOption}/>)
         }else if(componentName === 'updateForm'){
-            return (<ProductUpdateForm productSelected={productSelected} categories={categories} showCategoryOption={showCategoryOption}/>)
+            return (<ProductUpdateForm productSelected={productSelected} arrayCategories={arrayCategories} showCategoryOption={showCategoryOption}/>)
         }else if(componentName === 'deleteItem'){
             setComponentName('default');
         }else if(componentName === 'verCategories'){
-            return (<CategoryList categories={categories} deleteCategory={deleteCategory} updateCategory={updateCategory}/>);
+            return (<CategoryList arrayCategories={arrayCategories} deleteCategory={deleteCategory} updateCategory={updateCategory}/>);
         }else if(componentName === 'createCategory'){
             return (<CategoryCreateForm />)
         }else if(componentName === 'updateCategory'){

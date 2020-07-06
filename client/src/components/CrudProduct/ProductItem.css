@@ -31,24 +31,19 @@
 .item_list_btns div{
     width: auto;
 }
-.btn_ver{
+.btn_ver, .btn_modificar, .btn_eliminar{
     background-color: white;
     border: .6px solid #ebeced;
     padding: 8px;
-    /* position: absolute;
-    left: 1320px;  */
+    cursor: pointer;
 }
-.btn_modificar{
-    background-color: white;
-    border: .6px solid #ebeced;
-    padding: 8px;
-    /* position: absolute;
-    left: 1350px;  */
+
+.btn_ver:hover, .btn_ver:link, .btn_ver:visited{
+    color: black;
 }
-.btn_eliminar{
-    background-color: white;
-    border: .6px solid #ebeced;
-    padding: 8px;
-    /* position: absolute;
-    left: 1385px;  */
+.btn_modificar:hover, .btn_modificar:link, .btn_modificar:visited{
+    color: black;
+}
+.btn_eliminar:hover, .btn_eliminar:link, .btn_eliminar::visited{
+    color: black;
 }
