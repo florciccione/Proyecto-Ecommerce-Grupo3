@@ -1,12 +1,20 @@
 import React, {useState} from 'react';
+import { useSelector } from "react-redux";
+
+
 // CSS
 import './Product.css';
 //COMPONENTES
 import NavBar from '../NavBar/NavBar.js';
 
-export default function Product({productDetail}){
+export default function Product({id}){
 var [selectedColor, setSelectedColor] = useState('');
-    console.log(productDetail);
+
+const arrayProductos = useSelector((state) => state.products.products);
+const productDetail = arrayProductos.find(product => parseInt(product.id) == id);
+
+console.log(productDetail);
+
     //RETORNA LA IMAGEN DE PORTADA DEL PRODUCTO
     function showImg(colors){
       return colors.find(color => color.stockXColor.main).stockXColor.image;

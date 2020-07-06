@@ -3,6 +3,7 @@ import axios from "axios";
 export const FETCH_PRODUCTS_REQUEST = "FETCH_PRODUCTS_REQUEST";
 export const FETCH_PRODUCTS_SUCCESS = "FETCH_PRODUCTS_SUCCESS";
 export const FETCH_PRODUCTS_ERROR = "FETCH_PRODUCTS_ERROR";
+export const FETCH_PRODUCT_SUCCESS = "FETCH_PRODUCT_SUCCESS";
 
 // Funcion creadora de la accion
 export const fetchProductsRequest = () => {
@@ -15,6 +16,13 @@ export const setProductsSuccess = (products) => {
   return {
     type: FETCH_PRODUCTS_SUCCESS,
     payload: products,
+  };
+};
+
+export const setProductSuccess = (product) => {
+  return {
+    type: FETCH_PRODUCT_SUCCESS,
+    payload: product,
   };
 };
 
@@ -38,5 +46,19 @@ export function getProducts() {
         dispatch(fetchUsersError(errorMsg));
       });
   };
+}
+  export function getProduct(id) {
+    return (dispatch, getSate) => {
+      axios
+        .get("http://localhost:3001/product/"+id)
+        .then((res) => {
+          const product = res.data;
+          dispatch(setProductSuccess(product));
+        })
+        .catch((error) => {
+          const errorMsg = error.message;
+          dispatch(fetchUsersError(errorMsg));
+        });
+    };
 }
 

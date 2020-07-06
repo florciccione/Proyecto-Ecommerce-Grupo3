@@ -2,6 +2,7 @@ import { FETCH_PRODUCTS_SUCCESS } from "../actions/productsAction";
 
 const initialState = {
   products: [],
+  product: {},
 };
 
 function products(state = initialState, action) {
