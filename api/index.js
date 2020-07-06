@@ -25,6 +25,9 @@ const {
   Category,
   Colors,
   stockXColor,
+  User,
+  Orden,
+  lineaDeOrden,
 } = require("./src/models/index.js");
 //const images = require("../images");
 //Products
@@ -55,7 +58,7 @@ const productos = [
     keywords:
       "pulseras,elastizada,triple,metal,cristales,brazalete,fiesta,noche",
     image: "urlFoto",
-  },//3
+  }, //3
   {
     name: "Pulsera Medieval",
     description:
@@ -64,39 +67,41 @@ const productos = [
     idCategory: "5",
     keywords: "pulseras,metal,cristales",
     image: "urlFoto",
-  },//4
+  }, //4
   {
-    name:"Aro Argolla Strass",
-    description:"Aro argollas de cristal facetado con strass.",
-    price:"650", 
+    name: "Aro Argolla Strass",
+    description: "Aro argollas de cristal facetado con strass.",
+    price: "650",
     idCategory: "6",
     keywords: "strass,aros,argollas,fiesta,noche",
     image: "urlFotoAritos",
-  },//5
+  }, //5
   {
-    name:"Choker zig-zag",
-    description:"Choker con diseño en zig-zag y detalles de metal, confeccionado en perlas o metal color niquel.",
-    price:"690",
+    name: "Choker zig-zag",
+    description:
+      "Choker con diseño en zig-zag y detalles de metal, confeccionado en perlas o metal color niquel.",
+    price: "690",
     idCategory: "3",
     keywords: "chokers,perlas,metal,niquel,gargantillas",
     image: "urlFoto",
-  },//6
+  }, //6
   {
-    name:"Collar Rusia",
-    description:"Collar de cristal de roca facetado con detalles de metal.",
-    price:"1490", 
+    name: "Collar Rusia",
+    description: "Collar de cristal de roca facetado con detalles de metal.",
+    price: "1490",
     idCategory: "1",
     keywords: "collares,cortos,cristales,negro,noche,fiesta",
-    image: 'img/collares_cortos/c-rusia-boreal2.jpg',
-  },//7
+    image: "img/collares_cortos/c-rusia-boreal2.jpg",
+  }, //7
   {
-    name:"Collar India",
-    description:"Collar largo de madera, critales y hematite con borla y detalles de metal.",
-    price:"870", 
+    name: "Collar India",
+    description:
+      "Collar largo de madera, critales y hematite con borla y detalles de metal.",
+    price: "870",
     idCategory: "2",
     keywords: "collares,largos,cristales,negro,blanco,madera,bohemio,hippie",
-    image: 'img/collares_largos/c-india_bco2.jpg',
-  }//8
+    image: "img/collares_largos/c-india_bco2.jpg",
+  }, //8
 ];
 const stockColor = [
   // 2 colores para un mismo producto
@@ -158,28 +163,28 @@ const stockColor = [
     productId: "4",
     colorId: "5",
     main: false,
-  },//======================================================================================
+  }, //======================================================================================
   {
     cantidad: "3",
     image: "img/aros/a-argolla-strass-negro.jpg",
     main: true,
     productId: "5",
     colorId: "1",
-  },//======================================================================================
+  }, //======================================================================================
   {
     cantidad: "3",
     image: "img/chokers/ch-zz-niquel.jpg",
     main: true,
     productId: "6",
     colorId: "5",
-  },//======================================================================================
+  }, //======================================================================================
   {
     cantidad: "2",
     image: "img/collares_cortos/c-rusia-boreal.jpg",
     main: true,
     productId: "7",
     colorId: "5",
-  },//======================================================================================
+  }, //======================================================================================
   {
     cantidad: "2",
     image: "img/collares_largos/c-india-bco.jpg",
@@ -206,12 +211,49 @@ const categorias = [
   { name: "Pulseras" },
   { name: "Aros" },
 ];
+const ordenes = [
+  { state: "creado", fecha: "HOY", idUsuario: "1"},
+  { state: "completo", fecha: "AYER", idUsuario: "1"},
+];
+const lineaOrden = [
+  { cantidad: "2", price: "700", idProducto: "1", idOrden: "1" },
+  { cantidad: "2", price: "400", idProducto: "2", idOrden: "2" },
+];
+const usuarios = [
+  {
+    name: "Gisella Alaniz",
+    email: "gisella@gmail.com",
+    password: "cualquiera",
+    adress: "calle1",
+  },
+  {
+    name: "Leandro Arévalo",
+    email: "leandro@gmail.com",
+    password: "cualquiera",
+    adress: "calle2",
+  },
+  {
+    name: "Florencia Ciccione",
+    email: "florencia@gmail.com",
+    password: "cualquiera",
+    adress: "calle3",
+  },
+  {
+    name: "Juan Galarce",
+    email: "juan@gmail.com",
+    password: "cualquiera",
+    adress: "calle4",
+  },
+];
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
   colores.forEach((col) => Colors.create(col));
   categorias.forEach((cat) => Category.create(cat));
   productos.forEach((pro) => Product.create(pro));
   stockColor.forEach((sto) => stockXColor.create(sto));
+  usuarios.forEach((user) => User.create(user));
+  ordenes.forEach((or) => Orden.create(or));
+  lineaOrden.forEach((lineor) => lineaDeOrden.create(lineor));
   server.listen(3001, () => {
     console.log("%s listening at 3001"); // eslint-disable-line no-console
   });
