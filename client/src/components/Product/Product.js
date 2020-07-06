@@ -13,12 +13,10 @@ var [selectedColor, setSelectedColor] = useState('');
 const arrayProductos = useSelector((state) => state.products.products);
 const productDetail = arrayProductos.find(product => parseInt(product.id) == id);
 
-console.log(productDetail);
-
     //RETORNA LA IMAGEN DE PORTADA DEL PRODUCTO
     function showImg(colors){
       return colors.find(color => color.stockXColor.main).stockXColor.image;
-    }
+    };
 
     function colorActive(colorName){
          setSelectedColor(colorName);

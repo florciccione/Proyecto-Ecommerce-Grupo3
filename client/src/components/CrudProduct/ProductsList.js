@@ -1,5 +1,7 @@
-import React from 'react';
-import { useSelector } from "react-redux";
+import React, {useEffect} from 'react';
+import { useSelector, useDispatch } from "react-redux";
+import { getProducts } from "../redux/actions/productsAction.js";
+
 
 // CSS
 import './ProductsList.css';
@@ -7,14 +9,15 @@ import './ProductsList.css';
 import ProductItem from './ProductItem.js';
 
 export default function ProductsList({deleteItem, updateItem}){
-  
+  const dispatch = useDispatch();
   const arrayProductos = useSelector((state) => state.products.products);
-
+  useEffect(() => dispatch(getProducts()), []);
+  
   //muestra una lista de todos los productos (ver/modifica/borrar)
   function showProducts(arrayProductos){
     if(arrayProductos){
-      return arrayProductos.map( product => <ProductItem deleteItem={deleteItem} updateItem={updateItem}/> );
-    }
+      return arrayProductos.map( product => <ProductItem product={product} deleteItem={deleteItem} updateItem={updateItem}/> );
+    };
   }; 
 
   return(

@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
-import { useSelector } from "react-redux";
+import React, {useState, useEffect} from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import axios from 'axios';
+import { getCategories } from "../redux/actions/categoryAction";
 
 // CSS
 import './CrudProduct.css';
@@ -18,8 +19,11 @@ export default function Crud({showCategoryOption}){
     const [componentName, setComponentName] = useState('default');
     const [productSelected, setProductSelected] = useState('');
     const [categorySelected, setCategorySelected] = useState('');
-    
+
+    const dispatch = useDispatch();
     const arrayCategories = useSelector((state) => state.categories.categories);
+    useEffect(() => dispatch(getCategories()), []);
+    console.log(arrayCategories);
     // CRUD PRODUCTO
     function deleteItem(productSelected){
         setProductSelected(productSelected);
