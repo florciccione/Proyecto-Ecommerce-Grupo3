@@ -18,7 +18,7 @@ export default function Catalogo(){
     
     const dispatch = useDispatch();
     const arrayProductos = useSelector((state) => state.products.products);
- 
+   
     useEffect(() => dispatch(getProducts()), []);
     useEffect(() => dispatch(getCategories()), []);
     

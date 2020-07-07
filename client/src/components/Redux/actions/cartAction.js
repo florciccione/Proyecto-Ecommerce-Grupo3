@@ -6,14 +6,14 @@ export const addToCart = (items, product, selectedColor) => (dispatch) => {
     if(cartItems) {
         let productAlreadyInCart = false;
         cartItems.forEach((cp) => {
-        if (cp.id === product.id) {
+        if (cp.id === product.id && cp.selectedColor === selectedColor) {
             cp.count += 1;
             productAlreadyInCart = true;
         }
         });
         if (!productAlreadyInCart) {
-            cartItems.push( {...product, selectedColor, count: 1} );
-        }
+            cartItems.push( {id:product.id, name:product.name, description:product.description, selectedColor, count: 1} );
+        };
         localStorage.setItem("cartItems", JSON.stringify(cartItems));
         dispatch({ type: ADD_TO_CART, payload: cartItems});
     }

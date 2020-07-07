@@ -23,7 +23,7 @@ export default function Crud({showCategoryOption}){
     const dispatch = useDispatch();
     const arrayCategories = useSelector((state) => state.categories.categories);
     useEffect(() => dispatch(getCategories()), []);
-    console.log(arrayCategories);
+
     // CRUD PRODUCTO
     function deleteItem(productSelected){
         setProductSelected(productSelected);
@@ -66,13 +66,13 @@ export default function Crud({showCategoryOption}){
         if(componentName === 'default'){
             return (<ProductsList deleteItem={deleteItem} updateItem={updateItem}/>)
         }else if(componentName === 'createForm'){
-            return (<ProductCreateForm arrayCategories={arrayCategories} showCategoryOption={showCategoryOption}/>)
+            return (<ProductCreateForm showCategoryOption={showCategoryOption}/>)
         }else if(componentName === 'updateForm'){
-            return (<ProductUpdateForm productSelected={productSelected} arrayCategories={arrayCategories} showCategoryOption={showCategoryOption}/>)
+            return (<ProductUpdateForm productSelected={productSelected} showCategoryOption={showCategoryOption}/>)
         }else if(componentName === 'deleteItem'){
             setComponentName('default');
         }else if(componentName === 'verCategories'){
-            return (<CategoryList arrayCategories={arrayCategories} deleteCategory={deleteCategory} updateCategory={updateCategory}/>);
+            return (<CategoryList deleteCategory={deleteCategory} updateCategory={updateCategory}/>);
         }else if(componentName === 'createCategory'){
             return (<CategoryCreateForm />)
         }else if(componentName === 'updateCategory'){
