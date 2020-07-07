@@ -28,19 +28,55 @@ express.post("/add", function (req, res) {
 
 express.put("/modify", function (req, res) {
   const { id, name } = req.body;
-  Category.update(
-    {
-      name: name,
+  Category.findOne({
+    where: {
+      id: id,
     },
-    {
+  }).then(function (category) {
+    Product.findOne({
       where: {
-        id: id,
+        idCategory: category.id,
       },
-      returning: true,
-    }
-  ).then(function (respuesta) {
-    const category = respuesta[1][0];
-    res.status(200).json({ message: "Se cambio con exito", data: category });
+    })
+      .then(function (product) {
+        console.log(product);
+        if (!product) {
+          Category.update(
+            {
+              name: name,
+            },
+            {
+              where: {
+                id: id,
+              },
+              returning: true,
+            }
+          )
+            .then(function (deletedCategory) {
+              res.status(200).json({
+                message: "Se modifico la categoria",
+                data: deletedCategory,
+              });
+            })
+            .catch(function (err) {
+              res
+                .status(400)
+                .json({
+                  message: "No se pudo modificar la categoria",
+                  data: err,
+                });
+            });
+        } else {
+          res
+            .status(400)
+            .json({ message: "No se pudo modificar la categoria" });
+        }
+      })
+      .catch(function (response) {
+        res
+          .status(400)
+          .json({ message: "No se pudo modificar la categoria", data: err });
+      });
   });
 });
 
