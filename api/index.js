@@ -212,8 +212,8 @@ const categorias = [
   { name: "Aros" },
 ];
 const ordenes = [
-  { state: "creado", fecha: "HOY" },
-  { state: "creado", fecha: "AYER" },
+  { state: "creado", fecha: "HOY", idUsuario: "1"},
+  { state: "completo", fecha: "AYER", idUsuario: "1"},
 ];
 const lineaOrden = [
   { cantidad: "2", price: "700", idProducto: "1", idOrden: "1" },

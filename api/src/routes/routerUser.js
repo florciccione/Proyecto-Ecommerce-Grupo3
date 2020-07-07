@@ -14,7 +14,7 @@ express.get("/", function (req, res) {
     });
 });
 
-// trae un solo usuario pa' probar
+// TODO: traer el usuario + la orden + los productos de esa orden
 express.get("/:id", function (req, res) {
   User.findOne({
     where: {
@@ -23,9 +23,8 @@ express.get("/:id", function (req, res) {
     include: [
       {
         model: Orden,
-        as: "carrito",
-        attributes: ["cantidad"],
-      },
+        as: "ordenes",
+      }
     ],
   })
     .then(function (user) {
@@ -83,6 +82,7 @@ express.put("/modify", function (req, res) {
   });
 });
 
+// TODO: Al eliminar un usuario se debe eliminar todas las ordenes que tenga y la relacion con los productos
 express.delete("/delete/:id", function (req, res) {
   const id = req.params.id;
   User.destroy({

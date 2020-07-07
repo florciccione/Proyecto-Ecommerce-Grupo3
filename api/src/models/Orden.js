@@ -13,6 +13,10 @@ const orden = (sequelize, S) => {
       type: S.STRING,
       allowNull: false,
     },
+    idUsuario:{
+      type: S.INTEGER,
+      allowNull: false
+    }
   });
 
   return M;
