@@ -120,22 +120,30 @@ express.get("/", function (req, res) {
 // });
 
 express.get("/stockXColor/:id", function (req, res) {
-  Product
-    .findAll({
-      include:{
-        model: Colors,
-        as: "colores",
-        where: {
-          id: req.params.id
-        }
-      },
-    })
+  /*  stockXColor
+    .findAll()
     .then(function (colores) {
       res.status(200).json(colores);
     })
     .catch(function (err) {
       res.status(404).json({ data: err });
+    }); */
+  const id = req.params.id;
+  Product.findAll({
+    where: {
+      id: id,
+    },
+    include: [
+      {
+        model: Colors,
+      },
+    ],
+  }).then(function (product) {
+    res.status(200).json(product[0].colors);
+    stockXColor.destroy({
+      where: { productId: id },
     });
+  });
 });
 
 // express.post("/add", function (req, res) {

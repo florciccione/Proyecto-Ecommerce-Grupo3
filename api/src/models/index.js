@@ -42,7 +42,6 @@ Colors.belongsToMany(Product, { through: stockXColor });
 Category.hasMany(Product, {
   as: "productos",
   foreignKey: "idCategory",
-  // onDelete: "cascade",
 });
 Product.belongsTo(Category, { as: "categoria", foreignKey: "idCategory" });
 
