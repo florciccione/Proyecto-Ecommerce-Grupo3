@@ -1,8 +1,7 @@
 .product{
-    height: calc(100vh - 50px);
     display: flex;
     font-family: 'Graphik';
-    padding-top: 180px;
+    padding-top: 30px;
 }
 
 .product_left{
@@ -15,7 +14,7 @@
 
 .product_name h1{
     padding-top: 20px;
-    font-size: 28px;
+    font-size: 24px;
     font-family: 'Nanum Regular';
     font-weight: 300;
 }
@@ -48,12 +47,13 @@
     width: 33px;
     height: 33px;
     margin-right: 8px;
+    cursor: pointer
 }
 
 .product_img{
     width: 450px;
     margin: 0 auto;
-}
+}  
 
 .product_img img{
     width: 100%;
@@ -75,4 +75,17 @@
 
 select:focus{
     outline: none;
+}
+
+.product_cart-btn {
+    width: 50%;
+    background-color: rgb(46, 46, 46);
+    margin-top: 50px;
+    color: white;
+    padding: 15px 0px;
+    text-align: center;
+    cursor: pointer
+}
+.product_cart-btn:hover {
+    background-color: rgb(88, 88, 88);
 }

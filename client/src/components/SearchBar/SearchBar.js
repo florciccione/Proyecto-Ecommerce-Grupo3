@@ -14,7 +14,7 @@ export default function SearchBar({onSearch}){
           }}>
             <input
               className="search_bar"
-              type="text"
+              type="search"
               placeholder="Buscar Productos"
               value={keyword}
               onChange={e => setKeyword(e.target.value)}

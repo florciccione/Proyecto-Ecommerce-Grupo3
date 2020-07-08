@@ -1,69 +1,48 @@
-import React, {useState, useEffect} from 'react';
+import React from "react";
 import { Route } from 'react-router-dom';
 
-import axios from 'axios';
-
 // Componentes
-import Product from './components/Product/Product.js';
-import Catalogo from './components/Catalogo/Catalogo.js';
-import CrudProduct from './components/CrudProduct/CrudProduct.js';
+import Product from "./components/Product/Product.js";
+import Catalogo from "./components/Catalogo/Catalogo.js";
+import CrudProduct from "./components/CrudProduct/CrudProduct.js";
+import FormCreateUsuario from "./components/CrudUsuario/FormCreateUsuario.js";
+import Carrito from "./components/Carrito/Carrito.js";
 
-function App() {
 
-  var [arrayProductos, setArrayProductos] = useState([]);
-  var [categories, setCategories] = useState([]);
-  useEffect(() => {
-    axios({
-      method:'GET',
-      url:'http://localhost:3001/product/'
-      }).then(function(res){
-        setArrayProductos(res.data);
-      });
-    axios({
-      method:'GET',
-      url:'http://localhost:3001/category/'
-      }).then(function(res){
-        // console.log(res.data);
-        setCategories(res.data);
-      });
-  }, []);
+export default function App() {
 
-//devuelve el producto buscado o mensaje 
-function onSearch(keyword) {
-  if(keyword){
-    var arraySearched = arrayProductos.filter(product => product.name.toLowerCase().includes(keyword.toLowerCase()) || product.keywords.toLowerCase().includes(keyword.toLowerCase()));
-    setArrayProductos(arraySearched);
-  } else {
-    alert("No se han encontrado productos");
-  }
-};
-//devuelve el producto seleccionado
-function onFilter(id){
-  let producto = arrayProductos.filter(producto => producto.id === parseInt(id));
-  return producto[0];
-}; 
   return (
     <div className="App">
        {/* PRODUCT Routes */}
      <Route
       exact
       path='/'
-      component={() => <Catalogo arrayProductos={arrayProductos} onSearch={onSearch} />}
+      component={() => <Catalogo />}
      />
      <Route
       exact
       path='/producto/:id'
-      component={({match}) => <Product productDetail={onFilter(match.params.id)} />}
+      component={({match}) => <Product id={match.params.id} />}
      />
 
-     {/* CRUD Routes */}
-     <Route
-      exact
-      path='/panel-admin/producto/'
-      component={() => <CrudProduct arrayProductos={arrayProductos} categories={categories}/>}
-     />
+      {/* ADMIN Routes */}
+      <Route
+        exact
+        path="/panel-admin/producto/"
+        component={() => <CrudProduct />}
+      />
+      {/* CRUD USUARIO Routes*/}
+      <Route
+        exact
+        path="/usuario/registrarse/"
+        component={() => <FormCreateUsuario />}
+      />
+      <Route 
+      exact 
+      path="/usuario/cart/" 
+      component={() => <Carrito />} 
+      />
     </div>
   );
 }
 
-export default App;

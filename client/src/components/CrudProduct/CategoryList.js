@@ -1,14 +1,19 @@
 import React from 'react';
-//import {Link} from 'react-router-dom';
+import { useSelector } from "react-redux";
+
 // CSS
 import './ProductsList.css';
 // Components
 import CategoryItem from './CategoryItem.js';
 
-export default function ProductsList({categories, deleteCategory, updateCategory}){
+export default function ProductsList({deleteCategory, updateCategory}){
+  const arrayCategories = useSelector((state) => state.categories.categories);
+
   //muestra una lista de todos los productos (ver/modifica/borrar)
-  function showCategories(categories){
-    return categories.map( category => <CategoryItem category={category} deleteCategory={deleteCategory} updateCategory={updateCategory}/> );
+  function showCategories(arrayCategories){
+    if(arrayCategories){
+      return arrayCategories.map( category => <CategoryItem category={category} deleteCategory={deleteCategory} updateCategory={updateCategory}/> );
+    }
   }; 
 
   return(
@@ -18,7 +23,7 @@ export default function ProductsList({categories, deleteCategory, updateCategory
               {/* <div className="btn_create_product">Nuevo Producto</div> */}
           </div>
           <div className="products_list">
-              {showCategories(categories)}
+              {showCategories(arrayCategories)}
           </div>
           
 

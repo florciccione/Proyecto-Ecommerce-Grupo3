@@ -55,33 +55,33 @@ const express = require("express").Router();
         ]
     },
 */
-//prueba
 
 express.post("/add", function (req, res) {
-  const { name, description, price, idCategory, keywords, image } = req.body;
+  const { name, description, price, keywords, image, idCategory } = req.body;
+  // console.log(req.body.colors);
   Product.create(
     {
       name: name,
       description: description,
       price: price,
-      idCategory: idCategory,
       keywords: keywords,
       image: image,
+
+      idCategory: idCategory,
+
       colors: req.body.colors,
     },
     {
       include: Colors,
     }
   )
-    .then(function (response) {
-      res
-        .status(200)
-        .json({ message: "Se creó el producto con exito", data: response });
+    .then(function (product) {
+      res.status(200).json(product);
     })
     .catch(function (reason) {
       res
         .status(404)
-        .json({ message: "No se pudo crear el producto", data: reason });
+        .json({ message: "No se obtuvieron los productos", data: reason });
     });
 });
 
@@ -185,7 +185,7 @@ express.post("/modify", function (req, res) {
     });
 });
 
-express.get("/:category", function (req, res) {
+/* express.get("/get/:category", function (req, res) {
   Category.findOne({
     where: {
       id: req.params.category,
@@ -203,7 +203,7 @@ express.get("/:category", function (req, res) {
     .catch(function (err) {
       res.status(404).json({ err: "No se encontro el id", data: err });
     });
-});
+}); */
 
 express.get("/keys/:keywords", function (req, res) {
   var keys = req.params.keywords.split("-").join(",").toLowerCase();
@@ -232,8 +232,9 @@ express.get("/keys/:keywords", function (req, res) {
     });
 });
 
-express.put("/:id", (req, res) => {
-  const { id } = req.params;
+express.put("/modify", (req, res) => {
+  const id = req.body.id;
+  // console.log(req.body.colors);
   Product.update(
     {
       // Datos
@@ -249,6 +250,9 @@ express.put("/:id", (req, res) => {
         id: id,
       },
       returning: true,
+    },
+    {
+      include: Colors,
     }
   )
 

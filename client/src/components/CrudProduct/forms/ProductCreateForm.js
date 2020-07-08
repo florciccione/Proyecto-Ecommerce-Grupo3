@@ -1,11 +1,18 @@
 import React from "react";
 import axios from "axios";
-import "./ProductCreateForm.css";
 import { regNombre, regPrecio } from "./regex";
+import { useSelector } from "react-redux";
 
-export default function FormCreate({ categories, showCategoryOption }) {
+//CSS
+import "./ProductCreateForm.css";
+//COMPONENTES
+import ColorsCreate from "./ColorsCreate.js"
+
+
+
+export default function FormCreate({ showCategoryOption }) {
   var errors = [];
-
+  const arrayCategories = useSelector((state) => state.categories.categories);
   function handleSubmit(e) {
     e.preventDefault();
     var name = document.querySelector("#name").value;
@@ -15,7 +22,6 @@ export default function FormCreate({ categories, showCategoryOption }) {
     var idCategory = 5;
     var image = "hola";
     var body = { name, description, price, keywords, idCategory, image };
-    // console.log(body);
     axios({
       method: "POST",
       url: "http://localhost:3001/product/add",
@@ -30,10 +36,7 @@ export default function FormCreate({ categories, showCategoryOption }) {
         alert("Se guardó el producto");
       })
       .catch((reason) => alert("No se pudo guardar " + reason));
-    // axios.post('http://localhost:3001/product/add', {
-    //   data: body,
 
-    // }).then(res => alert("se guardo el producto")).catch(reason => alert("no se pudo guardar "+ reason));
   }
 
   function removeErrors(str) {
@@ -147,88 +150,91 @@ export default function FormCreate({ categories, showCategoryOption }) {
   return (
     <div>
       <div className="container_form">
+        
         <div className="titulo_form">
           <h1>Agregar nuevo producto</h1>
         </div>
+
         <form className="crud_create_product_form" onSubmit={handleSubmit}>
-          <div className="form_left">
-            <div className="form_input_name">
-              <label>Nombre:</label>
-              <input
-                id="name"
-                type="text"
-                name="name"
-                placeholder="Nombre del producto"
-                onChange={handleInputChange}
-              />
-              <p className="errorName danger"></p>
-            </div>
-
-            <div className="form_input_desc">
-              <label>Descripción:</label>
-              <textarea
-                id="description"
-                name="description"
-                placeholder="Descripción del producto"
-                className="product_description"
-                onChange={handleInputChange}
-              />
-              <p className="errorDescription danger"></p>
-            </div>
-
-            <div className="form_input_keywords">
-              <label>Keywords:</label>
-              <input
-                id="keywords"
-                type="text"
-                name="keywords"
-                placeholder="Etiquetas del producto"
-                onChange={handleInputChange}
-              />
-              <p className="errorKeywords danger"></p>
-            </div>
-
-            <div className="form_input_submit">
-              <input type="submit" name="submit" value="Guardar producto" />
-            </div>
-          </div>
-
-          <div className="form_right">
-            <div className="form_input_price">
-              <label>Precio: $</label>
-              <input
-                id="price"
-                type="number"
-                name="price"
-                placeholder="Precio del producto"
-                onChange={handleInputChange}
-              />
-              <p className="errorPrice danger"></p>
-            </div>
-
-            <div className="form_input_category">
-              <label>Categoría:</label>
-              <select
-                id="category"
-                name="category"
-                className="select_category"
-                onChange={(e) => e.target.value}
-              >
-                {showCategoryOption(categories)}
-              </select>
-            </div>
-
-            {/* <div className="form_input_image">
-                <label>Imagen:</label>
-                <input 
-                  type="file" 
-                  name="image" 
-                  onChange={handleInputChange} 
-                  accept="image/png, image/jpeg"
+          <div className="basic_data_product">
+            {/*FORM LEFT*/}
+            <div className="form_left">
+              <div className="form_input_name">
+                <label>Nombre:</label>
+                <input
+                  id="name"
+                  type="text"
+                  name="name"
+                  placeholder="Nombre del producto"
+                  onChange={handleInputChange}
                 />
-                <p className="errorImage danger"></p>
-            </div> */}
+                <p className="errorName danger"></p>
+              </div>
+              <div className="form_input_desc">
+                <label>Descripción:</label>
+                <textarea
+                  id="description"
+                  name="description"
+                  placeholder="Descripción del producto"
+                  className="product_description"
+                  onChange={handleInputChange}
+                />
+                <p className="errorDescription danger"></p>
+              </div>
+              <div className="form_input_keywords">
+                <label>Keywords:</label>
+                <input
+                  id="keywords"
+                  type="text"
+                  name="keywords"
+                  placeholder="Etiquetas del producto"
+                  onChange={handleInputChange}
+                />
+                <p className="errorKeywords danger"></p>
+              </div>
+            </div>
+
+          {/*FORM RIGHT*/}
+            <div className="form_right">
+              <div className="form_input_price">
+                <label>Precio: $</label>
+                <input
+                  id="price"
+                  type="number"
+                  name="price"
+                  placeholder="Precio del producto"
+                  onChange={handleInputChange}
+                />
+                <p className="errorPrice danger"></p>
+              </div>
+
+              <div className="form_input_category">
+                <label>Categoría:</label>
+                <select
+                  id="category"
+                  name="category"
+                  className="select_category"
+                  onChange={(e) => e.target.value}
+                >
+                  {showCategoryOption(arrayCategories)}
+                </select>
+              </div>
+            </div>
+            </div>
+          
+          {/*COMPONENTE COLORES*/}
+          <div className="colors_form">
+            <h6 className="title_colors">Color del producto</h6>
+             <ColorsCreate/>
+             <div className="colors_submit">
+                <div className="colors_btn">Agregar otro color</div>
+            </div>
           </div>
+          
+          <div className="form_input_submit">
+              <input type="submit" name="submit" value="Guardar producto" />
+          </div>
+          
         </form>
       </div>
     </div>
