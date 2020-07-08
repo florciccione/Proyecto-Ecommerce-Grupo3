@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { getProducts } from "../redux/actions/productsAction.js";
+import { getProducts } from "../Redux/actions/productsAction.js";
 
 
 // CSS
