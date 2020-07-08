@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import axios from 'axios';
-import { getCategories } from "../redux/actions/categoryAction";
+import { getCategories } from "../Redux/actions/categoryAction";
 
 // CSS
 import './CrudProduct.css';
