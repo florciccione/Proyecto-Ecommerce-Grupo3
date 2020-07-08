@@ -1,5 +1,6 @@
 const { User, Orden } = require("../models");
 const express = require("express").Router();
+// incluir passport para autenticar usuarios
 
 // Trae a los usuarios con sus carritos correspondientes, lo que no se es si automaticamente el carrito viene con los productos porque esta relacionado a los productos o hay que incluirlo en este get
 express.get("/", function (req, res) {
@@ -39,6 +40,7 @@ express.get("/:id", function (req, res) {
 // El adress por el momento que sea un string, hay que crear un modelo adress donde va jsutamente toda la info de la direccion (domicilio, ciudad, pais, provincia/estado, codigo postal, etc) y relacionarlo con usuario
 express.post("/add", function (req, res) {
   const { name, email, password, adress } = req.body;
+  // TODO: hashear password
   User.create(
     {
       name: name,
@@ -60,14 +62,14 @@ express.post("/add", function (req, res) {
     });
 });
 
-// La contraseña deberíamos permitirle actualizarla desde el mismo perfil? o de una ruta aparte?
+// actualizar SÓLO información del usuario como nombre y adress, usar el email como clave unica como nombre de usuario para logearse por el momento
 express.put("/modify", function (req, res) {
   const { id, name, email, password, adress } = req.body;
   User.update(
     {
       name: name,
-      email: email,
-      password: password,
+      // email: email,
+      // password: password,
       adress: adress,
     },
     {
@@ -82,7 +84,27 @@ express.put("/modify", function (req, res) {
   });
 });
 
-// TODO: Al eliminar un usuario se debe eliminar todas las ordenes que tenga y la relacion con los productos
+// cambiar contraseña
+express.put("/:id/changePassword", function (req, res) {
+  const { password } = req.body;
+  // TODO:hashear password
+  User.update(
+    {
+      password
+    },
+    {
+      where: {
+        id: id,
+      },
+      returning: true,
+    }
+  ).then(function (respuesta) {
+    const user = respuesta[1][0];
+    res.status(200).json({ message: "Se cambio con exito", data: user });
+  });
+});
+
+
 express.delete("/delete/:id", function (req, res) {
   const id = req.params.id;
   User.destroy({
