@@ -108,16 +108,71 @@ express.get("/", function (req, res) {
     });
 });
 
-/* express.get("/stockXColor", function (req, res) {
-  stockXColor
+express.get("/stockXColor/:id", function (req, res) {
+  /*  stockXColor
     .findAll()
     .then(function (colores) {
       res.status(200).json(colores);
     })
     .catch(function (err) {
       res.status(404).json({ data: err });
+    }); */
+  const id = req.params.id;
+  Product.findAll({
+    where: {
+      id: id,
+    },
+    include: [
+      {
+        model: Colors,
+      },
+    ],
+  }).then(function (product) {
+    res.status(200).json(product[0].colors);
+    stockXColor.destroy({
+      where: { productId: id },
     });
-}); */
+  });
+});
+
+// express.post("/add", function (req, res) {
+//   const { name, description, price, idCategory, keywords } = req.body;
+//   Product.create(
+//     {
+//       name: name,
+//       description: description,
+//       price: price,
+//       idCategory: idCategory,
+//       keywords: keywords,
+//     },
+//     { fields: ["name", "description", "price", "idCategory", "keywords"] }
+//   );
+// });
+
+express.post("/modify", function (req, res) {
+  Product.findOne({
+    where: {
+      id: req.body.id,
+    },
+  })
+    .then(function (product) {
+      if (product) {
+        var newProducto = {
+          name: product.name,
+          description: product.description,
+          price: product.price,
+          idCategory: product.idCategory,
+          keywords: product.keywords,
+        };
+        return product.update(newProducto);
+      }
+    })
+    .catch(function (reason) {
+      res
+        .status(404)
+        .json({ message: "No se pudo actualizar el producto", data: reason });
+    });
+});
 
 /* express.get("/get/:category", function (req, res) {
   Category.findOne({

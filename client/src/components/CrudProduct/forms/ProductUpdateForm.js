@@ -1,11 +1,15 @@
 import React from 'react';
 import axios from 'axios';
+import { useSelector } from "react-redux";
+
+//CSS
 import './ProductUpdateForm.css';
 
-export default function ProductUpdateForm({productSelected,categories,showCategoryOption}){
+export default function ProductUpdateForm({productSelected,showCategoryOption}){
   var errors = [];
   const regNombre = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u;
   const regPrecio = /^[0123456789]+$/u;
+  const arrayCategories = useSelector((state) => state.categories.categories);
 
   function handleSubmit(e){
     e.preventDefault();
@@ -174,7 +178,7 @@ export default function ProductUpdateForm({productSelected,categories,showCatego
           <div className="form_input_category">
             <label>Categoría:</label>
             <select name="category" className='select_category' onChange= {e => (e.target.value)}> 
-              {showCategoryOption(categories)}
+              {showCategoryOption(arrayCategories)}
             </select>
           </div>
 

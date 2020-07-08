@@ -62,13 +62,14 @@ export default function Product({ id }) {
         selectedColor: selectedColor,
       };
       dispatch(addToCart(product));
+    } else {
+      alert("Debe seleccionar un color");
     }
   }
   return (
     <div className="catalogo">
       <NavBar />
       <div className="catalogo_bg"></div>
-
       <div className="catalogo_title">
         <h1>Detalle del producto</h1>
       </div>
