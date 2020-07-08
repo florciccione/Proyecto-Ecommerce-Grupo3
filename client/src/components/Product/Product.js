@@ -45,11 +45,13 @@ const dispatch = useDispatch();
             );
         }
      };
-     function colorSelected(selectedColor, productDetail, items){
+     function colorSelected(selectedColor, productDetail){
         if (productDetail && selectedColor) {
-            var product = {id: productDetail.id, name: productDetail.name, description: productDetail.description, price: productDetail.price};
-            dispatch(addToCart(items,product,selectedColor));
-        };
+            var product = {id: productDetail.id, name: productDetail.name, description: productDetail.description, price: productDetail.price, selectedColor: selectedColor};
+            dispatch(addToCart(product));
+        }else{
+            alert('Debe seleccionar un color');
+        }
      };
 
     return (

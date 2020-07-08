@@ -13,6 +13,8 @@ import ProductsList from './ProductsList.js';
 import CategoryCreateForm from './forms/CategoryCreateForm';
 import CategoryList from './CategoryList.js';
 import CategoryUpdateForm from './forms/CategoryUpdateForm.js';
+import Ordenes from '../Ordenes/Ordenes.js';
+import { ADD_TO_CART } from '../redux/actions/cartAction';
 
 export default function Crud({showCategoryOption}){
 //muestra por defecto la lista de productos + opciones para agregar categoria o productos
@@ -77,7 +79,9 @@ export default function Crud({showCategoryOption}){
             return (<CategoryCreateForm />)
         }else if(componentName === 'updateCategory'){
             return (<CategoryUpdateForm categorySelected={categorySelected} />)
-        }
+        }else if(componentName === 'verOrdenes'){
+            return (<Ordenes />)
+        };
     }
  
     return(
@@ -95,6 +99,7 @@ export default function Crud({showCategoryOption}){
                 <div onClick={e => setComponentName('createForm')} className='btn_crud_bar'>Nuevo Producto</div>
                 <div onClick={e => setComponentName('verCategories')} className='btn_crud_bar'>Ver Categorías</div>
                 <div onClick={e => setComponentName('createCategory')} className='btn_crud_bar'>Crear Categoría</div>
+                <div onClick={e => setComponentName('verOrdenes')} className='btn_crud_bar'>Ver Ordenes</div>
             </div>
             
             <div className="container">
