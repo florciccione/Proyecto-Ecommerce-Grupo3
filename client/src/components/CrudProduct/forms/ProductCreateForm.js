@@ -1,4 +1,4 @@
-import React, { useState }  from "react";
+import React  from "react";
 import axios from "axios";
 import { regNombre, regPrecio } from "./regex";
 import { useSelector} from "react-redux";

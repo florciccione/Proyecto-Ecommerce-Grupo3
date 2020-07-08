@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  getProducts,
-  setProductsSuccess,
-} from "../Redux/actions/productsAction.js";
+import { getProducts, setProductsSuccess} from "../Redux/actions/productsAction.js";
 import { getCategories } from "../Redux/actions/categoryAction";
 
 // CSS
@@ -15,10 +12,6 @@ import CategoryFilter from "../CategoryFilter/CategoryFilter.js";
 import SearchBar from "../SearchBar/SearchBar.js";
 import NavBar from "../NavBar/NavBar.js";
 import ProductCard from "./ProductCard.js";
-
-export default function Catalogo() {
-  const dispatch = useDispatch();
-  const arrayProductos = useSelector((state) => state.products.products);
 
 export default function Catalogo(){
     
@@ -104,4 +97,4 @@ export default function Catalogo(){
       </div>
     </div>
   );
-}}
+}
