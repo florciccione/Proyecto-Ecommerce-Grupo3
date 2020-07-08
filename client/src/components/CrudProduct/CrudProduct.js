@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import axios from 'axios';
-import { getCategories } from "../redux/actions/categoryAction";
+import { getCategories } from "../Redux/actions/categoryAction";
 
 // CSS
 import './CrudProduct.css';
@@ -13,6 +13,8 @@ import ProductsList from './ProductsList.js';
 import CategoryCreateForm from './forms/CategoryCreateForm';
 import CategoryList from './CategoryList.js';
 import CategoryUpdateForm from './forms/CategoryUpdateForm.js';
+import Ordenes from '../Ordenes/Ordenes.js';
+import { ADD_TO_CART } from '../redux/actions/cartAction';
 
 export default function Crud({showCategoryOption}){
 //muestra por defecto la lista de productos + opciones para agregar categoria o productos
@@ -23,7 +25,7 @@ export default function Crud({showCategoryOption}){
     const dispatch = useDispatch();
     const arrayCategories = useSelector((state) => state.categories.categories);
     useEffect(() => dispatch(getCategories()), []);
-    console.log(arrayCategories);
+
     // CRUD PRODUCTO
     function deleteItem(productSelected){
         setProductSelected(productSelected);
@@ -66,18 +68,20 @@ export default function Crud({showCategoryOption}){
         if(componentName === 'default'){
             return (<ProductsList deleteItem={deleteItem} updateItem={updateItem}/>)
         }else if(componentName === 'createForm'){
-            return (<ProductCreateForm arrayCategories={arrayCategories} showCategoryOption={showCategoryOption}/>)
+            return (<ProductCreateForm showCategoryOption={showCategoryOption}/>)
         }else if(componentName === 'updateForm'){
-            return (<ProductUpdateForm productSelected={productSelected} arrayCategories={arrayCategories} showCategoryOption={showCategoryOption}/>)
+            return (<ProductUpdateForm productSelected={productSelected} showCategoryOption={showCategoryOption}/>)
         }else if(componentName === 'deleteItem'){
             setComponentName('default');
         }else if(componentName === 'verCategories'){
-            return (<CategoryList arrayCategories={arrayCategories} deleteCategory={deleteCategory} updateCategory={updateCategory}/>);
+            return (<CategoryList deleteCategory={deleteCategory} updateCategory={updateCategory}/>);
         }else if(componentName === 'createCategory'){
             return (<CategoryCreateForm />)
         }else if(componentName === 'updateCategory'){
             return (<CategoryUpdateForm categorySelected={categorySelected} />)
-        }
+        }else if(componentName === 'verOrdenes'){
+            return (<Ordenes />)
+        };
     }
  
     return(
@@ -95,6 +99,7 @@ export default function Crud({showCategoryOption}){
                 <div onClick={e => setComponentName('createForm')} className='btn_crud_bar'>Nuevo Producto</div>
                 <div onClick={e => setComponentName('verCategories')} className='btn_crud_bar'>Ver Categorías</div>
                 <div onClick={e => setComponentName('createCategory')} className='btn_crud_bar'>Crear Categoría</div>
+                <div onClick={e => setComponentName('verOrdenes')} className='btn_crud_bar'>Ver Ordenes</div>
             </div>
             
             <div className="container">

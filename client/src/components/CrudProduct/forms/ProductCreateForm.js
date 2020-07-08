@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { regNombre, regPrecio } from "./regex";
+import { useSelector } from "react-redux";
 
 //CSS
 import "./ProductCreateForm.css";
@@ -9,9 +10,9 @@ import ColorsCreate from "./ColorsCreate.js"
 
 
 
-export default function FormCreate({ arrayCategories, showCategoryOption }) {
+export default function FormCreate({ showCategoryOption }) {
   var errors = [];
-  
+  const arrayCategories = useSelector((state) => state.categories.categories);
   function handleSubmit(e) {
     e.preventDefault();
     var name = document.querySelector("#name").value;
@@ -215,7 +216,7 @@ export default function FormCreate({ arrayCategories, showCategoryOption }) {
                   className="select_category"
                   onChange={(e) => e.target.value}
                 >
-                  {/*showCategoryOption(arrayCategories)*/}
+                  {showCategoryOption(arrayCategories)}
                 </select>
               </div>
             </div>
