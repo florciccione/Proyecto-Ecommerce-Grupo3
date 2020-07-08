@@ -26,7 +26,6 @@ export const fetchCategoriesError = (error) => {
   };
 };
 
-
 export const getCategories = () => {
   return (dispatch, getState) => {
     axios

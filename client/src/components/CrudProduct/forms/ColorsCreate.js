@@ -4,14 +4,39 @@ import React from "react";
 //import "./ProductCreateForm.css";
 import "./ColorsCreate.css"
 
-export default function ColorsCreate() {
-    return (
-    <div className="crud_create_product_form" >
-      <div className="inputs">
+export default function ColorsCreate({setColor, closePopup}) {
+  function clearPopup(){
+    document.querySelector("#name_color").value = '';
+    document.querySelector("#color").value = '' ;
+    document.querySelector("#amount").value = '';
+    document.querySelector("#image_color").value = '';
+    document.querySelector("#main").checked = false;
+  }
+  function colorSubmit(e){
+    e.preventDefault();
+    var name = document.querySelector("#name_color").value;
+    var hexaColor = document.querySelector("#color").value;
+    var cantidad = document.querySelector("#amount").value;
+    var img = document.querySelector("#image_color").value;
+    var main = document.querySelector("#main").checked;
+  
+  /*  var d = new Date();
+    var n = d.getTime();*/
+    var image = img.split(/(\\|\/)/g).pop();
+    
+    var color = { name, hexaColor, stockXColor: {cantidad,image,main} };
+    setColor(color);
+    closePopup();
+    clearPopup();
+  }
+  return (
+    <div className="crud_create_color_form" >
+      <div className='title'>Variante color del producto</div>
+      <div className="inputs_top">
         <div className="input_name">
           <label>Nombre:</label>
           <input
-            id="name"
+            id="name_color"
             type="text"
             name="name"
             placeholder="Nombre del color"
@@ -35,17 +60,27 @@ export default function ColorsCreate() {
             type="number"
           />
         </div>
-
+      </div>
+      <div className="inputs_bottom">
         <div className="input_img">
             <label>Imagen:</label>
             <input 
+              id="image_color" 
               type="file" 
               name="image" 
               accept="image/png, image/jpeg"
             />
         </div>
-        <input type="checkbox" className="main"></input>
+        <div className="input_main">
+            <label>Imagen principal:</label>
+            <input 
+              type="checkbox" 
+              id='main'
+              className="main"
+            />
+        </div>
       </div>
+      <input type="submit" name="submit_color" onClick={colorSubmit} value="Guardar datos del color" />
     </div>
           
         

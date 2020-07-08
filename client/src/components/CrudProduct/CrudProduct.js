@@ -16,16 +16,27 @@ import CategoryUpdateForm from './forms/CategoryUpdateForm.js';
 import Ordenes from '../Ordenes/Ordenes.js';
 import { ADD_TO_CART } from '../redux/actions/cartAction';
 
-export default function Crud({showCategoryOption}){
+export default function Crud(){
 //muestra por defecto la lista de productos + opciones para agregar categoria o productos
     const [componentName, setComponentName] = useState('default');
     const [productSelected, setProductSelected] = useState('');
     const [categorySelected, setCategorySelected] = useState('');
 
     const dispatch = useDispatch();
-    const arrayCategories = useSelector((state) => state.categories.categories);
+    
     useEffect(() => dispatch(getCategories()), []);
 
+   //MUESTRA EN EL SELECT EL LISTADO DE LAS CATEGORIAS EXISTENTES
+   function showCategoryOption(arrayCategories) { 
+    console.log(arrayCategories);
+    if (arrayCategories) {
+        return arrayCategories.map(category => 
+            <option value={{id:category.id, name: category.name}} className='product_category_option'>
+                {category.name}
+            </option>
+            );
+    }
+   };
     // CRUD PRODUCTO
     function deleteItem(productSelected){
         setProductSelected(productSelected);

@@ -1,27 +1,37 @@
-import React from "react";
+import React, { useState }  from "react";
 import axios from "axios";
 import { regNombre, regPrecio } from "./regex";
-import { useSelector } from "react-redux";
+import { useSelector} from "react-redux";
 
 //CSS
 import "./ProductCreateForm.css";
 //COMPONENTES
 import ColorsCreate from "./ColorsCreate.js"
 
-
-
 export default function FormCreate({ showCategoryOption }) {
   var errors = [];
   const arrayCategories = useSelector((state) => state.categories.categories);
+  var colors = [];
+
+  function setColor(color) {
+   colors.push(color);
+   }
+  function showPopup(){
+    document.getElementById('popup').style.display='block';
+  };
+  function closePopup(){
+      document.getElementById('popup').style.display='none';
+  };
   function handleSubmit(e) {
     e.preventDefault();
     var name = document.querySelector("#name").value;
     var description = document.querySelector("#description").value;
     var keywords = document.querySelector("#keywords").value;
     var price = document.querySelector("#price").value;
-    var idCategory = 5;
-    var image = "hola";
-    var body = { name, description, price, keywords, idCategory, image };
+    var idCategory = document.querySelector("#category").value.id;
+    var image = " ";
+    var body = { name, description, price, keywords, idCategory, image, colors };
+    console.log(body);
     axios({
       method: "POST",
       url: "http://localhost:3001/product/add",
@@ -216,20 +226,21 @@ export default function FormCreate({ showCategoryOption }) {
                   className="select_category"
                   onChange={(e) => e.target.value}
                 >
-                  {showCategoryOption(arrayCategories)}
+                {showCategoryOption(arrayCategories)}
                 </select>
+              </div>
+              <div className="colors_submit">
+                <div onClick={ e => showPopup()} className="colors_btn">Agregar atributo color</div>
               </div>
             </div>
             </div>
           
-          {/*COMPONENTE COLORES*/}
-          <div className="colors_form">
-            <h6 className="title_colors">Color del producto</h6>
-             <ColorsCreate/>
-             <div className="colors_submit">
-                <div className="colors_btn">Agregar otro color</div>
-            </div>
+          {/*COMPONENTE COLORES*/}           
+          <div className="popup_color" id='popup'>
+              <div onClick={e => closePopup()} className='close'><i className="far fa-times-circle"></i></div> 
+              <ColorsCreate setColor={setColor} closePopup={closePopup}/>
           </div>
+          
           
           <div className="form_input_submit">
               <input type="submit" name="submit" value="Guardar producto" />
