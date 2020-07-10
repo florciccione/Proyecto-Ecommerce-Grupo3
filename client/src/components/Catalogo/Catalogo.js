@@ -16,10 +16,6 @@ import SearchBar from "../SearchBar/SearchBar.js";
 import NavBar from "../NavBar/NavBar.js";
 import ProductCard from "./ProductCard.js";
 
-export default function Catalogo() {
-  const dispatch = useDispatch();
-  const arrayProductos = useSelector((state) => state.products.products);
-
 export default function Catalogo(){
     
     const dispatch = useDispatch();
@@ -104,4 +100,4 @@ export default function Catalogo(){
       </div>
     </div>
   );
-}}
+}
