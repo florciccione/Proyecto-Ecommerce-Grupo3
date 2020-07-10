@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const routes = require('./routes/index.js');
 const morgan = require('morgan');
 var cors = require('cors');
-
 require('./models');
 
 const server = express();
