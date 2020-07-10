@@ -41,7 +41,7 @@ express.get("/:id", function (req, res) {
 
 // El adress por el momento que sea un string, hay que crear un modelo adress donde va jsutamente toda la info de la direccion (domicilio, ciudad, pais, provincia/estado, codigo postal, etc) y relacionarlo con usuario
 express.post("/add", function (req, res) {
-  var { name, email, password, adress } = req.body;
+  var { name, email, password, adress } = req.body;  
   User.create(
     {
       name: name,
@@ -65,12 +65,10 @@ express.post("/add", function (req, res) {
 
 // actualizar SÓLO información del usuario como nombre y adress, usar el email como clave unica como nombre de usuario para logearse por el momento
 express.put("/modify", function (req, res) {
-  const { id, name, email, password, adress } = req.body;
+  const { id, name, adress } = req.body;
   User.update(
     {
       name: name,
-      // email: email,
-      // password: password,
       adress: adress,
     },
     {
@@ -86,12 +84,13 @@ express.put("/modify", function (req, res) {
 });
 
 // cambiar contraseña
-express.put("/:id/changePassword", function (req, res) {
+express.put("/:id/passwordReset", function (req, res) {
   const { password } = req.body;
-  // TODO:hashear password
+  const id = req.params.id;
+  var hash = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
   User.update(
     {
-      password
+      password: hash
     },
     {
       where: {
@@ -124,7 +123,7 @@ express.delete("/delete/:id", function (req, res) {
         .json({ message: "Ocurrió un error, no se pudo eliminar", data: err });
     });
 });
-//RUTA LOGIN 
+
 express.post("/login", function (req, res) {
   var { email, password } = req.body;
   User.findOne({
@@ -132,18 +131,62 @@ express.post("/login", function (req, res) {
       email
     },
   }).then(function (user) {
-    if (bcrypt.compare(password, user.password)){
-      const token = jwt.sign({email, password}, 'Roberta2020'); 
-      res.json({ message: "Se logueo el usuario", data: { token, user } });
-    } else {
-      res.json({success: false, message: 'password incorrecta'});
-    }
+    bcrypt.compare(password, user.password)
+    .then(function(bool){
+      if(bool){
+        const token = jwt.sign({email, password}, 'Roberta2020'); 
+        res.json({ message: "Se logueo el usuario", data: { token, user } });
+      }else{
+      res.status(404).json({success: false, message: 'password incorrecta'});
+      }
+    })
   }).catch(function (err) {
     res
      .status(403)
      .json({ message: "No se encontro el usuario.", data: err });
      //agregar si se puede --> email correcto - contraseña incorrecta
   })
+});
+
+express.post('/me', (req, res) => {
+  var token = req.body.token;
+  if(!token){
+      res.status(401).send({
+        error: "Es necesario el token de autenticación"
+      })
+      return
+  }
+
+  token = token.replace('Bearer ', '')
+
+  jwt.verify(token, 'Roberta2020', function(err, user) {
+    if (err) {
+      res.status(401).send({
+        error: 'Token inválido'
+      })
+    } else {
+      res.status(200).send({
+        message: 'Token válido'
+      })
+    }
+  })
+});
+
+express.put('/promote/:id', (req, res) => {
+  var id = req.params.id;
+  User.update({
+    role: "admin"
+  },{
+    where: {
+      id: id
+    }
+  })
+  .then(function () {
+    res.status(200).json({message: "Se promovió a administrador"});
+  })
+  .catch(function(err){
+    res.status(404).json({message: "No se pudo promover al usuario porque no existe", err});
+  });
 });
 
 module.exports = express;
