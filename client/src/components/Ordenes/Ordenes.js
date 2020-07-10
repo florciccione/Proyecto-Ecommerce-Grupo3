@@ -12,7 +12,6 @@ import OrdenItem from './OrdenItem.js';
 export default function Ordenes(){
     const dispatch = useDispatch();
     const arrayOrdenes = useSelector((state) => state.ordenes.ordenes);
-    console.log(arrayOrdenes);
     useEffect(() => dispatch(getOrdenes()), []);
 
     //MUESTRA UNA LISTA DE TODAS LAS ORDENES
@@ -25,9 +24,9 @@ export default function Ordenes(){
     return(
         <div className="crud_orders_list">
           <div className="crud_orders_header">
-              <h2>Listado de Ordenes</h2>
+              <h2>LISTADO DE ORDENES</h2>
           </div>
-          <div className="products_list">
+          <div className="order_list">
               {showOrdenes(arrayOrdenes)}
           </div>
       </div>

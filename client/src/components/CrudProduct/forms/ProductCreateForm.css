@@ -1,18 +1,19 @@
 .danger {
     color: red;
 }
-.container_form{
-    width: 75%;
-    margin: 0 auto;
+.bg_form{
+    margin-top: 50PX;
 }
-
-.titulo_form h1{
-    color: black;
-    font-size: 28px;
-    font-family: 'Nanum Regular';
-    font-weight: 300;
-    text-align: center;
-    margin-top: 40px;
+.titulo_form{
+    display: flex;
+    justify-content: space-between;    
+    font-family: 'Graphik';
+    height: 50px;
+    align-items: center;
+}
+.titulo_form h2{
+    font-weight: 500;
+    font-size: 16px;
 }
 /*FORMULARIO*/
 .crud_create_product_form{
@@ -34,11 +35,18 @@
     flex-direction: column;
 }
 
-.form_input_name, .form_input_desc, .form_input_price, .form_input_category, .form_input_keywords, .form_input_submit, .form_input_image{
+.form_input_name, .form_input_desc, .form_input_price, .form_select_category, .form_input_keywords, .form_input_submit, .form_input_image{
     padding-top: 27px;
+    width: 100%;
     display: flex;
     justify-content: space-around;
     justify-content: flex-start;
+}
+.colors_submit{
+    width: 100%;
+}
+.colors_submit input{
+    margin-left:10px;
 }
 .crud_create_product_form label{
     padding: 8px 0;
@@ -61,23 +69,26 @@
 .product_description {
     padding: 8px;
 }
-.form_input_category select{
-    width: 72%;
-    padding: 0 5px;
+.form_select_category{
+    padding-bottom: 12px;
+}
+.form_select_category .select_cat{
+    width: 100%;
+    padding: 0 8px;
     font-family: 'Graphik';
     font-size: 16px ;
     border: .8px solid #d7d8da;
 }
 .form_input_submit{
-    
     width: 50%;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 } 
 .form_input_submit input{
     padding: 10px;
     margin-top: 20px;
     align-self: center;
     justify-content: center;
+    background-color: black;
 }
 /*COMPONENTE COLORSCREATE*/
 .colors_form{
@@ -87,7 +98,8 @@
 }
 .colors_submit{
     display: flex;
-    width: 70%;
+    padding-top: 27px;
+    width: 100%;
     justify-content: flex-start;
 }
 .title_colors{
@@ -102,11 +114,20 @@
     min-height: 450px;
     position: absolute;
     left: 34%;
-    top: 38%;
+    top: 27%;
     border: 1px solid rgb(168, 168, 168);
     padding: 20px;
     display: none;
     -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.56);
     -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.56);
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.56);
+}
+.colors_btn{
+    width: 37%;
+    padding: 10px;
+    color: white;
+    background-color: rgb(46, 46, 46);
+    border: none;
+    cursor: pointer;
+    text-align: center;
 }

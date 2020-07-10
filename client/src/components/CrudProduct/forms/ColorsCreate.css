@@ -1,41 +1,33 @@
-.inputs_top{
+.inputs_top, .inputs_bottom{
     display: flex;  
-    width: 90%;
-    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
 }
 .inputs_bottom{
-    display:flex;
     padding-top: 10px;
-    width: 90%;
-    justify-content: space-between;
 }
-.input_name, .input_color, .input_cant, .input_img, .input_main {
+.input_color_name, .input_color_hexa, .input_color_cant, .input_color_img, .input_color_main {
     margin-left: 10px;
     display: flex;
+    width:100%;
 }
-.input_img, .input_main{
+.input_color_name, .input_color_hexa, .input_color_cant label{
+    width:75%;
+}
+.input_color_img, .input_color_main{
     margin-top: 20px;
+    display: flex;
+    width:100%;
 }
 .inputs_top label{
-    width: 72%;
+    width: 100%;
 }
 .inputs_top input{
     width: 100%;
 }
 .submit_color{
-    width: 40%;
-    padding: 10px;
+margin-top: 25px;
+width: 50%;
+margin:0 auto;
+padding: 8px;
 }
-.colors_submit{
-    width: 40%;
-    padding: 10px;
-}
-.colors_btn{
-    padding: 10px;
-    color: white;
-    background-color: rgb(46, 46, 46);
-    border: none;
-    cursor: pointer;
-    margin:0 0 20px 10px;
-}
-

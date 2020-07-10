@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from "react-redux";
 
 // CSS
-import './ProductsList.css';
+import './CategoryList.css';
 // Components
 import CategoryItem from './CategoryItem.js';
 
@@ -17,12 +17,11 @@ export default function ProductsList({deleteCategory, updateCategory}){
   }; 
 
   return(
-      <div className="crud_products_list">
-          <div className="crud_products_header">
-              <h1>Categorías</h1>
-              {/* <div className="btn_create_product">Nuevo Producto</div> */}
+      <div className="crud_category_list">
+          <div className="crud_category_header">
+              <h2>LISTADO DE CATEGORIAS</h2>
           </div>
-          <div className="products_list">
+          <div className="category_list">
               {showCategories(arrayCategories)}
           </div>
           

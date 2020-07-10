@@ -1,7 +1,8 @@
 import React from 'react';
 
+
 export default function Orden({orden}) {
-    console.log(orden);
+
     function showDetail(orden){
         if (orden) {
             return orden.products.map(product => 
@@ -23,11 +24,28 @@ export default function Orden({orden}) {
         };
         
     };
+
+    function updateState(id) {
+      const body = {id }
+    }
+    
     return (
       
     <div className='item_list-orden'>
         <div className='title'>Detalle de la orden: {orden.id} - Usuario: {orden.usuario.name}</div>
-        <div className='sub_title'>Fecha: {orden.fecha} - Estado: {orden.state}</div>
+        <div className='sub_title'>
+            <div>Fecha: {orden.fecha}</div>
+            <div>Estado:
+                <select placeholder={orden.state}>
+                    <option id='creado' >Creada</option>
+                    <option id='procesando'>Procesando</option>
+                    <option id='cancelado'>Cancelada</option>
+                    <option id='completo'>Completada</option>
+                </select>
+            </div>
+            <div className="update_btn" onClick={e=> updateState(orden.id)}>Actualizar estado</div>
+        </div>
+        
         <div className='header'>
             <div>PODUCTO</div>
             <div>CANTIDAD</div>

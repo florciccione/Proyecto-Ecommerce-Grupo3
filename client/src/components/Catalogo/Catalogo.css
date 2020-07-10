@@ -56,6 +56,11 @@
     padding: 8px;
     color: black
 }
+.catalogo_product:hover{
+    -webkit-box-shadow: 2px 2px 20px -13px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 2px 20px -13px rgba(0,0,0,0.75);
+    box-shadow: 2px 2px 20px -13px rgba(0,0,0,0.75)
+}
 
 .catalogo_product:link, .catalogo_product:visited, .catalogo_product:active {
     text-decoration:none;   

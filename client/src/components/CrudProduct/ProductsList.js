@@ -23,7 +23,7 @@ export default function ProductsList({deleteItem, updateItem}){
   return(
       <div className="crud_products_list">
           <div className="crud_products_header">
-              <h2>Listado de Productos</h2>
+              <h2>LISTADO DE PRODUCTOS</h2>
           </div>
           <div className="products_list">
               {showProducts(arrayProductos)}
