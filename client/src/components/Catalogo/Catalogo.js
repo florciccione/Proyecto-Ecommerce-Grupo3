@@ -25,7 +25,7 @@ export default function Catalogo(){
     function showProducts(arrayProductos){
         return arrayProductos.map(product => 
         <Link to={'/producto/' + product.id} className="catalogo_product"> 
-            <ProductCard product={product}/>
+            <ProductCard className="card" product={product}/>
         </Link> 
         );
     }; 

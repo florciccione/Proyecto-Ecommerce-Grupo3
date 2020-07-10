@@ -1,4 +1,7 @@
+const bcrypt = require('bcrypt');
+
 User = (sequelize, S) => {
+  
   const U = sequelize.define("user", {
     id: {
       type: S.INTEGER,
@@ -22,8 +25,12 @@ User = (sequelize, S) => {
       type: S.STRING,
       allowNull: true,
     },
+  }
+  );
+  U.addHook('beforeCreate',(user) => {
+    user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(8), null);
   });
-
+  
   return U;
 };
 
