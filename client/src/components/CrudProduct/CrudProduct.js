@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import axios from 'axios';
 import { getCategories } from "../Redux/actions/categoryAction";
 
@@ -14,18 +14,29 @@ import CategoryCreateForm from './forms/CategoryCreateForm';
 import CategoryList from './CategoryList.js';
 import CategoryUpdateForm from './forms/CategoryUpdateForm.js';
 import Ordenes from '../Ordenes/Ordenes.js';
-import { ADD_TO_CART } from '../Redux/actions/cartAction';
+import NavBar from '../NavBar/NavBar.js';
 
-export default function Crud({showCategoryOption}){
+export default function Crud(){
 //muestra por defecto la lista de productos + opciones para agregar categoria o productos
     const [componentName, setComponentName] = useState('default');
     const [productSelected, setProductSelected] = useState('');
     const [categorySelected, setCategorySelected] = useState('');
 
     const dispatch = useDispatch();
-    const arrayCategories = useSelector((state) => state.categories.categories);
+    
     useEffect(() => dispatch(getCategories()), []);
 
+   //MUESTRA EN EL SELECT EL LISTADO DE LAS CATEGORIAS EXISTENTES
+   function showCategoryOption(arrayCategories) { 
+    console.log(arrayCategories);
+    if (arrayCategories) {
+        return arrayCategories.map(category => 
+            <option value={{id:category.id, name: category.name}} className='product_category_option'>
+                {category.name}
+            </option>
+            );
+    }
+   };
     // CRUD PRODUCTO
     function deleteItem(productSelected){
         setProductSelected(productSelected);
@@ -86,22 +97,21 @@ export default function Crud({showCategoryOption}){
  
     return(
         <div className="crud">
-
+            <NavBar/>
             <div className="crud_bg"></div>
 
-            <div className="crud_title">
-                <h1>Panel de Administración de Producto</h1>
-                <h5>Desde aquí podrás administrar los productos de tu tienda.</h5>
-            </div>
-
             <div className="crud_bar">
-                <div onClick={e => setComponentName('default')} className='btn_crud_bar'>Ver Productos</div>
-                <div onClick={e => setComponentName('createForm')} className='btn_crud_bar'>Nuevo Producto</div>
-                <div onClick={e => setComponentName('verCategories')} className='btn_crud_bar'>Ver Categorías</div>
-                <div onClick={e => setComponentName('createCategory')} className='btn_crud_bar'>Crear Categoría</div>
-                <div onClick={e => setComponentName('verOrdenes')} className='btn_crud_bar'>Ver Ordenes</div>
+                <div onClick={e => setComponentName('default')} className='btn_crud_bar'>VER PRODUCTOS</div>
+                <div onClick={e => setComponentName('createForm')} className='btn_crud_bar'>NUEVO PRODUCTO</div>
+                <div onClick={e => setComponentName('verCategories')} className='btn_crud_bar'>VER CATEGORIAS</div>
+                <div onClick={e => setComponentName('createCategory')} className='btn_crud_bar'>CREAR CATEGORIA</div>
+                <div onClick={e => setComponentName('verOrdenes')} className='btn_crud_bar'>VER ORDENES</div>
             </div>
             
+            <div className="crud_title">
+                <h1>Panel de Administración de Producto</h1>
+            </div>
+
             <div className="container">
                 {showComponent(componentName)}
             </div>

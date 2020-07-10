@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 // CSS
-import './ProductCreateForm.css';
+import './CategoryCreateForm.css';
 
 export default function CategoryCreateForm(){
     function handleSubmit(e){
@@ -22,22 +22,26 @@ export default function CategoryCreateForm(){
             .catch(reason => alert("No se pudo guardar "+reason));
       };
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <div className="form_input_name">
-                    <label>Nombre:</label>
-                    <input
-                    id='name'
-                    type="text" 
-                    name="name" 
-                    placeholder="Nombre de la categoría"
-                    />
-                    <p className="errorName danger"></p>
+            <form onSubmit={handleSubmit} className="form_category_create">
+                 <div className="form_category_header">
+                    <h2>CREAR NUEVA CATEGORIA</h2>
                 </div>
-                <div className="form_input_submit">
-                    <input type="submit" name="submit" value="Agregar categoría"/>
+                <div className="form_category_inputs">
+                    <div className="formC_input_name">
+                        <label>Nombre:</label>
+                        <input
+                        id='name'
+                        type="text" 
+                        name="name" 
+                        placeholder="Nombre de la categoría"
+                        />
+                        <p className="errorName danger"></p>
+                    </div>
+                    <div className="formC_input_submit">
+                        <input type="submit" name="submit" value="Agregar categoría"/>
+                    </div>
                 </div>
-            </form>
-        </div>
+                
+            </form> 
     )
 }

@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  getProducts,
-  setProductsSuccess,
-} from "../Redux/actions/productsAction.js";
+import { getProducts, setProductsSuccess} from "../Redux/actions/productsAction.js";
 import { getCategories } from "../Redux/actions/categoryAction";
 
 // CSS
@@ -20,7 +17,7 @@ export default function Catalogo(){
     
     const dispatch = useDispatch();
     const arrayProductos = useSelector((state) => state.products.products);
-   
+   // const arrayCategories = useSelector((state) => state.categories.categories);
     useEffect(() => dispatch(getProducts()), []);
     useEffect(() => dispatch(getCategories()), []);
     
