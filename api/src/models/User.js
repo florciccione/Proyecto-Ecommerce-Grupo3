@@ -25,6 +25,11 @@ User = (sequelize, S) => {
       type: S.STRING,
       allowNull: true,
     },
+    role:{
+      type: S.ENUM("user", "admin"),
+      allowNull: false,
+      defaultValue: "user",
+    }
   }
   );
   U.addHook('beforeCreate',(user) => {

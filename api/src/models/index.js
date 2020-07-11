@@ -28,6 +28,7 @@ const {
   User,
   Orden,
   lineaDeOrden,
+  Review
 } = models;
 
 // Add model relationships here
@@ -45,12 +46,16 @@ Category.hasMany(Product, {
 });
 Product.belongsTo(Category, { as: "categoria", foreignKey: "idCategory" });
 
+          User.hasMany(Review, { as: "reviews", foreignKey: "idUsuario" }); 
+          Review.belongsTo(User, { as: "usuario", foreignKey: "idUsuario" }); 
+          Product.hasMany(Review, { as: "reviews", foreignKey: "idProduct" }); 
+
 // Orden.hasMany(User, { as: "usuarios", foreignKey: "idOrden" });
 // User.belongsTo(Orden, { as: "orden", foreignKey: "idOrden" });
-User.hasMany(Orden, { as: "ordenes", foreignKey: "idUsuario" });
-Orden.belongsTo(User, { as: "usuario", foreignKey: "idUsuario" });
+User.hasMany(Orden, { as: "ordenes", foreignKey: "idUsuario" }); 
+Orden.belongsTo(User, { as: "usuario", foreignKey: "idUsuario", onDelete: "cascade" });
 
 Product.belongsToMany(Orden, { through: lineaDeOrden });
 Orden.belongsToMany(Product, { through: lineaDeOrden });
-
+          
 module.exports = models;
