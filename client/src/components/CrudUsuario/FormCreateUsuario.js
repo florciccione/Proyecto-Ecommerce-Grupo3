@@ -1,8 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { getProducts } from "../Redux/actions/productsAction.js";
 
 // CSS
 import "./FormCreateUsuario.css";
