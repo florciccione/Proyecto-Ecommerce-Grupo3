@@ -91,7 +91,7 @@ const productos = [
     price: "1490",
     idCategory: "1",
     keywords: "collares,cortos,cristales,negro,noche,fiesta",
-    image: "img/collares_cortos/c-rusia-boreal2.jpg",
+    image: "c-rusia-boreal2.jpg",
   }, //7
   {
     name: "Collar India",
@@ -100,7 +100,7 @@ const productos = [
     price: "870",
     idCategory: "2",
     keywords: "collares,largos,cristales,negro,blanco,madera,bohemio,hippie",
-    image: "img/collares_largos/c-india_bco2.jpg",
+    image: "c-india_bco2.jpg",
   }, //8
 ];
 const stockColor = [

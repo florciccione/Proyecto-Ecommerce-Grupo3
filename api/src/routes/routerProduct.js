@@ -105,6 +105,17 @@ express.get("/", function (req, res) {
         .json({ message: "No se obtuvieron los productos", data: reason });
     });
 });
+// User.findAll({
+//   include: {
+//     model: Tool,
+//     as: 'Instruments',
+//     where: {
+//       size: {
+//         [Op.ne]: 'small'
+//       }
+//     }
+//   }
+// });
 
 express.get("/stockXColor/:id", function (req, res) {
   /*  stockXColor
