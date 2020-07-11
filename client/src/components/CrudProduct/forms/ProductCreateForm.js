@@ -158,11 +158,10 @@ export default function FormCreate({ showCategoryOption }) {
   }
 
   return (
-    <div>
-      <div className="container_form">
+      <div className="bg_form">
         
         <div className="titulo_form">
-          <h1>Agregar nuevo producto</h1>
+          <h2>AGREGAR NUEVO PRODUCTO</h2>
         </div>
 
         <form className="crud_create_product_form" onSubmit={handleSubmit}>
@@ -204,7 +203,7 @@ export default function FormCreate({ showCategoryOption }) {
               </div>
             </div>
 
-          {/*FORM RIGHT*/}
+            {/*FORM RIGHT*/}
             <div className="form_right">
               <div className="form_input_price">
                 <label>Precio: $</label>
@@ -218,12 +217,12 @@ export default function FormCreate({ showCategoryOption }) {
                 <p className="errorPrice danger"></p>
               </div>
 
-              <div className="form_input_category">
+              <div className="form_select_category">
                 <label>Categoría:</label>
                 <select
                   id="category"
                   name="category"
-                  className="select_category"
+                  className="select_cat"
                   onChange={(e) => e.target.value}
                 >
                 {showCategoryOption(arrayCategories)}
@@ -231,16 +230,16 @@ export default function FormCreate({ showCategoryOption }) {
               </div>
               <div className="colors_submit">
                 <div onClick={ e => showPopup()} className="colors_btn">Agregar atributo color</div>
+                <input  placeholder="Colores del producto"/>
               </div>
             </div>
-            </div>
+          </div>
           
-          {/*COMPONENTE COLORES*/}           
+          {/*POPUP INVISIBLE COMPONENTE COLORES*/}           
           <div className="popup_color" id='popup'>
               <div onClick={e => closePopup()} className='close'><i className="far fa-times-circle"></i></div> 
               <ColorsCreate setColor={setColor} closePopup={closePopup}/>
           </div>
-          
           
           <div className="form_input_submit">
               <input type="submit" name="submit" value="Guardar producto" />
@@ -248,6 +247,5 @@ export default function FormCreate({ showCategoryOption }) {
           
         </form>
       </div>
-    </div>
   );
 }

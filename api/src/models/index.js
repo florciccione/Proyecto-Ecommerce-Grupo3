@@ -48,9 +48,10 @@ Product.belongsTo(Category, { as: "categoria", foreignKey: "idCategory" });
 // Orden.hasMany(User, { as: "usuarios", foreignKey: "idOrden" });
 // User.belongsTo(Orden, { as: "orden", foreignKey: "idOrden" });
 User.hasMany(Orden, { as: "ordenes", foreignKey: "idUsuario" });
-Orden.belongsTo(User, { as: "usuario", foreignKey: "idUsuario" });
+Orden.belongsTo(User, { as: "usuario", foreignKey: "idUsuario", onDelete: "cascade" });
 
 Product.belongsToMany(Orden, { through: lineaDeOrden });
 Orden.belongsToMany(Product, { through: lineaDeOrden });
+// nombre de las columnas?
 
 module.exports = models;

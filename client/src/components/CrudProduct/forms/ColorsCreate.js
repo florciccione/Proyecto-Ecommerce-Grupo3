@@ -20,8 +20,6 @@ export default function ColorsCreate({setColor, closePopup}) {
     var img = document.querySelector("#image_color").value;
     var main = document.querySelector("#main").checked;
   
-  /*  var d = new Date();
-    var n = d.getTime();*/
     var image = img.split(/(\\|\/)/g).pop();
     
     var color = { name, hexaColor, stockXColor: {cantidad,image,main} };
@@ -33,7 +31,7 @@ export default function ColorsCreate({setColor, closePopup}) {
     <div className="crud_create_color_form" >
       <div className='title'>Variante color del producto</div>
       <div className="inputs_top">
-        <div className="input_name">
+        <div className="input_color_name">
           <label>Nombre:</label>
           <input
             id="name_color"
@@ -43,7 +41,7 @@ export default function ColorsCreate({setColor, closePopup}) {
           />
         </div>
 
-        <div className="input_color">
+        <div className="input_color_hexa">
           <label>Color:</label>
           <input
             id="color"
@@ -52,17 +50,18 @@ export default function ColorsCreate({setColor, closePopup}) {
           />
         </div>
 
-        <div className="input_cant">
+        <div className="input_color_cant">
           <label>Cantidad:</label>
           <input
             id="amount"
             name="amount"
             type="number"
+            min="0"
           />
         </div>
       </div>
       <div className="inputs_bottom">
-        <div className="input_img">
+        <div className="input_color_img">
             <label>Imagen:</label>
             <input 
               id="image_color" 
@@ -71,7 +70,7 @@ export default function ColorsCreate({setColor, closePopup}) {
               accept="image/png, image/jpeg"
             />
         </div>
-        <div className="input_main">
+        <div className="input_color_main">
             <label>Imagen principal:</label>
             <input 
               type="checkbox" 
@@ -80,7 +79,7 @@ export default function ColorsCreate({setColor, closePopup}) {
             />
         </div>
       </div>
-      <input type="submit" name="submit_color" onClick={colorSubmit} value="Guardar datos del color" />
+      <input type="submit" className="submit_color" onClick={colorSubmit} value="Guardar datos del color" />
     </div>
           
         
