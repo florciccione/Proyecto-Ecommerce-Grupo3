@@ -66,9 +66,7 @@ express.post("/add", function (req, res) {
       price: price,
       keywords: keywords,
       image: image,
-
       idCategory: idCategory,
-
       colors: req.body.colors,
     },
     {
@@ -81,7 +79,7 @@ express.post("/add", function (req, res) {
     .catch(function (reason) {
       res
         .status(404)
-        .json({ message: "No se obtuvieron los productos", data: reason });
+        .json({ message: "No se pudo guardar el producto", data: reason });
     });
 });
 

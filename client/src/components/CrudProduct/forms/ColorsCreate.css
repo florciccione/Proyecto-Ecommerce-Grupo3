@@ -1,34 +1,30 @@
-.inputs{
+.inputs_top{
     display: flex;  
+    width: 90%;
+    justify-content: space-between;
+}
+.inputs_bottom{
+    display:flex;
+    padding-top: 10px;
+    width: 90%;
+    justify-content: space-between;
+}
+.input_name, .input_color, .input_cant, .input_img, .input_main {
+    margin-left: 10px;
+    display: flex;
+}
+.input_img, .input_main{
+    margin-top: 20px;
+}
+.inputs_top label{
+    width: 72%;
+}
+.inputs_top input{
     width: 100%;
-    align-items: center;
 }
-.input_name{
-    margin-left: 10px;
-    width: 28%;
-    display: flex;
-}
-.input_color{
-    margin-left: 10px;
-    width: 12%;
-    display: flex;
-}
-.input_cant{
-    margin-left: 10px;
-    width: 15%;
-    display: flex;
-}
-.input_img{
-    margin-left: 10px;
+.submit_color{
     width: 40%;
-    display: flex;
-}
-.inputs input{
-    width: 100%;
-    padding: 8px;
-}
-.inputs label{
-  width: 60%;
+    padding: 10px;
 }
 .colors_submit{
     width: 40%;
@@ -42,3 +38,4 @@
     cursor: pointer;
     margin:0 0 20px 10px;
 }
+

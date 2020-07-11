@@ -1,5 +1,7 @@
 const { User, Orden } = require("../models");
 const express = require("express").Router();
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 // Trae a los usuarios con sus carritos correspondientes, lo que no se es si automaticamente el carrito viene con los productos porque esta relacionado a los productos o hay que incluirlo en este get
 express.get("/", function (req, res) {
@@ -36,9 +38,10 @@ express.get("/:id", function (req, res) {
         .json({ message: "No se obtuvo el usuario", data: reason });
     });
 });
+
 // El adress por el momento que sea un string, hay que crear un modelo adress donde va jsutamente toda la info de la direccion (domicilio, ciudad, pais, provincia/estado, codigo postal, etc) y relacionarlo con usuario
 express.post("/add", function (req, res) {
-  const { name, email, password, adress } = req.body;
+  var { name, email, password, adress } = req.body;
   User.create(
     {
       name: name,
@@ -100,6 +103,27 @@ express.delete("/delete/:id", function (req, res) {
         .status(404)
         .json({ message: "Ocurrió un error, no se pudo eliminar", data: err });
     });
+});
+//RUTA LOGIN 
+express.post("/login", function (req, res) {
+  var { email, password } = req.body;
+  User.findOne({
+    where: {
+      email
+    },
+  }).then(function (user) {
+    if (bcrypt.compare(password, user.password)){
+      const token = jwt.sign({email, password}, 'Roberta2020'); 
+      res.json({ message: "Se logueo el usuario", data: { token, user } });
+    } else {
+      res.json({success: false, message: 'password incorrecta'});
+    }
+  }).catch(function (err) {
+    res
+     .status(403)
+     .json({ message: "No se encontro el usuario.", data: err });
+     //agregar si se puede --> email correcto - contraseña incorrecta
+  })
 });
 
 module.exports = express;

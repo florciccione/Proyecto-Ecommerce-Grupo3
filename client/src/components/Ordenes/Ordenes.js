@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 //import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import { getOrdenes } from "../redux/actions/ordenesAction.js";
+import { getOrdenes } from "../Redux/actions/ordenesAction.js";
 
 // CSS
 import "./Ordenes.css";

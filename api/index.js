@@ -107,21 +107,21 @@ const stockColor = [
   // 2 colores para un mismo producto
   {
     cantidad: "3",
-    image: "img/pulseras/p-noruega-negro.jpg",
+    image: "p-noruega-negro.jpg",
     main: true,
     productId: "1",
     colorId: "1",
   }, // collar tiene 3u. y es negro
   {
     cantidad: "7",
-    image: "img/pulseras/p-noruega-rojo.jpg",
+    image: "p-noruega-rojo.jpg",
     productId: "1",
     colorId: "2",
     main: false,
   }, //======================================================================================
   {
     cantidad: "5",
-    image: "img/pulseras/cubos-gamuza.jpg",
+    image: "cubos-gamuza.jpg",
     productId: "2",
     colorId: "3",
     main: true,
@@ -129,14 +129,14 @@ const stockColor = [
   // cambio de producto
   {
     cantidad: "1",
-    image: "img/pulseras/cubos-gamuza2.jpg",
+    image: "cubos-gamuza2.jpg",
     productId: "2",
     colorId: "4",
     main: false,
   }, //======================================================================================
   {
     cantidad: "8",
-    image: "img/pulseras/p-quebec-humo.jpg",
+    image: "p-quebec-humo.jpg",
     productId: "3",
     colorId: "5",
     main: true,
@@ -144,14 +144,14 @@ const stockColor = [
 
   {
     cantidad: "16",
-    image: "img/pulseras/p-quebec-azul.jpg",
+    image: "p-quebec-azul.jpg",
     productId: "3",
     colorId: "6",
     main: false,
   }, //======================================================================================
   {
     cantidad: "8",
-    image: "img/pulseras/p-medieval-ambar.jpg",
+    image: "p-medieval-ambar.jpg",
     productId: "4",
     colorId: "4",
     main: true,
@@ -159,35 +159,35 @@ const stockColor = [
 
   {
     cantidad: "16",
-    image: "img/pulseras/p-medieval-humo.jpg",
+    image: "p-medieval-humo.jpg",
     productId: "4",
     colorId: "5",
     main: false,
   }, //======================================================================================
   {
     cantidad: "3",
-    image: "img/aros/a-argolla-strass-negro.jpg",
+    image: "a-argolla-strass-negro.jpg",
     main: true,
     productId: "5",
     colorId: "1",
   }, //======================================================================================
   {
     cantidad: "3",
-    image: "img/chokers/ch-zz-niquel.jpg",
+    image: "ch-zz-niquel.jpg",
     main: true,
     productId: "6",
     colorId: "5",
   }, //======================================================================================
   {
     cantidad: "2",
-    image: "img/collares_cortos/c-rusia-boreal.jpg",
+    image: "c-rusia-boreal.jpg",
     main: true,
     productId: "7",
     colorId: "5",
   }, //======================================================================================
   {
     cantidad: "2",
-    image: "img/collares_largos/c-india-bco.jpg",
+    image: "c-india-bco.jpg",
     main: true,
     productId: "8",
     colorId: "1",
