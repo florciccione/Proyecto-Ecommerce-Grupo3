@@ -27,7 +27,7 @@ function NavBar() {
         </Link>
       </div>
       <div className="user_bar">
-        <Link to="/" className="login">
+        <Link to="/usuario/login" className="login">
           <span> Login </span>
         </Link>
         <Link to="/usuario/registrarse" className="register">
