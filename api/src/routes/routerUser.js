@@ -186,12 +186,10 @@ express.put("/promote/:id", (req, res) => {
       res.status(200).json({ message: "Se promovió a administrador" });
     })
     .catch(function (err) {
-      res
-        .status(404)
-        .json({
-          message: "No se pudo promover al usuario porque no existe",
-          err,
-        });
+      res.status(404).json({
+        message: "No se pudo promover al usuario porque no existe",
+        err,
+      });
     });
 });
 //RUTA PROTEGIDA PARA ACCEDER AL PANEL DE ADMINISTRADOR (SOLO USUARIOS ADMIN)
@@ -288,12 +286,10 @@ express.put("/promote/:id", (req, res) => {
       res.status(200).json({ message: "Se promovió a administrador" });
     })
     .catch(function (err) {
-      res
-        .status(404)
-        .json({
-          message: "No se pudo promover al usuario porque no existe",
-          err,
-        });
+      res.status(404).json({
+        message: "No se pudo promover al usuario porque no existe",
+        err,
+      });
     });
 });
 
