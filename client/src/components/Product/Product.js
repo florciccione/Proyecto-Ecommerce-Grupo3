@@ -103,12 +103,8 @@ export default function Product({ id }) {
             </div>
           </div>
           <div className="product_cart-btn">
-            <div
-              onClick={(e) =>
-                colorSelected(selectedColor, productDetail, items)
-              }
-            >
-              Agregar al carrito
+            <div onClick={(e) => colorSelected(selectedColor, productDetail, items)} >
+              AGREGAR AL CARRITO
             </div>
           </div>
           <StarRating id={id}/>
