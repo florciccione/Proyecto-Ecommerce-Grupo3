@@ -46,19 +46,17 @@ Category.hasMany(Product, {
 });
 Product.belongsTo(Category, { as: "categoria", foreignKey: "idCategory" });
 
-          User.hasMany(Review, { as: "reviews", foreignKey: "idUsuario" }); 
-          Review.belongsTo(User, { as: "usuario", foreignKey: "idUsuario" }); 
-          Product.hasMany(Review, { as: "reviews", foreignKey: "idProduct" }); 
+// Relación de reviews
+User.hasMany(Review, { as: "reviews", foreignKey: "idUsuario" }); 
+Review.belongsTo(User, { as: "usuario", foreignKey: "idUsuario", onDelete: "cascade" }); 
+Product.hasMany(Review, { as: "reviews", foreignKey: "idProduct" }); 
+Review.belongsTo(Product, { as: "producto", foreignKey: "idProduct", onDelete: "cascade" }); 
 
-// Orden.hasMany(User, { as: "usuarios", foreignKey: "idOrden" });
-// User.belongsTo(Orden, { as: "orden", foreignKey: "idOrden" });
 
 User.hasMany(Orden, { as: "ordenes", foreignKey: "idUsuario" });
 Orden.belongsTo(User, { as: "usuario", foreignKey: "idUsuario", onDelete: "cascade" });
 
 Product.belongsToMany(Orden, { through: lineaDeOrden });
 Orden.belongsToMany(Product, { through: lineaDeOrden });
-
-// nombre de las columnas?
 
 module.exports = models;

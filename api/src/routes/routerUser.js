@@ -48,6 +48,7 @@ express.post("/add", function (req, res) {
       email: email,
       password: password,
       adress: adress,
+      role: "user"
     },
     {
       fields: ["name", "email", "password", "adress"],
@@ -239,45 +240,45 @@ function isValidToken(req,res,next){
   });
 }
 
-express.post('/me', (req, res) => {
-  var token = req.body.token;
-  if(!token){
-      res.status(401).send({
-        error: "Es necesario el token de autenticación"
-      })
-      return
-  }
+// express.post('/me', (req, res) => {
+//   var token = req.body.token;
+//   if(!token){
+//       res.status(401).send({
+//         error: "Es necesario el token de autenticación"
+//       })
+//       return
+//   }
 
-  token = token.replace('Bearer ', '')
+//   token = token.replace('Bearer ', '')
 
-  jwt.verify(token, 'Roberta2020', function(err, user) {
-    if (err) {
-      res.status(401).send({
-        error: 'Token inválido'
-      })
-    } else {
-      res.status(200).send({
-        message: 'Token válido'
-      })
-    }
-  })
-});
+//   jwt.verify(token, 'Roberta2020', function(err, user) {
+//     if (err) {
+//       res.status(401).send({
+//         error: 'Token inválido'
+//       })
+//     } else {
+//       res.status(200).send({
+//         message: 'Token válido'
+//       })
+//     }
+//   })
+// });
 
-express.put('/promote/:id', (req, res) => {
-  var id = req.params.id;
-  User.update({
-    role: "admin"
-  },{
-    where: {
-      id: id
-    }
-  })
-  .then(function () {
-    res.status(200).json({message: "Se promovió a administrador"});
-  })
-  .catch(function(err){
-    res.status(404).json({message: "No se pudo promover al usuario porque no existe", err});
-  });
-});
+// express.put('/promote/:id', (req, res) => {
+//   var id = req.params.id;
+//   User.update({
+//     role: "admin"
+//   },{
+//     where: {
+//       id: id
+//     }
+//   })
+//   .then(function () {
+//     res.status(200).json({message: "Se promovió a administrador"});
+//   })
+//   .catch(function(err){
+//     res.status(404).json({message: "No se pudo promover al usuario porque no existe", err});
+//   });
+// });
 
 module.exports = express;
