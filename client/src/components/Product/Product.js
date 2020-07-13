@@ -6,6 +6,7 @@ import { addToCart } from "../Redux/actions/cartAction.js";
 import "./Product.css";
 //COMPONENTES
 import NavBar from "../NavBar/NavBar.js";
+import StarRating from './StarRating';
 
 export default function Product({ id }) {
   var [selectedColor, setSelectedColor] = useState("");
@@ -110,6 +111,7 @@ export default function Product({ id }) {
               Agregar al carrito
             </div>
           </div>
+          <StarRating id={id}/>
         </div>
       </div>
     </div>

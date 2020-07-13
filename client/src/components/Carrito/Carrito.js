@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
 // CSS
 import "./Carrito.css";
@@ -11,8 +12,13 @@ export default function Carrito() {
   const dispatch = useDispatch();
 
   const items = useSelector((state) => state.cart);
-  //   console.log(items)
+  var subTotal = 0;
   let arrayProductosCart = items;
+  // console.log(items);
+
+  // useEffect(() => {
+  //   subTotalItems(arrayProductosCart);
+  // }, []);
 
   //   var arrayProductosCart = [
   //     {
@@ -54,18 +60,23 @@ export default function Carrito() {
   //     console.log(res.data);
   //   });
 
-  var [totalCart, setTotalCart] = useState(0);
-
   function showProducts(arrayProductosCart) {
     // console.log(arrayProductosCart)
-    if(arrayProductosCart !== undefined){
+    if (arrayProductosCart !== undefined) {
+      subTotalItems(arrayProductosCart);
       return arrayProductosCart.map((product) => (
-        <ProductItemCart
-          product={product}
-          totalCart={totalCart}
-          setTotalCart={setTotalCart}
-        />
+        <ProductItemCart product={product} subTotal={subTotal} />
       ));
+    }
+  }
+
+  function subTotalItems(arrayProductosCart, product) {
+    if (arrayProductosCart !== undefined) {
+      arrayProductosCart.forEach((element) => {
+        subTotal += element.count * element.price;
+      });
+    } else {
+      subTotal = product.price;
     }
   }
 
@@ -81,15 +92,14 @@ export default function Carrito() {
             <h5 className="head_2">DESCRIPCION</h5>
             <h5 className="head_3">PRECIO</h5>
             <h5 className="head_4">CANTIDAD</h5>
-            <h5 className="head_5">SUBTOTAL</h5>
+            {/* <h5 className="head_5">SUBTOTAL</h5> */}
+            <h5 className="head_5">ACCIONES</h5>
           </div>
           <div className="productos">{showProducts(arrayProductosCart)}</div>
         </div>
 
         <div className="finish">
-          <div className="subtotal">SUBTOTAL: $  </div>
-          <div className="envio">ENVIO:</div>
-          <div className="total">TOTAL: $ {totalCart}</div>
+          <div className="total">TOTAL: $ {subTotal}</div>
           <button className="comprar">FINALIZAR COMPRA</button>
         </div>
       </div>

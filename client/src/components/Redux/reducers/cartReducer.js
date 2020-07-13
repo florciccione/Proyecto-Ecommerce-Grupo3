@@ -1,5 +1,9 @@
-import { ADD_TO_CART } from "../actions/cartAction";
-import { CLEAR_PRODUCT } from "../actions/cartAction";
+import {
+  ADD_TO_CART,
+  CLEAR_PRODUCT,
+  SUBTOTAL_PRODUCT_CART,
+  INCREASE_QUANTITY,
+} from "../actions/cartAction";
 
 const initialState = [];
 
@@ -24,11 +28,22 @@ export default function (state = initialState, action) {
         var newProduct = { ...product, count: 1 };
         cartItems.push(newProduct);
       }
+      localStorage.setItem("products", JSON.stringify(cartItems));
       alert("Se agrego un producto a su carrito");
       return cartItems;
 
     case CLEAR_PRODUCT:
+        
       return [...state.filter((item) => item.id !== action.payload.id)];
+
+    case INCREASE_QUANTITY:
+      // const productSelected = action.payload;
+      const itemSelected = state.find(
+        (item) => item.id === action.payload.product.id
+      );
+      itemSelected.count = action.payload.cant;
+      return [...state];
+
     default:
       return state;
   }
