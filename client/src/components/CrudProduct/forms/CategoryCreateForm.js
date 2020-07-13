@@ -38,7 +38,7 @@ export default function CategoryCreateForm(){
                         <p className="errorName danger"></p>
                     </div>
                     <div className="formC_input_submit">
-                        <input type="submit" name="submit" value="Agregar categoría"/>
+                        <input  className="btn_guardar_category" type="submit" name="submit" value="AGREGAR CATEGORÍA"/>
                     </div>
                 </div>
                 

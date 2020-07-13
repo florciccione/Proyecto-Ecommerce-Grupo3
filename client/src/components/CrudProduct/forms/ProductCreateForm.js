@@ -229,7 +229,7 @@ export default function FormCreate({ showCategoryOption }) {
                 </select>
               </div>
               <div className="colors_submit">
-                <div onClick={ e => showPopup()} className="colors_btn">Agregar atributo color</div>
+                <div onClick={ e => showPopup()} className="colors_btn">AGREGAR ATRIBUTO COLOR</div>
                 <input  placeholder="Colores del producto"/>
               </div>
             </div>
@@ -241,8 +241,8 @@ export default function FormCreate({ showCategoryOption }) {
               <ColorsCreate setColor={setColor} closePopup={closePopup}/>
           </div>
           
-          <div className="form_input_submit">
-              <input type="submit" name="submit" value="Guardar producto" />
+          <div className="formP_input_submit">
+              <input className="btn_guardar_producto" type="submit" name="submit" value="GUARDAR PRODUCTO"/>
           </div>
           
         </form>
