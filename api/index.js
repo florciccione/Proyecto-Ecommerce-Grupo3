@@ -28,6 +28,7 @@ const {
   User,
   Orden,
   lineaDeOrden,
+  Review
 } = require("./src/models/index.js");
 //const images = require("../images");
 //Products
@@ -245,6 +246,12 @@ const usuarios = [
     adress: "calle4",
   },
 ];
+
+const reviews = [
+  { title: "Producto Bueno", review: "Descripción de la review", ranking: 5, idUsuario: 1, idProduct: 1 },
+  { title: "Producto Regular", review: "Descripción de la review", ranking: 3, idUsuario: 1, idProduct: 2 }
+]
+
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
   colores.forEach((col) => Colors.create(col));
@@ -252,6 +259,7 @@ conn.sync({ force: true }).then(() => {
   productos.forEach((pro) => Product.create(pro));
   stockColor.forEach((sto) => stockXColor.create(sto));
   usuarios.forEach((user) => User.create(user));
+  reviews.forEach((rev) => Review.create(rev));
   ordenes.forEach((or) => Orden.create(or));
   lineaOrden.forEach((lineor) => lineaDeOrden.create(lineor));
   server.listen(3001, () => {

@@ -1,33 +1,57 @@
-.inputs_top, .inputs_bottom{
-    display: flex;  
-    width: 100%;
+.title_colors{
+    text-align: center;
+    font-size: 18px;
     margin-bottom: 10px;
 }
-.inputs_bottom{
-    padding-top: 10px;
+.inputs_colors{
+    display: flex;
+    flex-direction: column;
+    margin-left: 26px;
+    width: 90%;
 }
 .input_color_name, .input_color_hexa, .input_color_cant, .input_color_img, .input_color_main {
-    margin-left: 10px;
     display: flex;
     width:100%;
+    padding: 8px 0;
 }
-.input_color_name, .input_color_hexa, .input_color_cant label{
-    width:75%;
+.input_colors label{
+    width:90%;
 }
-.input_color_img, .input_color_main{
-    margin-top: 20px;
-    display: flex;
-    width:100%;
+.input_colors input{
+    width:90%;
 }
-.inputs_top label{
+input#main{
+    width: 10%;
+    align-self: center;    
+}
+input#color{
+    width: 7%;
+    align-self: center;  
+}
+.input_color_main label{
+    width: 36%;
+}
+
+.container_btn_color{
+    display:flex;
     width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
 }
-.inputs_top input{
-    width: 100%;
+.btn_color{
+    width: 250px;
+    padding: 12px;
+    font-size: 12px;
+    color: white;
+    font-family: 'Graphik';
+    font-weight: 450;
+    background-color: black;
+    border: none;
+    cursor: pointer;
+    text-align: center;
 }
-.submit_color{
-margin-top: 25px;
-width: 50%;
-margin:0 auto;
-padding: 8px;
+    
+.btn_color:hover {
+    background-color: #9ba0a5;
 }
