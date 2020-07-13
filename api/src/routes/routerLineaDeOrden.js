@@ -27,3 +27,5 @@ express.get("/", function (req, res) {
 });
 
 // TODO: ruta para modificar la cantidad del carrito
+
+module.exports = express;
