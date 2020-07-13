@@ -10,7 +10,8 @@ import NavBar from "../NavBar/NavBar.js";
 
 export default function FormCreateUsuario() {
   const dispatch = useDispatch();
-  //const login = useState((state) => state.login.login);
+  const login = useSelector((state) => state.login.login);
+  console.log(login);
   function handleSubmit(e) {
     e.preventDefault();
     var email = document.querySelector("#email").value;
@@ -19,6 +20,7 @@ export default function FormCreateUsuario() {
     console.log(body);
     //POST A LOGIN USER
     dispatch(loginUser(body));
+    return <Link to={"/"}></Link>;
   }
 
   return (
@@ -52,9 +54,7 @@ export default function FormCreateUsuario() {
         </div>
 
         <div className="form_input_submit">
-          <Link /* to={"../../"} */>
-            <input type="submit" name="submit" value="Ingresar" />
-          </Link>
+          <input type="submit" name="submit" value="Ingresar" />
         </div>
       </form>
     </div>

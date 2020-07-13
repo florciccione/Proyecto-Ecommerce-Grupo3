@@ -1,6 +1,7 @@
 import axios from "axios";
 export const SUCCESS_LOGIN = "SUCCESS_LOGIN";
 export const FAIL_LOGIN = "FAIL_LOGIN";
+
 export function loginUser(data) {
   return (dispatch) => {
     axios({

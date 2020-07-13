@@ -1,7 +1,7 @@
 const { User, Orden } = require("../models");
 const express = require("express").Router();
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 // Trae a los usuarios con sus carritos correspondientes, lo que no se es si automaticamente el carrito viene con los productos porque esta relacionado a los productos o hay que incluirlo en este get
 express.get("/", function (req, res) {
@@ -26,7 +26,7 @@ express.get("/:id", function (req, res) {
       {
         model: Orden,
         as: "ordenes",
-      }
+      },
     ],
   })
     .then(function (user) {
@@ -41,7 +41,7 @@ express.get("/:id", function (req, res) {
 
 // El adress por el momento que sea un string, hay que crear un modelo adress donde va jsutamente toda la info de la direccion (domicilio, ciudad, pais, provincia/estado, codigo postal, etc) y relacionarlo con usuario
 express.post("/add", function (req, res) {
-  var { name, email, password, adress } = req.body;  
+  var { name, email, password, adress } = req.body;
   User.create(
     {
       name: name,
@@ -89,7 +89,7 @@ express.put("/:id/passwordReset", function (req, res) {
   var hash = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
   User.update(
     {
-      password: hash
+      password: hash,
     },
     {
       where: {
@@ -110,7 +110,7 @@ express.put("/:id/passwordReset", function (req, res) {
   var hash = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
   User.update(
     {
-      password: hash
+      password: hash,
     },
     {
       where: {
@@ -123,7 +123,6 @@ express.put("/:id/passwordReset", function (req, res) {
     res.status(200).json({ message: "Se cambio con exito", data: user });
   });
 });
-
 
 express.delete("/delete/:id", function (req, res) {
   const id = req.params.id;
@@ -144,101 +143,111 @@ express.delete("/delete/:id", function (req, res) {
     });
 });
 
-//LOGIN 
+//LOGIN
 express.post("/login", function (req, res) {
   var { email, password } = req.body;
   User.findOne({
     where: {
-      email
+      email,
     },
-  }).then(function (user) {
-    bcrypt.compare(password, user.password)
-    .then(function(bool){
-      if(bool){
-        const token = jwt.sign({email, password}, 'Roberta2020'); 
-        res.json({ message: "Se logueo el usuario", data: { token, user } });
-      }else{
-      res.status(404).json({success: false, message: 'password incorrecta'});
-      }
-    })
-  }).catch(function (err) {
-    res
-     .status(403)
-     .json({ message: "No se encontro el usuario.", data: err });
   })
+    .then(function (user) {
+      bcrypt.compare(password, user.password).then(function (bool) {
+        if (bool) {
+          const token = jwt.sign({ email, password }, "Roberta2020");
+          res.json({ message: "Se logueo el usuario", data: { token, user } });
+        } else {
+          res
+            .status(404)
+            .json({ success: false, message: "password incorrecta" });
+        }
+      });
+    })
+    .catch(function (err) {
+      res
+        .status(403)
+        .json({ message: "No se encontro el usuario.", data: err });
+    });
 });
 //RUTA PARA PROMOVER UN USUARIO A ADMINISTRADOR
-express.put('/promote/:id', (req, res) => {
+express.put("/promote/:id", (req, res) => {
   var id = req.params.id;
-  User.update({
-    role: "admin"
-  },{
-    where: {
-      id: id
+  User.update(
+    {
+      role: "admin",
+    },
+    {
+      where: {
+        id: id,
+      },
     }
-  })
-  .then(function () {
-    res.status(200).json({message: "Se promovió a administrador"});
-  })
-  .catch(function(err){
-    res.status(404).json({message: "No se pudo promover al usuario porque no existe", err});
-  });
+  )
+    .then(function () {
+      res.status(200).json({ message: "Se promovió a administrador" });
+    })
+    .catch(function (err) {
+      res
+        .status(404)
+        .json({
+          message: "No se pudo promover al usuario porque no existe",
+          err,
+        });
+    });
 });
 //RUTA PROTEGIDA PARA ACCEDER AL PANEL DE ADMINISTRADOR (SOLO USUARIOS ADMIN)
-express.post('/panel-admin', isValidToken, (req, res) => {
+express.post("/panel-admin", isValidToken, (req, res) => {
   //en el body del request deben enviarnos el token y el id del usuario
   //Tendria que validar que el token enviado coincida con el id de usuario????????????????
   var { id } = req.body;
   User.findOne({
     where: {
-      id
+      id,
     },
-  }).then(function (user) {
-  if(user.role === "admin"){
-    res.status(200).json({ message: 'Tienes acceso eres admin' });
-    } else {
-    res.status(403).json({ message: "No tienes acceso" });
-    }
-  }).catch(function (err) {
-    res
-     .status(403)
-     .json({ message: "No tienes acceso", data: err });
   })
- 
+    .then(function (user) {
+      if (user.role === "admin") {
+        res.status(200).json({ message: "Tienes acceso eres admin" });
+      } else {
+        res.status(403).json({ message: "No tienes acceso" });
+      }
+    })
+    .catch(function (err) {
+      res.status(403).json({ message: "No tienes acceso", data: err });
+    });
 });
 
-express.post('/me', isValidToken, (req, res) => {
-  res.json({ message: 'Token válido' });
+express.post("/me", isValidToken, (req, res) => {
+  res.json({ message: "Token válido" });
 });
 
 //RUTA DE CHECKOUT (RUTA PROTEGIDA SOLO PARA USUARIOS LOGUEADOS)
-express.post('/checkout', isValidToken ,(req,res) => {
+express.post("/checkout", isValidToken, (req, res) => {
   //en el body del request deben enviarnos el token y el id del usuario
-   res.json({ message: "tienes acceso al checkout"});
+  res.json({ message: "tienes acceso al checkout" });
 });
 
 //MIDDLEWARE PARA VERIFICAR SI EL USUARIO ESTA LOGUEADO CON UN TOKEN VALIDO
-function isValidToken(req,res,next){
+function isValidToken(req, res, next) {
   var token = req.body.token;
-  if(!token){
-      res.status(401).send({
-        error: "Es necesario el token de autenticación"
-      })
-      return
+  if (!token) {
+    res.status(401).send({
+      error: "Es necesario el token de autenticación",
+    });
+    return;
   }
-  token = token.replace('Bearer ', '')
-  jwt.verify(token, 'Roberta2020', function(err, user) {
+  token = token.replace("Bearer ", "");
+  jwt.verify(token, "Roberta2020", function (err, user) {
     if (err) {
       res.status(401).send({
-        error: 'Token inválido'
-      })
+        error: "Token inválido",
+      });
     } else {
       res.status(200);
       next();
     }
   });
 }
-
+/* 
 express.post('/me', (req, res) => {
   var token = req.body.token;
   if(!token){
@@ -261,23 +270,31 @@ express.post('/me', (req, res) => {
       })
     }
   })
-});
+}); */
 
-express.put('/promote/:id', (req, res) => {
+express.put("/promote/:id", (req, res) => {
   var id = req.params.id;
-  User.update({
-    role: "admin"
-  },{
-    where: {
-      id: id
+  User.update(
+    {
+      role: "admin",
+    },
+    {
+      where: {
+        id: id,
+      },
     }
-  })
-  .then(function () {
-    res.status(200).json({message: "Se promovió a administrador"});
-  })
-  .catch(function(err){
-    res.status(404).json({message: "No se pudo promover al usuario porque no existe", err});
-  });
+  )
+    .then(function () {
+      res.status(200).json({ message: "Se promovió a administrador" });
+    })
+    .catch(function (err) {
+      res
+        .status(404)
+        .json({
+          message: "No se pudo promover al usuario porque no existe",
+          err,
+        });
+    });
 });
 
 module.exports = express;
