@@ -29,21 +29,21 @@ const StarRating = ({id}) => {
     const starProduct = rating;
     const idProduct = id;
     const body = {idProduct,reviewProduct, starProduct}
-    axios({
-      method: "POST",
-      url: "http://localhost:3001/user/add",
-      data: body,
-    })
-      .then(function (res) {
-        console.log(res.data);
-        alert("La cuenta se creo con éxito");
-      })
-      .then(function () {
-        window.location.replace("../../");
-      })
-      .catch((reason) =>
-        alert("No se pudo crear la cuenta de usuario " + reason)
-      );
+    // axios({
+    //   method: "POST",
+    //   url: "http://localhost:3001/user/add",
+    //   data: body,
+    // })
+    //   .then(function (res) {
+    //     console.log(res.data);
+    //     alert("La cuenta se creo con éxito");
+    //   })
+    //   .then(function () {
+    //     window.location.replace("../../");
+    //   })
+    //   .catch((reason) =>
+    //     alert("No se pudo crear la cuenta de usuario " + reason)
+    //   );
     console.log(body)
   }
 

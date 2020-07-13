@@ -2,18 +2,21 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 // CSS
 import "./ProductItemCart.css";
-import { clearProduct } from "../Redux/actions/cartAction.js";
+import { clearProduct, increaseQuantity } from "../Redux/actions/cartAction.js";
 import { useDispatch } from "react-redux";
-
 
 export default function ProductItemCart({ product }) {
   const dispatch = useDispatch();
 
-  var [subtotal, setSubtotal] = useState(product.price);
 
-  // function subtotalItem(cant) {
-  //   setSubtotal(cant * product.price);
-  // }
+  var [subtotal, setSubtotal] = useState(0);
+
+  function subtotalItem(cant) {
+    // console.log(cant)
+    dispatch(increaseQuantity({ cant, product }));
+    setSubtotal(product.count * product.price);
+  }
+
   return (
     <div className="item_list_container">
       <Link to={"/producto/" + product.id} className="item_cart_name">
@@ -23,16 +26,16 @@ export default function ProductItemCart({ product }) {
       <div className="item_cart_price" name="precio">
         {"$ " + product.price}
       </div>
-      {/* <input
+      <input
         type="number"
         min="1"
         name="cantidad"
         onChange={(e) => subtotalItem(e.target.value)}
         className="item_cant"
-      ></input> */}
-      <p>{product.count}</p>
+        value={product.count}
+      ></input>
       <div type="text" className="item_subtotal">
-        {"$ " + subtotal}
+        {/* {"$ " + subtotal} */}
       </div>
       <div className="item_cart_btns">
         <div className="btn_eliminar">
