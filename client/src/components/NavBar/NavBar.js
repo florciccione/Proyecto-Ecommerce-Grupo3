@@ -17,23 +17,25 @@ function NavBar() {
   //VERIFICA EL LOGIN
 
   function verifyLogin(login) {
-    var body = {
-      token: login.data.data.token,
-    };
-    axios({
-      method: "POST",
-      url: "http://localhost:3001/user/me",
-      data: body,
-    })
-      .then(function (res) {
-        setLogin(true);
+    if(login) {
+      var body = {
+        token: login.data.data.token,
+      };
+      axios({
+        method: "POST",
+        url: "http://localhost:3001/user/me",
+        data: body,
       })
-      .catch(function (reason) {
-        alert("El usuario no esta logueado");
-        console.log(reason);
-      });
+        .then(function (res) {
+          setLogin(true);
+        })
+        .catch(function (reason) {
+          console.log("El usuario no esta logueado" + reason);
+        });
+    }
   }
   function algo() {
+    console.log(isLogin);
     if (isLogin) {
       return (
         <div className="user_bar">
@@ -79,7 +81,6 @@ function NavBar() {
       </div>
       <div className="user_bar">
         {algo()}
-
         <Link to="/usuario/cart" className="cart">
           <span>
             <i className="fas fa-shopping-cart"></i>{" "}
