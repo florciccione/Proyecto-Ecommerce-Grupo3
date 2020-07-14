@@ -30,8 +30,7 @@ function NavBar() {
           setLogin(true);
         })
         .catch(function (reason) {
-          alert("El usuario no esta logueado");
-          console.log(reason);
+          console.log("El usuario no esta logueado" + reason);
         });
     }
   }
