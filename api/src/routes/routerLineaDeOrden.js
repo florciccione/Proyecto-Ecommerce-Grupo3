@@ -3,7 +3,7 @@ const { Op } = require("sequelize");
 const express = require("express").Router();
 
 // TODO: traer carrito de un usuario
-/* express.get("/:idUsuario", function (req, res) {
+express.get("/:idUsuario", function (req, res) {
   Orden.findAll({
     where: {
       idUsuario: req.params.idUsuario,
@@ -11,7 +11,7 @@ const express = require("express").Router();
   }).then(function (orden) {
     res.status(200).json(orden);
   });
-}); */
+}); 
 
 //   TODO: arreglar esto
 express.get("/", function (req, res) {
@@ -26,6 +26,7 @@ express.get("/", function (req, res) {
     });
 });
 
-// TODO: ruta para modificar la cantidad del carrito
 
 module.exports = express;
+
+
