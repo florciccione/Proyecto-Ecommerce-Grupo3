@@ -8,7 +8,6 @@ import { useDispatch } from "react-redux";
 export default function ProductItemCart({ product }) {
   const dispatch = useDispatch();
 
-
   var [subtotal, setSubtotal] = useState(0);
 
   function subtotalItem(cant) {

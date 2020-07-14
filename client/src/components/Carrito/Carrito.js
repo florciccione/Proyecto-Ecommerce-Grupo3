@@ -80,6 +80,11 @@ export default function Carrito() {
     }
   }
 
+  function generateOrden(orden) {
+    const ordenActual = items;
+    console.log(ordenActual);
+  }
+
   return (
     <div className="container_add_user">
       <NavBar />
@@ -92,7 +97,6 @@ export default function Carrito() {
             <h5 className="head_2">DESCRIPCION</h5>
             <h5 className="head_3">PRECIO</h5>
             <h5 className="head_4">CANTIDAD</h5>
-            {/* <h5 className="head_5">SUBTOTAL</h5> */}
             <h5 className="head_5">ACCIONES</h5>
           </div>
           <div className="productos">{showProducts(arrayProductosCart)}</div>
@@ -100,7 +104,9 @@ export default function Carrito() {
 
         <div className="finish">
           <div className="total">TOTAL: $ {subTotal}</div>
-          <button className="comprar">FINALIZAR COMPRA</button>
+          <button className="comprar" onClick={generateOrden}>
+            FINALIZAR COMPRA
+          </button>
         </div>
       </div>
     </div>

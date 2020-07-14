@@ -6,13 +6,14 @@ import "./Product.css";
 
 import "./StarRating.css";
 
-const StarRating = ({id}) => {
+const StarRating = ({ id }) => {
   // Estrellitas
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
 
   // Review
   const [review, setReview] = useState({
+    title: "",
     comment: "",
   });
 
@@ -23,29 +24,25 @@ const StarRating = ({id}) => {
     });
   };
 
-  const sendComment = e => {
+  const sendComment = (e) => {
     e.preventDefault();
+    const titleReview = review.title;
     const reviewProduct = review.comment;
     const starProduct = rating;
     const idProduct = id;
-    const body = {idProduct,reviewProduct, starProduct}
+    const body = { idProduct, titleReview, reviewProduct, starProduct };
     // axios({
     //   method: "POST",
-    //   url: "http://localhost:3001/user/add",
+    //   url: "http://localhost:3001/review/add",
     //   data: body,
     // })
     //   .then(function (res) {
     //     console.log(res.data);
-    //     alert("La cuenta se creo con éxito");
     //   })
-    //   .then(function () {
-    //     window.location.replace("../../");
-    //   })
-    //   .catch((reason) =>
-    //     alert("No se pudo crear la cuenta de usuario " + reason)
-    //   );
-    console.log(body)
-  }
+    //   .catch((reason) => alert("No se pudo agregar una review " + reason));
+    // console.log(body);
+    console.log(body);
+  };
 
   return (
     <div>
@@ -73,18 +70,26 @@ const StarRating = ({id}) => {
         <div>
           <input
             className="abajo"
-            placeholder="Escribe tu reseña de este producto.."
+            placeholder="Escribe un titulo"
             type="text"
-            name="comment"
+            name="title"
             onChange={handleInputChange}
           />
           {/* <p>{review.comment}</p>
           <p className="abajo">La clasificación es {rating}</p> */}
-          <button className="product_cart-btn" type="submit">
-            Enviar Reseña
-          </button>
         </div>
-        <div></div>
+        <div>
+          <textarea
+            className="abajo"
+            placeholder="Escribe tu reseña de este producto.."
+            type="text"
+            name="comment"
+            onChange={handleInputChange}
+          ></textarea>
+        </div>
+        <button className="product_cart-btn" type="submit">
+          Enviar Reseña
+        </button>
       </form>
     </div>
   );
