@@ -7,6 +7,7 @@ const authRouter = require("./auth.js");
 const routerColor = require("./routerColors.js");
 const routerUser = require("./routerUser.js");
 const routerOrden = require("./routerOrden.js");
+const routerReview = require("./routerReview.js");
 
 const router = Router();
 
@@ -18,5 +19,6 @@ router.use("/category", routerCategory);
 router.use("/color", routerColor);
 router.use("/user", routerUser);
 router.use("/orden", routerOrden);
+router.use("/review", routerReview);
 
 module.exports = router;

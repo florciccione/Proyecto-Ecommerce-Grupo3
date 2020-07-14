@@ -1,13 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../Redux/actions/productsAction.js";
 //CSS
 import "./NavBar.css";
+import axios from "axios";
 
 //BARRA DE NAVEGACION DEL SITIO
 function NavBar() {
   const dispatch = useDispatch();
+  const login = useSelector((state) => state.login.login);
+  const [isLogin, setLogin] = useState(false);
+  // console.log(login.data.data.token);
+
+  useEffect(() => verifyLogin(login), []);
+  //VERIFICA EL LOGIN
+
+  function verifyLogin(login) {
+    // if(login) {
+    //   var body = {
+    //     token: login.data.token,
+    //   };
+    //   axios({
+    //     method: "POST",
+    //     url: "http://localhost:3001/user/me",
+    //     data: body,
+    //   })
+    //     .then(function (res) {
+    //       setLogin(true);
+    //     })
+    //     .catch(function (reason) {
+    //       console.log("El usuario no esta logueado" + reason);
+    //     });
+    // }
+  }
+  function algo() {
+    console.log(isLogin);
+    if (isLogin) {
+      return (
+        <div className="user_bar">
+          <Link to="/" className="login">
+            <span> {login.data.data.user.name} </span>
+          </Link>
+          <Link to="/" className="register">
+            <span> Logout </span>
+          </Link>
+        </div>
+      );
+    } else {
+      return (
+        <div className="user_bar">
+          <Link to="/usuario/login" className="login">
+            <span> Login </span>
+          </Link>
+          <Link to="/usuario/registrarse" className="register">
+            <span> Registrarse </span>
+          </Link>
+        </div>
+      );
+    }
+  }
+  //console.log(isLogin);
   return (
     <div className="bar">
       <div className="nav_bar">
@@ -27,15 +80,9 @@ function NavBar() {
         </Link>
       </div>
       <div className="user_bar">
-        <Link to="/" className="login">
-          <span> Login </span>
-        </Link>
-        <Link to="/usuario/registrarse" className="register">
-          <span> Registrarse </span>
-        </Link>
+        {algo()}
         <Link to="/usuario/cart" className="cart">
           <span>
-            {" "}
             <i className="fas fa-shopping-cart"></i>{" "}
           </span>
         </Link>

@@ -20,19 +20,8 @@ Review = (sequelize, S) => {
         ranking: {
           type: S.INTEGER,
           allowNull: false,
-        },
-      },
-     /* {
-        getterMethods: {
-          
-          getProduct: function () {
-            return this.idProduct;
-          },
-          getUser: function () {
-            return this.idUser;
-          }
-        },
-      }*/
+        }
+      }
     );
     return R;
   };

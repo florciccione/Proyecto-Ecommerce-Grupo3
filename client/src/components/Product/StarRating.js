@@ -8,39 +8,42 @@ import "./StarRating.css";
 
 const StarRating = ({ id }) => {
   // Estrellitas
-  const [rating, setRating] = useState(null);
+  const [ratingStar, setRatingStar] = useState(null);
   const [hover, setHover] = useState(null);
 
   // Review
-  const [review, setReview] = useState({
+  const [reviewProduct, setReviewProduct] = useState({
     title: "",
-    comment: "",
+    review: "",
   });
 
   const handleInputChange = (e) => {
-    setReview({
-      ...review,
+    setReviewProduct({
+      ...reviewProduct,
       [e.target.name]: e.target.value,
     });
   };
 
   const sendComment = (e) => {
     e.preventDefault();
-    const titleReview = review.title;
-    const reviewProduct = review.comment;
-    const starProduct = rating;
-    const idProduct = id;
-    const body = { idProduct, titleReview, reviewProduct, starProduct };
-    // axios({
-    //   method: "POST",
-    //   url: "http://localhost:3001/review/add",
-    //   data: body,
-    // })
-    //   .then(function (res) {
-    //     console.log(res.data);
-    //   })
-    //   .catch((reason) => alert("No se pudo agregar una review " + reason));
-    // console.log(body);
+    let title = reviewProduct.title;
+    let review = reviewProduct.comment;
+    let ranking = ratingStar;
+    const idProduct = parseInt(id);
+    const idUsuario = 1;
+    const body = {
+      title,
+      review,
+      ranking,
+      idUsuario,
+      idProduct,
+    };
+    axios
+      .post("http://localhost:3001/review/add", body)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((reason) => alert("No se pudo agregar una review " + reason));
     console.log(body);
   };
 
@@ -54,11 +57,11 @@ const StarRating = ({ id }) => {
               type="radio"
               name="rating"
               value={ratingValue}
-              onClick={() => setRating(ratingValue)}
+              onClick={() => setRatingStar(ratingValue)}
             />
             <FaStar
               className="star"
-              color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
+              color={ratingValue <= (hover || ratingStar) ? "#ffc107" : "#e4e5e9"}
               size={30}
               onMouseEnter={() => setHover(ratingValue)}
               onMouseLeave={() => setHover(null)}
