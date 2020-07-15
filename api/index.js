@@ -28,6 +28,7 @@ const {
   User,
   Orden,
   lineaDeOrden,
+  Review
 } = require("./src/models/index.js");
 var Promise = require("bluebird");
 //const images = require("../images");
@@ -215,12 +216,12 @@ const categorias = [
   { name: "Aros" },
 ];
 const ordenes = [
-  { state: "creado", fecha: "HOY", idUsuario: "1" },
-  { state: "completo", fecha: "AYER", idUsuario: "1" },
+  { state: "creado", fecha: "HOY", userId: "2" },
+  { state: "completo", fecha: "AYER", userId: "2" },
 ];
 const lineaOrden = [
   { cantidad: "2", price: "700", productId: "1", ordenId: "1" },
-  { cantidad: "2", price: "400", productId: "2", ordenId: "2" },
+  { cantidad: "2", price: "400", productId: "2", ordenId: "1" },
 ];
 const usuarios = [
   {
@@ -248,6 +249,7 @@ const usuarios = [
     adress: "calle4",
   },
 ];
+
 var promises = [];
 var promises2 = [];
 // Syncing all the models at once.
@@ -285,6 +287,13 @@ conn.sync({ force: true }).then(() => {
         "Ocurrió un error al cargar colores,categorias o usuarios" + err
       );
     });
+
+
+
+const reviews = [
+  { title: "Producto Bueno", review: "Descripción de la review", ranking: 5, idUsuario: 1, idProduct: 1 },
+  { title: "Producto Regular", review: "Descripción de la review", ranking: 3, idUsuario: 1, idProduct: 2 }
+]
 
   server.listen(3001, () => {
     console.log("%s listening at 3001"); // eslint-disable-line no-console

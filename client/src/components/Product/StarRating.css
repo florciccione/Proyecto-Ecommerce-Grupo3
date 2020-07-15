@@ -1,0 +1,26 @@
+input[type="radio"] {
+  display: none;
+}
+
+.star {
+  margin-top: 50px;
+  cursor: pointer;
+  transition: color 200ms;
+}
+
+.abajo {
+  margin-bottom: 20px;
+}
+
+.product_cart-btn {
+  width: 100%;
+  background-color: black;
+  color: white;
+  /* padding: 15px 0px; */
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 100px;
+}
+.product_cart-btn:hover {
+  background-color: rgb(88, 88, 88);
+}
