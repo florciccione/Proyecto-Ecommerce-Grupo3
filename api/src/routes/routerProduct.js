@@ -1,4 +1,4 @@
-const { Product, Category, stockXColor, Colors } = require("../models");
+const { Product, Category, stockXColor, Review, Colors, User } = require("../models");
 const { Op } = require("sequelize");
 const express = require("express").Router();
 
@@ -92,8 +92,12 @@ express.get("/", function (req, res) {
         attributes: ["name"],
       },
       {
-        model: Colors,
+        model: Colors
       },
+      {
+        model: Review,
+        as: "reviews",
+      },     
     ],
   })
     .then(function (catalogo) {

@@ -216,12 +216,14 @@ const categorias = [
   { name: "Aros" },
 ];
 const ordenes = [
-  { state: "creado", fecha: "HOY", userId: "2" },
-  { state: "completo", fecha: "AYER", userId: "2" },
+  { state: "creado", fecha: "10/06/2020", userId: "2" },
+  { state: "completo", fecha: "24/05/2020", userId: "1" },
 ];
 const lineaOrden = [
   { cantidad: "2", price: "700", productId: "1", ordenId: "1" },
   { cantidad: "2", price: "400", productId: "2", ordenId: "1" },
+  { cantidad: "1", price: "900", productId: "3", ordenId: "2" },
+  { cantidad: "1", price: "500", productId: "5", ordenId: "2" },
 ];
 const usuarios = [
   {
@@ -247,6 +249,40 @@ const usuarios = [
     email: "juan@gmail.com",
     password: "cualquiera",
     adress: "calle4",
+  },
+];
+const reviews = [
+  {
+    id: "1",
+    title: "Me gusto mucho!",
+    review: "No me la saco desde que la compre!",
+    ranking: "5",
+    idUsuario:"1",
+    idProduct: "4"
+  },
+  {
+    id: "2",
+    title: "Buen producto",
+    review: "Me gusto mucho el color!",
+    ranking: "4",
+    idUsuario:"2",
+    idProduct: "1"
+  },
+  {
+    id: "3",
+    title: "Muy lindo",
+    review: "Siempre que lo uso me lo ponderan",
+    ranking: "5",
+    idUsuario:"3",
+    idProduct: "6"
+  },
+  {
+    id: "4",
+    title: "Me encanto!",
+    review: "Re linda la pulsera",
+    ranking: "5",
+    idUsuario:"2",
+    idProduct: "3"
   },
 ];
 
@@ -277,6 +313,7 @@ conn.sync({ force: true }).then(() => {
         .then(function () {
           stockColor.forEach((sto) => stockXColor.create(sto));
           lineaOrden.forEach((lineor) => lineaDeOrden.create(lineor));
+          reviews.forEach((rev) => Review.create(rev));
         })
         .catch(function (err) {
           console.log("Ocurrió un error al cargar productos u ordenes" + err);
@@ -287,13 +324,6 @@ conn.sync({ force: true }).then(() => {
         "Ocurrió un error al cargar colores,categorias o usuarios" + err
       );
     });
-
-
-
-const reviews = [
-  { title: "Producto Bueno", review: "Descripción de la review", ranking: 5, idUsuario: 1, idProduct: 1 },
-  { title: "Producto Regular", review: "Descripción de la review", ranking: 3, idUsuario: 1, idProduct: 2 }
-]
 
   server.listen(3001, () => {
     console.log("%s listening at 3001"); // eslint-disable-line no-console
