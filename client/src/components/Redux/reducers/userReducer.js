@@ -1,4 +1,8 @@
-import { SUCCESS_LOGIN, FAIL_LOGIN } from "../actions/userAction.js";
+import {
+  SUCCESS_LOGIN,
+  FAIL_LOGIN,
+  LOGOUT_USER,
+} from "../actions/userAction.js";
 
 const initialState = {
   login: {},
@@ -15,6 +19,11 @@ function login(state = initialState, action) {
       return {
         ...state,
         login: action.payload,
+      };
+    case LOGOUT_USER:
+      return {
+        ...state,
+        login: {},
       };
     default:
       return state;

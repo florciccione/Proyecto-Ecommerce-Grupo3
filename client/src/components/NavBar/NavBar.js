@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../Redux/actions/productsAction.js";
+import { logoutUser } from "../Redux/actions/userAction.js";
 //CSS
 import "./NavBar.css";
 import axios from "axios";
@@ -17,21 +18,25 @@ function NavBar() {
   //VERIFICA EL LOGIN
 
   function verifyLogin(login) {
-    var body = {
-      token: login.data.data.token,
-    };
-    axios({
-      method: "POST",
-      url: "http://localhost:3001/user/me",
-      data: body,
-    })
-      .then(function (res) {
-        setLogin(true);
+    if (login.data === undefined) {
+      setLogin(false);
+    } else {
+      var body = {
+        token: login.data.data.token,
+      };
+      axios({
+        method: "POST",
+        url: "http://localhost:3001/user/me",
+        data: body,
       })
-      .catch(function (reason) {
-        alert("El usuario no esta logueado");
-        console.log(reason);
-      });
+        .then(function (res) {
+          setLogin(true);
+        })
+        .catch(function (reason) {
+          alert("El usuario no esta logueado");
+          console.log(reason);
+        });
+    }
   }
   function algo() {
     if (isLogin) {
@@ -40,7 +45,7 @@ function NavBar() {
           <Link to="/" className="login">
             <span> {login.data.data.user.name} </span>
           </Link>
-          <Link to="/" className="register">
+          <Link to="/" className="register" onClick={dispatch(logoutUser())}>
             <span> Logout </span>
           </Link>
         </div>
