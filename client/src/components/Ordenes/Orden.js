@@ -32,18 +32,10 @@ export default function Orden({orden}) {
     return (
       
     <div className='item_list-orden'>
-        <div className='title'>Detalle de la orden: {orden.id} - Usuario: {orden.usuario.name}</div>
+        <div className='title'>Detalle de la orden: {orden.id} - Usuario: {orden.user.name}</div>
         <div className='sub_title'>
             <div>Fecha: {orden.fecha}</div>
-            <div>Estado:
-                <select placeholder={orden.state}>
-                    <option id='creado' >Creada</option>
-                    <option id='procesando'>Procesando</option>
-                    <option id='cancelado'>Cancelada</option>
-                    <option id='completo'>Completada</option>
-                </select>
-            </div>
-            <div className="update_btn" onClick={e=> updateState(orden.id)}>Actualizar estado</div>
+            <div>Estado: {orden.state} </div>
         </div>
         
         <div className='header'>

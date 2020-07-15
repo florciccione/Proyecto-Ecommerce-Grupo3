@@ -6,7 +6,8 @@ import { addToCart } from "../Redux/actions/cartAction.js";
 import "./Product.css";
 //COMPONENTES
 import NavBar from "../NavBar/NavBar.js";
-import StarRating from './StarRating';
+import ReviewList from './ReviewList.js';
+import StarRating from "./StarRating.js";
 
 export default function Product({ id }) {
   var [selectedColor, setSelectedColor] = useState("");
@@ -23,23 +24,17 @@ export default function Product({ id }) {
   function showImg(colors) {
     return colors.find((color) => color.stockXColor.main).stockXColor.image;
   }
-
-  function colorActive(colorName) {
-    setSelectedColor(colorName);
-    var option = document.querySelector("#" + colorName);
-    option.selected = "selected";
-  }
-
+  //RENDERIZA UN DIV (33x33) CON EL HEXACOLOR DE CADA OPCION QUE TIENE EL PRODUCTO
   function showColor(colors) {
     return colors.map((color) => (
       <div
         className="product_color_img"
         style={{ backgroundColor: color.hexaColor }}
-        onClick={(e) => colorActive(color.name)}
+        onClick={(e) => changeColor(colors,color.name)}
       ></div>
     ));
   }
-
+  //GENERA EN EL SELECT UNA OPTION POR CADA COLOR DEL PRODUCTO
   function showColorOption(colors) {
     if (colors) {
       return colors.map((color) => (
@@ -53,6 +48,29 @@ export default function Product({ id }) {
       ));
     }
   }
+  //MUESTRA COMO ACTIVO EN EL SELECT EL VALOR DEL COLOR SELECCIONADO
+  function colorActive(colorName) {
+  setSelectedColor(colorName);
+  var option = document.querySelector("#" + colorName);
+  option.selected = "selected";
+  }
+  //CAMBIA LA FOTO Y DEMAS DATOS DEL COLOR SEGUN CAMBIOS EN EL SELECT O EN LOS DIV (33x33)
+  function changeColor(colors, colorName){
+    if (colors && colorName){
+      colorActive(colorName);
+      let imageUrl = colors.find((color) => color.name === colorName).stockXColor.image;
+      var img = document.querySelector("img"); 
+      img.setAttribute("src", imageUrl);
+    }
+  }
+  //COMPRUEBA SI EL PRODUCTO TIENE REVIEWS
+  function haveReview(productDetail){
+    console.log(productDetail);
+    if(productDetail.reviews){
+      return  <ReviewList reviews={productDetail.reviews}/>;
+    }
+  }
+  //RECOLECTA LOS DATOS DEL PRODUCTO Y DEL COLOR ELEGIDO PARA ENVIAR AL CARRITO
   function colorSelected(selectedColor, productDetail) {
     if (productDetail && selectedColor) {
       var product = {
@@ -67,15 +85,16 @@ export default function Product({ id }) {
       alert("Debe seleccionar un color");
     }
   }
+
   return (
     <div className="catalogo">
       <NavBar />
       <div className="catalogo_bg"></div>
-      <div className="catalogo_title">
+      <div className="product_title">
         <h1>Detalle del producto</h1>
       </div>
 
-      <div className="product container">
+      <div className="product_container">
         <div className="product_left">
           <div className="product_img">
             <img src={showImg(productDetail.colors)} alt="" />
@@ -97,19 +116,23 @@ export default function Product({ id }) {
               {showColor(productDetail.colors)}
             </div>
             <div className="product_colors_list">
-              <select onChange={(e) => colorActive(e.target.value)}>
+              <select onChange={(e) => changeColor(productDetail.colors, e.target.value) }>
                 {showColorOption(productDetail.colors)}
               </select>
             </div>
           </div>
-          <div className="product_cart-btn">
+          <div className="product_cart_btn">
             <div onClick={(e) => colorSelected(selectedColor, productDetail, items)} >
               AGREGAR AL CARRITO
             </div>
           </div>
-          <StarRating id={id}/>
         </div>
       </div>
+      <StarRating id={id}/>
+      <div className="container_reviews_product">
+          <h2>Reviews</h2>
+      </div>
+      {haveReview(productDetail)}
     </div>
   );
 }

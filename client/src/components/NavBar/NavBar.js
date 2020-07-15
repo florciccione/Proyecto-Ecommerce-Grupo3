@@ -17,22 +17,22 @@ function NavBar() {
   //VERIFICA EL LOGIN
 
   function verifyLogin(login) {
-    // if(login) {
-    //   var body = {
-    //     token: login.data.token,
-    //   };
-    //   axios({
-    //     method: "POST",
-    //     url: "http://localhost:3001/user/me",
-    //     data: body,
-    //   })
-    //     .then(function (res) {
-    //       setLogin(true);
-    //     })
-    //     .catch(function (reason) {
-    //       console.log("El usuario no esta logueado" + reason);
-    //     });
-    // }
+     if(login) {
+       var body = {
+         token: login.data.token,
+       };
+       axios({
+         method: "POST",
+         url: "http://localhost:3001/user/me",
+         data: body,
+       })
+         .then(function (res) {
+           setLogin(true);
+         })
+         .catch(function (reason) {
+           console.log("El usuario no esta logueado" + reason);
+         });
+     }
   }
   function algo() {
     console.log(isLogin);
