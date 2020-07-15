@@ -30,8 +30,10 @@ const {
   lineaDeOrden,
   Review
 } = require("./src/models/index.js");
+var Promise = require("bluebird");
 //const images = require("../images");
 //Products
+
 const productos = [
   {
     name: "Pulsera Noruega",
@@ -104,6 +106,7 @@ const productos = [
     image: "c-india_bco2.jpg",
   }, //8
 ];
+
 const stockColor = [
   // 2 colores para un mismo producto
   {
@@ -247,21 +250,51 @@ const usuarios = [
   },
 ];
 
+var promises = [];
+var promises2 = [];
+// Syncing all the models at once.
+conn.sync({ force: true }).then(() => {
+  colores.forEach(function (col) {
+    promises.push(Colors.create(col));
+  });
+
+  categorias.forEach(function (cat) {
+    promises.push(Category.create(cat));
+  });
+  usuarios.forEach(function (user) {
+    promises.push(User.create(user));
+  });
+  Promise.all(promises)
+    .then(function () {
+      productos.forEach(function (pro) {
+        promises2.push(Product.create(pro));
+      });
+      ordenes.forEach(function (or) {
+        promises2.push(Orden.create(or));
+      });
+
+      Promise.all(promises2)
+        .then(function () {
+          stockColor.forEach((sto) => stockXColor.create(sto));
+          lineaOrden.forEach((lineor) => lineaDeOrden.create(lineor));
+        })
+        .catch(function (err) {
+          console.log("Ocurrió un error al cargar productos u ordenes" + err);
+        });
+    })
+    .catch(function (err) {
+      console.log(
+        "Ocurrió un error al cargar colores,categorias o usuarios" + err
+      );
+    });
+
+
+
 const reviews = [
   { title: "Producto Bueno", review: "Descripción de la review", ranking: 5, idUsuario: 1, idProduct: 1 },
   { title: "Producto Regular", review: "Descripción de la review", ranking: 3, idUsuario: 1, idProduct: 2 }
 ]
 
-// Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
-  colores.forEach((col) => Colors.create(col));
-  categorias.forEach((cat) => Category.create(cat));
-  productos.forEach((pro) => Product.create(pro));
-  stockColor.forEach((sto) => stockXColor.create(sto));
-  usuarios.forEach((user) => User.create(user));
-  reviews.forEach((rev) => Review.create(rev));
-  ordenes.forEach((or) => Orden.create(or));
-  lineaOrden.forEach((lineor) => lineaDeOrden.create(lineor));
   server.listen(3001, () => {
     console.log("%s listening at 3001"); // eslint-disable-line no-console
   });
