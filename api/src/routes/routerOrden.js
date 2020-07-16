@@ -3,10 +3,10 @@ const { Op } = require("sequelize");
 const express = require("express").Router();
 
 // Trae las ordenes de un usuario idUsuario
-express.get("/:idUsuario", function (req, res) {
+express.get("/:userId", function (req, res) {
   Orden.findAll({
     where: {
-      idUsuario: req.params.idUsuario,
+      userId: req.params.userId,
     },
     include: [
       {
@@ -14,7 +14,7 @@ express.get("/:idUsuario", function (req, res) {
       },
       {
         model: User,
-        as: "usuario",
+        as: "user",
       },
     ],
   })
@@ -31,13 +31,16 @@ express.get("/:idUsuario", function (req, res) {
 // Trae todas las ordenes
 express.get("/", function (req, res) {
   Orden.findAll({
-    include: [
+   include: [
       {
         model: User,
-        as: "usuario",
+        as: "user",
         attributes: ["name"],
       },
-      { model: Product },
+      {
+        model: Product,
+      },
+
     ],
   })
     .then(function (ordenes) {

@@ -39,7 +39,7 @@ express.post("/add", function(req, res){
         idProduct
     })
     .then(function(review){
-        res.status(200).json(review);
+        res.status(200).json({review,message: "Se guardo la review"});
     })
     .catch(function (reason) {
         res

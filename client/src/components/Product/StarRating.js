@@ -1,92 +1,105 @@
 import React, { useState } from "react";
 import { FaStar } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
 import "./Product.css";
 
 import "./StarRating.css";
 
-const StarRating = ({id}) => {
+const StarRating = ({ id }) => {
   // Estrellitas
-  const [rating, setRating] = useState(null);
+  const [ratingStar, setRatingStar] = useState(null);
   const [hover, setHover] = useState(null);
-
+  const login = useSelector((state) => state.login.login);
   // Review
-  const [review, setReview] = useState({
-    comment: "",
+  const [reviewProduct, setReviewProduct] = useState({
+    title: "",
+    review: "",
   });
 
   const handleInputChange = (e) => {
-    setReview({
-      ...review,
+    setReviewProduct({
+      ...reviewProduct,
       [e.target.name]: e.target.value,
     });
   };
 
-  const sendComment = e => {
+  const sendComment = (e) => {
     e.preventDefault();
-    const reviewProduct = review.comment;
-    const starProduct = rating;
-    const idProduct = id;
-    const body = {idProduct,reviewProduct, starProduct}
-    // axios({
-    //   method: "POST",
-    //   url: "http://localhost:3001/user/add",
-    //   data: body,
-    // })
-    //   .then(function (res) {
-    //     console.log(res.data);
-    //     alert("La cuenta se creo con éxito");
-    //   })
-    //   .then(function () {
-    //     window.location.replace("../../");
-    //   })
-    //   .catch((reason) =>
-    //     alert("No se pudo crear la cuenta de usuario " + reason)
-    //   );
-    console.log(body)
-  }
+    let title = reviewProduct.title;
+    let review = reviewProduct.comment;
+    let ranking = ratingStar;
+    const idUsuario = login.data.data.user.id;
+    const idProduct = parseInt(id);
+    
+    const body = {
+      title,
+      review,
+      ranking,
+      idUsuario,
+      idProduct,
+    };
+    axios
+      .post("http://localhost:3001/review/add", body)
+      .then((res) => {
+      //  console.log(res);
+        alert(res.data.message);
+      })
+      .catch((reason) => alert("No se pudo agregar una review " + reason));
+        console.log(body);
+  };
 
   return (
-    <div>
-      {[...Array(5)].map((star, i) => {
-        const ratingValue = i + 1;
-        return (
-          <label>
-            <input
-              type="radio"
-              name="rating"
-              value={ratingValue}
-              onClick={() => setRating(ratingValue)}
-            />
-            <FaStar
-              className="star"
-              color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
-              size={30}
-              onMouseEnter={() => setHover(ratingValue)}
-              onMouseLeave={() => setHover(null)}
-            />
-          </label>
-        );
-      })}
-      <form onSubmit={sendComment}>
+      <form className="form_star_rating" onSubmit={sendComment}>
+        <h3>Deja tu opinión:</h3>
+        <div className="estrellitas">
+            {[...Array(5)].map((star, i) => {
+              const ratingValue = i + 1;
+              return (
+                <label>
+                  <input
+                    type="radio"
+                    name="rating"
+                    value={ratingValue}
+                    onClick={() => setRatingStar(ratingValue)}
+                  />
+                  <FaStar
+                    className="star"
+                    color={ratingValue <= (hover || ratingStar) ? "#ffc107" : "#e4e5e9"}
+                    size={30}
+                    onMouseEnter={() => setHover(ratingValue)}
+                    onMouseLeave={() => setHover(null)}
+                  />
+                </label>
+              );
+            })}
+        </div>
+        
         <div>
           <input
-            className="abajo"
-            placeholder="Escribe tu reseña de este producto.."
+            className="title_review"
+            placeholder="Escribe un titulo"
             type="text"
-            name="comment"
+            name="title"
             onChange={handleInputChange}
           />
           {/* <p>{review.comment}</p>
           <p className="abajo">La clasificación es {rating}</p> */}
-          <button className="product_cart-btn" type="submit">
-            Enviar Reseña
-          </button>
         </div>
-        <div></div>
+        <div>
+          <textarea
+            className="review_text"
+            placeholder="Escribe tu opinión de este producto.."
+            type="text"
+            name="comment"
+            onChange={handleInputChange}
+          ></textarea>
+        </div>
+        <button className="product_rev_btn" type="submit">
+          ENVIAR
+        </button>
       </form>
-    </div>
   );
 };
 

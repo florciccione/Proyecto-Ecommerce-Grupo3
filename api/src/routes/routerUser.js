@@ -194,9 +194,9 @@ express.put("/promote/:id", (req, res) => {
     });
 });
 //RUTA PROTEGIDA PARA ACCEDER AL PANEL DE ADMINISTRADOR (SOLO USUARIOS ADMIN)
-express.post("/panel-admin", isValidToken, (req, res) => {
+express.post("/panel-admin/producto", isValidToken, (req, res) => {
   //en el body del request deben enviarnos el token y el id del usuario
-  //Tendria que validar que el token enviado coincida con el id de usuario????????????????
+  //FALTA HACER EL AXIOS EN EL FRONT PARA ESTA RUTA
   var { id } = req.body;
   User.findOne({
     where: {

@@ -24,7 +24,7 @@ const idPopup = orden.id
             {orden.state}
         </div>
         <div className='item_order_user'>
-                        {orden.usuario.name}
+                        {orden.user.name}
         </div>   
         <div className="item_list_btns">
             <div onClick={e=>showPopup(idPopup)} className='btn_ver'><i title='Ver Orden' className="far fa-file"></i></div>
