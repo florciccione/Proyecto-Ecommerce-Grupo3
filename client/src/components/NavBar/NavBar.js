@@ -49,6 +49,7 @@ function NavBar() {
     }
   }
   function algo() {
+    console.log(isLogin);
     if (isLogin) {
       return (
         <div className="user_bar">
@@ -64,7 +65,8 @@ function NavBar() {
       return (
         <div className="user_bar">
           <Link to="/usuario/login" className="login">
-            <span> Login </span>
+            {" "}
+            .<span> Login </span>
           </Link>
           <Link to="/usuario/registrarse" className="register">
             <span> Registrarse </span>
@@ -93,7 +95,6 @@ function NavBar() {
       </div>
       <div className="user_bar">
         {algo()}
-
         <Link to="/usuario/cart" className="cart">
           <span>
             <i className="fas fa-shopping-cart"></i>{" "}

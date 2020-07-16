@@ -56,7 +56,7 @@ function getOrdenes(login, setOrdenes) {
   var id = login.data.data.user.id;
   axios({
     method: "GET",
-    url: `http://localhost:3001/orden/1`,
+    url: `http://localhost:3001/orden/2`,
   })
     .then(function (res) {
       //setOrdenes(res);
