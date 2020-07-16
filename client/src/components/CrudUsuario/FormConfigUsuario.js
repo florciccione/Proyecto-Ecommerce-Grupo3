@@ -12,7 +12,8 @@ export default function FormConfigUsuario() {
   const login = useSelector((state) => state.login.login);
   console.log(login.data.data.user);
   var dataUser = login.data.data.user;
-  useEffect(() => getOrdenes(login), []);
+  useEffect(() => getOrdenes(login, setOrdenes), []);
+  console.log(ordenes);
   function handleSubmit(e) {
     e.preventDefault();
     /* var name = document.querySelector("#name").value;
@@ -51,13 +52,14 @@ export default function FormConfigUsuario() {
   );
 }
 
-function getOrdenes(login) {
+function getOrdenes(login, setOrdenes) {
   var id = login.data.data.user.id;
   axios({
     method: "GET",
-    url: `http://localhost:3001/orden/${id}`,
+    url: `http://localhost:3001/orden/1`,
   })
     .then(function (res) {
+      //setOrdenes(res);
       console.log(res.data);
     })
     .catch((reason) =>
