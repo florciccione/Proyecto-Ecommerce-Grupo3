@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../Redux/actions/productsAction.js";
+import { logoutUser } from "../Redux/actions/userAction.js";
 //CSS
 import "./NavBar.css";
 import axios from "axios";
@@ -10,14 +11,26 @@ import axios from "axios";
 function NavBar() {
   const dispatch = useDispatch();
   const login = useSelector((state) => state.login.login);
-  const [isLogin, setLogin] = useState(false);
-  // console.log(login.data.data.token);
+  const [isLogin, setLogin] = useState();
 
-  useEffect(() => verifyLogin(login), []);
+  useEffect(() => {
+    if (!isLogin) {
+      verifyLogin(login);
+    }
+    console.log("esto se repite");
+  }, []);
+
+  function userLogout() {
+    console.log("esto se ejecuta");
+    dispatch(logoutUser());
+    setLogin(false);
+  }
   //VERIFICA EL LOGIN
 
   function verifyLogin(login) {
-    if(login) {
+    if (login.data === undefined) {
+      // setLogin(false);
+    } else {
       var body = {
         token: login.data.data.token,
       };
@@ -26,11 +39,12 @@ function NavBar() {
         url: "http://localhost:3001/user/me",
         data: body,
       })
-        .then(function (res) {
+        .then(function () {
           setLogin(true);
         })
         .catch(function (reason) {
-          console.log("El usuario no esta logueado" + reason);
+          alert("El usuario no esta logueado");
+          console.log(reason);
         });
     }
   }
@@ -39,10 +53,10 @@ function NavBar() {
     if (isLogin) {
       return (
         <div className="user_bar">
-          <Link to="/" className="login">
+          <Link to="/usuario/config" className="login">
             <span> {login.data.data.user.name} </span>
           </Link>
-          <Link to="/" className="register">
+          <Link to="/" className="register" onClick={() => userLogout()}>
             <span> Logout </span>
           </Link>
         </div>
@@ -51,7 +65,8 @@ function NavBar() {
       return (
         <div className="user_bar">
           <Link to="/usuario/login" className="login">
-            <span> Login </span>
+            {" "}
+            .<span> Login </span>
           </Link>
           <Link to="/usuario/registrarse" className="register">
             <span> Registrarse </span>
@@ -60,20 +75,19 @@ function NavBar() {
       );
     }
   }
-  //console.log(isLogin);
   return (
     <div className="bar">
       <div className="nav_bar">
         <Link
           to="/"
-          onClick={(e) => dispatch(getProducts())}
+          onClick={() => dispatch(getProducts())}
           className="bar_home"
         >
           <span> Home </span>
         </Link>
         <Link
           to="/"
-          onClick={(e) => dispatch(getProducts())}
+          onClick={() => dispatch(getProducts())}
           className="bar_shop"
         >
           <span> Shop </span>
