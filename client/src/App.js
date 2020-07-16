@@ -8,6 +8,7 @@ import CrudProduct from "./components/CrudProduct/CrudProduct.js";
 import FormCreateUsuario from "./components/CrudUsuario/FormCreateUsuario.js";
 import Carrito from "./components/Carrito/Carrito.js";
 import FormLoginUsuario from "./components/CrudUsuario/FormLoginUsuario.js";
+import FormConfigUsuario from "./components/CrudUsuario/FormConfigUsuario.js";
 
 export default function App() {
   return (
@@ -36,6 +37,11 @@ export default function App() {
         exact
         path="/usuario/login/"
         component={() => <FormLoginUsuario />}
+      />
+      <Route
+        exact
+        path="/usuario/config/"
+        component={() => <FormConfigUsuario />}
       />
       <Route exact path="/usuario/cart/" component={() => <Carrito />} />
     </div>

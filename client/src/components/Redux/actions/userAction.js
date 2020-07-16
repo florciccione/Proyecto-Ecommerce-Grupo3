@@ -1,6 +1,7 @@
 import axios from "axios";
 export const SUCCESS_LOGIN = "SUCCESS_LOGIN";
 export const FAIL_LOGIN = "FAIL_LOGIN";
+export const LOGOUT_USER = "LOGOUT_USER";
 
 export function loginUser(data) {
   return (dispatch) => {
@@ -25,6 +26,12 @@ export function loginUser(data) {
     // alert("No se pudo crear la cuenta de usuario " + reason)
   };
 }
+
+export const logoutUser = () => {
+  return {
+    type: LOGOUT_USER,
+  };
+};
 
 export const sucessLogin = (data) => {
   return {
