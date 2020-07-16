@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import {Link} from "react-router-dom";
 
 // CSS
-import "./FormCreateUsuario.css";
+import "./FormConfigUsuario.css";
 //COMPONENTES
 import NavBar from "../NavBar/NavBar.js";
 
@@ -13,7 +14,7 @@ export default function FormConfigUsuario() {
   console.log(login.data.data.user);
   var dataUser = login.data.data.user;
   useEffect(() => getOrdenes(login, setOrdenes), []);
-  console.log(ordenes);
+  console.log(dataUser);
   function handleSubmit(e) {
     e.preventDefault();
     /* var name = document.querySelector("#name").value;
@@ -29,25 +30,12 @@ export default function FormConfigUsuario() {
       <NavBar />
       <div className="catalogo_bg"></div>
       <h3>Detalles de cuenta</h3>
-      <h5>Actividad reciente</h5>
-      <form className="usuario_form" onSubmit={handleSubmit}>
-        <div className="user_input_name">
-          {/* DATOS DEL USUARIO */}
-          <label>Datos</label>
-          <p>
-            <label>{dataUser.name}</label>
-          </p>
-          <p>
-            <label>{dataUser.email}</label>
-          </p>
-          <p>
-            <label>{dataUser.adress}</label>
-          </p>
-        </div>
-        <div className="form_input_submit">
-          <input type="submit" name="submit" value="Cambiar contraseña" />
-        </div>
-      </form>
+      <div className="btn_user">
+        <Link to={"/usuario/datos"} className="btn_1" dataUser={dataUser}>MIS DATOS</Link>
+        <Link to={"/usuario/new_password"} className="btn_2">CAMBIAR CONTRASEÑA</Link>
+        <Link to={""} className="btn_3">MIS PEDIDOS</Link>
+        <Link to={""} className="btn_4">MIS RESEÑAS</Link>
+      </div>
     </div>
   );
 }

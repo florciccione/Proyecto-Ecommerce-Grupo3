@@ -9,6 +9,8 @@ import FormCreateUsuario from "./components/CrudUsuario/FormCreateUsuario.js";
 import Carrito from "./components/Carrito/Carrito.js";
 import FormLoginUsuario from "./components/CrudUsuario/FormLoginUsuario.js";
 import FormConfigUsuario from "./components/CrudUsuario/FormConfigUsuario.js";
+import DatosUsuario from "./components/CrudUsuario/DatosUsuario.js";
+import CambiarContraseña from "./components/CrudUsuario/CambiarContraseña.js";
 
 export default function App() {
   return (
@@ -44,6 +46,9 @@ export default function App() {
         component={() => <FormConfigUsuario />}
       />
       <Route exact path="/usuario/cart/" component={() => <Carrito />} />
+      <Route exact path="/usuario/datos" component={() => <DatosUsuario />} />
+      <Route exact path="/usuario/new_password" component={() => <CambiarContraseña />} />
+      
     </div>
   );
 }
