@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../Redux/actions/userAction.js";
 
@@ -22,7 +22,9 @@ export default function FormCreateUsuario() {
     dispatch(loginUser(body));
     return <Link to={"/"}></Link>;
   }
-
+  if (login.data) {
+    return <Redirect to="/" />;
+  }
   return (
     <div className="container_add_user">
       <NavBar />
