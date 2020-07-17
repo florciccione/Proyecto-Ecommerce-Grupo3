@@ -65,7 +65,7 @@ export default function Product({ id }) {
   }
   //COMPRUEBA SI EL PRODUCTO TIENE REVIEWS
   function haveReview(productDetail){
-    console.log(productDetail);
+   // console.log(productDetail);
     if(productDetail.reviews){
       return  <ReviewList reviews={productDetail.reviews}/>;
     }
@@ -73,12 +73,17 @@ export default function Product({ id }) {
   //RECOLECTA LOS DATOS DEL PRODUCTO Y DEL COLOR ELEGIDO PARA ENVIAR AL CARRITO
   function colorSelected(selectedColor, productDetail) {
     if (productDetail && selectedColor) {
+      var idColor= productDetail.colors.find(color => color.name === selectedColor).id;
+      var stockXColorId= productDetail.colors.find(color => color.name === selectedColor).stockXColor.id;
+      console.log(stockXColorId);
       var product = {
         id: productDetail.id,
         name: productDetail.name,
         description: productDetail.description,
         price: productDetail.price,
+        stockXColorId: stockXColorId,
         selectedColor: selectedColor,
+        idColor: idColor,
       };
       dispatch(addToCart(product));
     } else {
@@ -104,7 +109,7 @@ export default function Product({ id }) {
           <div className="product_name">
             <h1>{productDetail.name}</h1>
           </div>
-          <div className="product_description">
+          <div className="product_descr">
             <p>{productDetail.description}</p>
           </div>
           <div className="product_price">

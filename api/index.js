@@ -105,10 +105,46 @@ const productos = [
     keywords: "collares,largos,cristales,negro,blanco,madera,bohemio,hippie",
     image: "c-india_bco2.jpg",
   }, //8
+  {
+    name: "Collar Toledo",
+    description:
+      "Collar doble de metal con piedra agata y borla de metal.",
+    price: "1250",
+    idCategory: "1",
+    keywords: "collares,cortos,agata,metal,borla",
+    image: "urlFoto",
+  }, //9
+  {
+    name: "Rosario de perlas",
+    description:
+      "Rosario chico de perlas con cruz y detalles de metal.",
+    price: "750",
+    idCategory: "4",
+    keywords: "rosarios,perlas,cruz,metal,cruces",
+    image: "urlFoto",
+  }, //10
+  {
+    name: "Aro Borla Cristal",
+    description:
+      "Aro borla de metal y cristal facetado.",
+    price: "720",
+    idCategory: "6",
+    keywords: "aro,metal,cristal,borla,cristales",
+    image: "urlFoto",
+  }, //11
+  {
+    name: "Pulsera Nepal",
+    description:
+      "Pulsera triple de cuero trenzado con cristales. Se adapta a distintas medidas.",
+    price: "1750",
+    idCategory: "5",
+    keywords: "pulseras,cuero,cristales,tai,pulsera,brazalete",
+    image: "urlFoto",
+  }, //12
 ];
 
 const stockColor = [
-  // 2 colores para un mismo producto
+  // PRODUCTO UNO ---- 2 colores para un mismo producto
   {
     cantidad: "3",
     image: "p-noruega-negro.jpg",
@@ -122,7 +158,7 @@ const stockColor = [
     productId: "1",
     colorId: "2",
     main: false,
-  }, //======================================================================================
+  }, //PRODUCTO DOS ==========================================================================
   {
     cantidad: "5",
     image: "cubos-gamuza.jpg",
@@ -137,7 +173,7 @@ const stockColor = [
     productId: "2",
     colorId: "4",
     main: false,
-  }, //======================================================================================
+  }, //PRODUCTO TRES ==========================================================================
   {
     cantidad: "8",
     image: "p-quebec-humo.jpg",
@@ -145,14 +181,13 @@ const stockColor = [
     colorId: "5",
     main: true,
   },
-
   {
     cantidad: "16",
     image: "p-quebec-azul.jpg",
     productId: "3",
     colorId: "6",
     main: false,
-  }, //======================================================================================
+  }, //PRODUCTO CUATRO =======================================================================
   {
     cantidad: "8",
     image: "p-medieval-ambar.jpg",
@@ -160,42 +195,104 @@ const stockColor = [
     colorId: "4",
     main: true,
   },
-
   {
     cantidad: "16",
     image: "p-medieval-humo.jpg",
     productId: "4",
     colorId: "5",
     main: false,
-  }, //======================================================================================
+  }, //PRODUCTO CINCO =========================================================================
   {
     cantidad: "3",
     image: "a-argolla-strass-negro.jpg",
     main: true,
     productId: "5",
     colorId: "1",
-  }, //======================================================================================
+  }, 
+  {
+    cantidad: "2",
+    image: "a-argolla-strass-ambar.jpg",
+    main: false,
+    productId: "5",
+    colorId: "4",
+  },  //PRODUCTO SEIS ==========================================================================
   {
     cantidad: "3",
     image: "ch-zz-niquel.jpg",
     main: true,
     productId: "6",
     colorId: "5",
-  }, //======================================================================================
+  }, 
+  {
+    cantidad: "1",
+    image: "ch-zz-perla.jpg",
+    main: false,
+    productId: "6",
+    colorId: "11",
+  },//PRODUCTO SIETE =========================================================================
+  {
+    cantidad: "1",
+    image: "c-rusia-negro.jpg",
+    main: true,
+    productId: "7",
+    colorId: "1",
+  }, 
   {
     cantidad: "2",
     image: "c-rusia-boreal.jpg",
-    main: true,
+    main: false,
     productId: "7",
-    colorId: "5",
-  }, //======================================================================================
+    colorId: "10",
+  },  //PRODUCTO OCHO ==========================================================================
   {
     cantidad: "2",
-    image: "c-india-bco.jpg",
+    image: "c-india-negro.jpg",
     main: true,
     productId: "8",
     colorId: "1",
   },
+  {
+    cantidad: "3",
+    image: "c-india-bco.jpg",
+    main: false,
+    productId: "8",
+    colorId: "12",
+  },//PRODUCTO NUEVE ==========================================================================
+  {
+    cantidad: "2",
+    image: "c-toledo.jpg",
+    main: true,
+    productId: "9",
+    colorId: "9",
+  },//PRODUCTO DIEZ ===========================================================================
+  {
+    cantidad: "4",
+    image: "r-perla-chico.jpg",
+    main: true,
+    productId: "10",
+    colorId: "11",
+  },//PRODUCTO ONCE ==========================================================================
+  {
+    cantidad: "2",
+    image: "a-borla-boreal.jpg",
+    main: true,
+    productId: "11",
+    colorId: "10",
+  },//PRODUCTO DOCE ==========================================================================
+  {
+    cantidad: "2",
+    image: "p-nepal-boreal.jpg",
+    main: false,
+    productId: "12",
+    colorId: "10",
+  },
+  {
+    cantidad: "1",
+    image: "p-nepal-negro.jpg",
+    main: true,
+    productId: "12",
+    colorId: "1",
+  }//======================================================================================
 ];
 
 const colores = [
@@ -205,8 +302,13 @@ const colores = [
   { name: "Ambar", hexaColor: "#f5b277" },
   { name: "Humo", hexaColor: "#b4b0b0" },
   { name: "Azul", hexaColor: "#2329ff" },
+  { name: "Uva", hexaColor: "#25173a" },          //ID  7
+  { name: "Peltre", hexaColor: "#061126" },
+  { name: "Niquel", hexaColor: "#c9c9c9" },
+  { name: "Transparente", hexaColor: "#efefef" }, //ID  10
+  { name: "Perla", hexaColor: "#f6edea" },
+  { name: "Blanco", hexaColor: "#fffff" },
 ];
-
 const categorias = [
   { name: "Collares cortos" }, //1
   { name: "Collares largos" }, //2
@@ -216,39 +318,55 @@ const categorias = [
   { name: "Aros" },
 ];
 const ordenes = [
-  { state: "creado", fecha: "10/06/2020", userId: "2" },
+  { state: "completo", fecha: "10/06/2020", userId: "2" },
   { state: "completo", fecha: "24/05/2020", userId: "1" },
+  { state: "completo", fecha: "20/04/2020", userId: "3" },
+  { state: "cancelado", fecha: "12/03/2020", userId: "4" },
+  { state: "completo", fecha: "24/05/2020", userId: "1" },
+  { state: "creado", fecha: "14/07/2020", userId: "4" },
+  { state: "completo", fecha: "04/06/2020", userId: "3" },
 ];
 const lineaOrden = [
-  { cantidad: "2", price: "700", productId: "1", ordenId: "1" },
-  { cantidad: "2", price: "400", productId: "2", ordenId: "1" },
-  { cantidad: "1", price: "900", productId: "3", ordenId: "2" },
-  { cantidad: "1", price: "500", productId: "5", ordenId: "2" },
+  { cantidad: "1", price: "1050", stockXColorId: "1", ordenId: "1" },
+  { cantidad: "2", price: "1150", stockXColorId: "5", ordenId: "1" },
+  { cantidad: "1", price: "850", stockXColorId: "3", ordenId: "2" },
+  { cantidad: "1", price: "650", stockXColorId: "4", ordenId: "2" },
+
 ];
 const usuarios = [
   {
     name: "Gisella Alaniz",
     email: "gisella@gmail.com",
     password: "cualquiera",
-    adress: "calle1",
+    adress: "calle 1",
+    role: "admin"
   },
   {
     name: "Leandro Arévalo",
     email: "leandro@gmail.com",
     password: "cualquiera",
-    adress: "calle2",
+    adress: "calle 2",
+    role: "admin"
   },
   {
     name: "Florencia Ciccione",
     email: "florencia@gmail.com",
     password: "cualquiera",
-    adress: "calle3",
+    adress: "calle 3",
+    role: "admin"
   },
   {
     name: "Juan Galarce",
     email: "juan@gmail.com",
     password: "cualquiera",
-    adress: "calle4",
+    adress: "calle 4",
+    role: "admin"
+  },
+  {
+    name: "Juana Martin",
+    email: "juana@gmail.com",
+    password: "cualquiera",
+    adress: "calle 5",
   },
 ];
 const reviews = [

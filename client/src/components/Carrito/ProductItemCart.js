@@ -22,6 +22,7 @@ export default function ProductItemCart({ product }) {
         {product.name}
       </Link>
       <div className="item_cart_description">{product.description}</div>
+      <div type="text" className="item_color"> {product.selectedColor} </div>
       <div className="item_cart_price" name="precio">
         {"$ " + product.price}
       </div>
@@ -31,11 +32,9 @@ export default function ProductItemCart({ product }) {
         name="cantidad"
         onChange={(e) => subtotalItem(e.target.value)}
         className="item_cant"
-        value={product.count}
-      ></input>
-      <div type="text" className="item_subtotal">
-        {/* {"$ " + subtotal} */}
-      </div>
+        value={product.count}>
+        </input>
+      
       <div className="item_cart_btns">
         <div className="btn_eliminar">
           <i

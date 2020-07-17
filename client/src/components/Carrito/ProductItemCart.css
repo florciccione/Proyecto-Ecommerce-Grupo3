@@ -13,20 +13,19 @@
     color: black 
 }
 .item_cart_description{
-    width: 40%;
+    width: 46%;
+}
+.item_color{
+    width: 6%;
 }
 .item_cart_price{
     width: 12%;
     text-align: center;
- }
+}
 .item_cant{
     width: 4%;
     border: .7px solid #9a9a9a;
     padding: 8px;
-}
-.item_subtotal{
-    width: 12%;
-    text-align: center;
 }
 .item_cart_btns{
     width: 5%;

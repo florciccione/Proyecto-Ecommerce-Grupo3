@@ -104,27 +104,7 @@ express.put("/:id/passwordReset", function (req, res) {
   });
 });
 
-// cambiar contraseña
-express.put("/:id/passwordReset", function (req, res) {
-  const { password } = req.body;
-  const id = req.params.id;
-  var hash = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-  User.update(
-    {
-      password: hash,
-    },
-    {
-      where: {
-        id: id,
-      },
-      returning: true,
-    }
-  ).then(function (respuesta) {
-    const user = respuesta[1][0];
-    res.status(200).json({ message: "Se cambio con exito", data: user });
-  });
-});
-
+//borran en cascada
 express.delete("/delete/:id", function (req, res) {
   const id = req.params.id;
   User.destroy({
@@ -217,12 +197,6 @@ express.post("/panel-admin/producto", isValidToken, (req, res) => {
 
 express.post("/me", isValidToken, (req, res) => {
   res.json({ message: "Token válido" });
-});
-
-//RUTA DE CHECKOUT (RUTA PROTEGIDA SOLO PARA USUARIOS LOGUEADOS)
-express.post("/checkout", isValidToken, (req, res) => {
-  //en el body del request deben enviarnos el token y el id del usuario
-  res.json({ message: "tienes acceso al checkout" });
 });
 
 //MIDDLEWARE PARA VERIFICAR SI EL USUARIO ESTA LOGUEADO CON UN TOKEN VALIDO
