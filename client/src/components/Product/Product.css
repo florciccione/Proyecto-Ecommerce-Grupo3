@@ -27,28 +27,31 @@
 }
 
 .product_name h1{
-    padding-top: 20px;
+    padding: 20px 0;
     font-size: 24px;
     font-family: 'Nanum Regular';
-    font-weight: 350;
+    font-weight: 600;
 }
-
-.product_description p{
+.product_descr{
+    margin: 20px 0;
+}
+.product_descr p{
     font-family: 'Graphik';
     font-size: 18px;
     color: #828282;
-    margin: 20px 0;
 }
 
 .product_price span{
-    font-size: 16px;
+    font-family: 'Graphik';
+    font-size: 18px;
     padding-bottom: 10px;
 }
 .product_colors {
     padding: 20px 0;
 }
 .product_colors_name{ 
-    font-size: 16px;
+    font-family: 'Graphik';
+    font-size: 18px;
 }
 
 .product_colors_img{

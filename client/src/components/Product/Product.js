@@ -104,7 +104,7 @@ export default function Product({ id }) {
           <div className="product_name">
             <h1>{productDetail.name}</h1>
           </div>
-          <div className="product_description">
+          <div className="product_descr">
             <p>{productDetail.description}</p>
           </div>
           <div className="product_price">

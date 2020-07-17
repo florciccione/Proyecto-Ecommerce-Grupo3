@@ -18,11 +18,11 @@ export default function CambiarContraseña() {
           <h3>Cambiar tu contraseña</h3>
           <div className="new_password">
                 <label>Escribe tu contraseña actual: </label>
-                <input />
+                <input type="password" />
                 <label>Reescribe tu contraseña: </label>
-                <input />
+                <input type="password" />
                 <label>Nueva contraseña: </label>
-                <input />
+                <input type="password"/>
           </div>
           <div className="btn_data_user">
             <div className="btn_enviar_user">CAMBIAR CONTRASEÑA</div>  

@@ -22,7 +22,7 @@ export default function DatosUsuario() {
                 <label>Domicilio: </label>
                 <input placeholder={userData.adress}/>
                 <label>email: </label>
-                <input placeholder={userData.email}/>
+                <input value={userData.email}/>
           </div>
           <div className="btn_data_user">
             <div className="btn_enviar_user">ENVIAR</div>  

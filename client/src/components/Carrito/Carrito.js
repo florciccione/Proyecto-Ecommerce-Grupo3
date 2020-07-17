@@ -95,9 +95,9 @@ export default function Carrito() {
           <div className="cart_head">
             <h5 className="head_1">PRODUCTO</h5>
             <h5 className="head_2">DESCRIPCION</h5>
-            <h5 className="head_3">PRECIO</h5>
-            <h5 className="head_4">CANTIDAD</h5>
-            <h5 className="head_5">ACCIONES</h5>
+            <h5 className="head_3">COLOR</h5>
+            <h5 className="head_4">PRECIO</h5>
+            <h5 className="head_5">CANTIDAD</h5>
           </div>
           <div className="productos">{showProducts(arrayProductosCart)}</div>
         </div>

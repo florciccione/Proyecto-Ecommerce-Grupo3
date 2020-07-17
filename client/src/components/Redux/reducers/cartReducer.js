@@ -11,9 +11,7 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case ADD_TO_CART:
       const product = action.payload;
-
       const cartItems = [...state];
-
       let productAlreadyInCart = false;
       cartItems.forEach((cp) => {
         if (
@@ -34,7 +32,7 @@ export default function (state = initialState, action) {
 
     case CLEAR_PRODUCT:
         
-      return [...state.filter((item) => item.id !== action.payload.id)];
+      return [...state.filter((item) =>  item.selectedColor !== action.payload.selectedColor || item.id !== action.payload.id)]; ;
 
     case INCREASE_QUANTITY:
       // const productSelected = action.payload;
@@ -42,7 +40,7 @@ export default function (state = initialState, action) {
         (item) => item.id === action.payload.product.id
       );
       itemSelected.count = action.payload.cant;
-      return [...state];
+      return [...state]; 
 
     default:
       return state;
