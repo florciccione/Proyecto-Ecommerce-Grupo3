@@ -4,6 +4,7 @@
     display: flex;
     align-items: center;
     padding-bottom: 20px;
+    text-align: left;
 }
 .item_cart_name{
     width: 15%;
@@ -14,18 +15,20 @@
 }
 .item_cart_description{
     width: 46%;
+    padding-right: 10px;
 }
 .item_color{
-    width: 6%;
+    width: 7%;
 }
 .item_cart_price{
     width: 12%;
     text-align: center;
 }
 .item_cant{
-    width: 4%;
+    width: 3%;
     border: .7px solid #9a9a9a;
     padding: 8px;
+    margin-right: 45px;
 }
 .item_cart_btns{
     width: 5%;
