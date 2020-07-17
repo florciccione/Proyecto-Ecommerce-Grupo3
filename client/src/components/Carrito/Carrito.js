@@ -41,7 +41,6 @@ export default function Carrito() {
   function generateOrden() {
     var f = new Date();
     var fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
-    
     items.forEach(item => {
         const body = { token:token, userId, fecha, cantidad:item.count, price: item.price * item.count, stockXColorId: item.stockXColorId  };
         axios({

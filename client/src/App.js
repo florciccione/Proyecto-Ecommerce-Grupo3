@@ -12,6 +12,9 @@ import FormConfigUsuario from "./components/CrudUsuario/FormConfigUsuario.js";
 import DatosUsuario from "./components/CrudUsuario/DatosUsuario.js";
 import CambiarContraseña from "./components/CrudUsuario/CambiarContraseña.js";
 import ShipAdress from "./components/CrudUsuario/ShipAdress.js";
+import MyOrders from "./components/CrudUsuario/MyOrders.js";
+import MyReviews from "./components/CrudUsuario/MyReviews.js";
+
 export default function App() {
   return (
     <div className="App">
@@ -49,6 +52,8 @@ export default function App() {
       <Route exact path="/usuario/datos" component={() => <DatosUsuario />} />
       <Route exact path="/usuario/new_password" component={() => <CambiarContraseña />} />
       <Route exact path="/usuario/ship_adress" component={() => <ShipAdress />} />
+      <Route exact path="/usuario/orders" component={() => <MyOrders />} />
+      <Route exact path="/usuario/reviews" component={() => <MyReviews />} />
       
      
 
