@@ -33,7 +33,7 @@ export default function FormConfigUsuario() {
       <div className="btn_user">
         <Link to={"/usuario/datos"} className="btn_1" dataUser={dataUser}>MIS DATOS</Link>
         <Link to={"/usuario/new_password"} className="btn_2">CAMBIAR CONTRASEÑA</Link>
-        <Link to={""} className="btn_3">AGREGAR DIRECCION DE ENVIO</Link>
+        <Link to={"/usuario/ship_adress"} className="btn_3">AGREGAR DIRECCION DE ENVIO</Link>
         <Link to={""} className="btn_4">MIS PEDIDOS</Link>
         <Link to={""} className="btn_5">MIS RESEÑAS</Link>
       </div>

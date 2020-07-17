@@ -5,7 +5,7 @@
     margin: auto;
     flex-direction: column;
 }
-.btn_1, .btn_2, .btn_3, .btn_4{
+.btn_1, .btn_2, .btn_3, .btn_4, .btn_5{
     color: white;
     background-color: black;
     border: none;
@@ -30,6 +30,10 @@
 .btn_4:hover{
     background-color: #9ba0a5;
 }
+.btn_5:hover{
+    background-color: #9ba0a5;
+}
+
 
 .btn_1:link, .btn_1:visited, .btn_1:active {
     text-decoration:none;   
@@ -41,5 +45,8 @@
     text-decoration:none;   
 }
 .btn_4:active, .btn_4:visited, .btn_4:link  {
+    text-decoration: none;
+}
+.btn_5:active, .btn_5:visited, .btn_5:link  {
     text-decoration: none;
 }
