@@ -1,22 +1,15 @@
-const { Orden, User, Product } = require("../models");
+const { Orden, User, Product, stockXColor, lineaDeOrden } = require("../models");
 const { Op } = require("sequelize");
 const express = require("express").Router();
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 // Trae las ordenes de un usuario idUsuario
 express.get("/:userId", function (req, res) {
   Orden.findAll({
     where: {
       userId: req.params.userId,
-    },
-    include: [
-      {
-        model: Product,
-      },
-      {
-        model: User,
-        as: "user",
-      },
-    ],
+    }
   })
     .then(function (orden) {
       res.status(200).json(orden);
@@ -38,9 +31,8 @@ express.get("/", function (req, res) {
         attributes: ["name"],
       },
       {
-        model: Product,
+        model: stockXColor,
       },
-
     ],
   })
     .then(function (ordenes) {
@@ -59,32 +51,52 @@ express.get("/", function (req, res) {
 //     },
 //TODO: Controlar que no existe una orden ya creada para un usuario usar método findOrCreate
 //TODO: la orden debe relacionarse mediante la linea de orden hacia los productos y pertenecer a un unico usuario (idUsuario)
-express.post("/add", function (req, res) {
-  const { userId, fecha } = req.body;
-  /* .then((user) => {
-      var ordenes = JSON.stringify(user.ordenes);
-      var ordenActivaExistente = JSON.parse(ordenes).find(
-        (orden) => orden.state === "creado"
-      );
-      console.log(ordenActivaExistente); */
 
+
+//MIDDLEWARE PARA VERIFICAR SI EL USUARIO ESTA LOGUEADO CON UN TOKEN VALIDO
+function isValidToken(req, res, next) {
+  var token = req.body.token;
+  if (!token) {
+    res.status(401).send({
+      error: "Es necesario el token de autenticación",
+    });
+    return;
+  }
+  token = token.replace("Bearer ", "");
+  jwt.verify(token, "Roberta2020", function (err, user) {
+    if (err) {
+      res.status(401).send({
+        error: "Token inválido",
+      });
+    } else {
+      res.status(200);
+      next();
+    }
+  });
+}
+express.post("/add", isValidToken, function (req, res) {
+  const { userId, fecha, cantidad, price, stockXColorId } = req.body;
   Orden.create(
     {
-      state: "creado",
+      state: "completo",
       fecha: fecha,
       userId: userId,
-      products: req.body.products,
     },
-    {
-      include: Product,
-    }
   )
     .then(function (orden) {
+      lineaDeOrden.create(
+        {
+          cantidad: cantidad,
+          price: price,
+          ordenId: orden.id,
+          stockXColorId: stockXColorId
+        }
+      )
       res.status(200).json(orden);
     })
     .catch(function (error) {
       res.status(404).json({
-        message: "Ocurrió un error, no se pudo agregar usuario",
+        message: "Ocurrió un error, no se pudo crear la orden",
         data: error,
       });
     });

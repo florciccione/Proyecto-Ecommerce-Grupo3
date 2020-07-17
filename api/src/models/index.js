@@ -33,7 +33,6 @@ const {
 
 // Add model relationships here
 // product has many category
-
 Product.belongsToMany(Colors, { through: stockXColor, onUpdate: "cascade" });
 Colors.belongsToMany(Product, { through: stockXColor });
 
@@ -43,15 +42,14 @@ Category.hasMany(Product, {
 });
 Product.belongsTo(Category, { as: "categoria", foreignKey: "idCategory" });
 
-
 // Relación de reviews
 User.hasMany(Review, { as: "reviews", foreignKey: "idUsuario" }); 
 Review.belongsTo(User, { as: "usuario", foreignKey: "idUsuario", onDelete: "cascade" }); 
 Product.hasMany(Review, { as: "reviews", foreignKey: "idProduct" }); 
 Review.belongsTo(Product, { as: "producto", foreignKey: "idProduct", onDelete: "cascade" }); 
 
-Product.belongsToMany(Orden, { through: lineaDeOrden });
-Orden.belongsToMany(Product, { through: lineaDeOrden });
+stockXColor.belongsToMany(Orden, { through: lineaDeOrden });
+Orden.belongsToMany(stockXColor, { through: lineaDeOrden });
 
 User.hasMany(Orden, { as: "ordenes", foreignKey: "userId" });
 Orden.belongsTo(User, {

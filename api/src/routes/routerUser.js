@@ -199,12 +199,6 @@ express.post("/me", isValidToken, (req, res) => {
   res.json({ message: "Token válido" });
 });
 
-//RUTA DE CHECKOUT (RUTA PROTEGIDA SOLO PARA USUARIOS LOGUEADOS)
-express.post("/checkout", isValidToken, (req, res) => {
-  //en el body del request deben enviarnos el token y el id del usuario
-  res.json({ message: "tienes acceso al checkout" });
-});
-
 //MIDDLEWARE PARA VERIFICAR SI EL USUARIO ESTA LOGUEADO CON UN TOKEN VALIDO
 function isValidToken(req, res, next) {
   var token = req.body.token;

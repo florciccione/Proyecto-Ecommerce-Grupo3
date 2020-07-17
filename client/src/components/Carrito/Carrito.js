@@ -12,54 +12,12 @@ export default function Carrito() {
   const dispatch = useDispatch();
 
   const items = useSelector((state) => state.cart);
+  const userId = useSelector((state) => state.login.login.data.data.user.id);
+  const token = useSelector((state) => state.login.login.data.data.token);
+  
   var subTotal = 0;
   let arrayProductosCart = items;
-  // console.log(items);
-
-  // useEffect(() => {
-  //   subTotalItems(arrayProductosCart);
-  // }, []);
-
-  //   var arrayProductosCart = [
-  //     {
-  //       id: 1,
-  //       name: "Pulsera Noruega",
-  //       description:
-  //         "Pulsera en gamuza con cristal de roca facetado, agatas y detalles de metal.",
-  //       price: 1050,
-  //       keywords: "pulseras,gamuza,agatas,metal,piedras,cristales",
-  //       idCategory: 5,
-  //       image: "urlFotoCollar",
-  //       categoria: { name: "Pulseras" },
-  //       colors: [
-  //         { id: 1, name: "Negro", hexaColor: "#000000" },
-  //         { id: 2, name: "Rojo", hexaColor: "#ff3636" },
-  //       ],
-  //     },
-  //     {
-  //       id: 2,
-  //       name: "Pulsera Cubos",
-  //       description:
-  //         "Pulsera en gamuza con cristales cúbicos y detalles de metal.",
-  //       price: 1150,
-  //       keywords: "pulseras,gamuza,,metal,dije,cristales",
-  //       idCategory: 5,
-  //       image: "urlFotoCollar",
-  //       categoria: { name: "Pulseras" },
-  //       colors: [
-  //         { id: 1, name: "Negro", hexaColor: "#000000" },
-  //         { id: 2, name: "Rojo", hexaColor: "#ff3636" },
-  //       ],
-  //     },
-  //   ];
-
-  //   axios({
-  //     method: "GET",
-  //     url: "http://localhost:3001/orden/2",
-  //   }).then(function (res) {
-  //     console.log(res.data);
-  //   });
-
+ 
   function showProducts(arrayProductosCart) {
     // console.log(arrayProductosCart)
     if (arrayProductosCart !== undefined) {
@@ -80,9 +38,28 @@ export default function Carrito() {
     }
   }
 
-  function generateOrden(orden) {
-    const ordenActual = items;
-    console.log(ordenActual);
+  function generateOrden() {
+    var f = new Date();
+    var fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
+    
+    items.forEach(item => {
+        const body = { token:token, userId, fecha, cantidad:item.count, price: item.price * item.count, stockXColorId: item.stockXColorId  };
+        axios({
+            method: "POST",
+            url: `http://localhost:3001/orden/add`,
+            data: body,
+            })
+            .then(function (res) {
+              console.log(res.data);
+              alert("Se concreto la compra")
+            })
+            .catch((reason) =>
+              console.log("No se pudo crear la orden " + reason)
+            ); 
+    });
+    //ACA HAY QUE VACIAR EL CARRITO!!!!
+    //ENVIAR MAIL CONFIRMANDO LA COMPRA
+    //ENVIAR MAIL DE ORDEN DESPACHADA
   }
 
   return (
@@ -104,7 +81,7 @@ export default function Carrito() {
 
         <div className="finish">
           <div className="total">TOTAL: $ {subTotal}</div>
-          <button className="comprar" onClick={generateOrden}>
+          <button className="comprar" onClick={e => generateOrden()}>
             FINALIZAR COMPRA
           </button>
         </div>
