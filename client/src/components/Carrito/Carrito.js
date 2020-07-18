@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 
 // CSS
@@ -10,16 +11,43 @@ import NavBar from "../NavBar/NavBar.js";
 
 export default function Carrito() {
   const dispatch = useDispatch();
-
   const items = useSelector((state) => state.cart);
-  const userId = useSelector((state) => state.login.login.data.data.user.id);
-  const token = useSelector((state) => state.login.login.data.data.token);
+  const login = useSelector((state) => state.login.login);
+  const [isLogin, setLogin] = useState();
+  const [checkoutIsLogin, setcheckoutIsLogin] = useState(false);
+  const [userLogin, setUserLogin] = useState({});
+  useEffect(() => {
+    if (!isLogin) {
+      verifyLogin(login);
+    }
+  }, []);
   
   var subTotal = 0;
   let arrayProductosCart = items;
- 
+  
+  //VERIFICA EL LOGIN
+  function verifyLogin(login) {
+    if (login.data !== undefined) {
+       let body = {
+        token: login.data.data.token,
+      };
+      axios({
+        method: "POST",
+        url: "http://localhost:3001/user/me",
+        data: body,
+      })
+        .then(function () {
+          setLogin(true);
+          setUserLogin({userId:login.data.data.user.id, token:login.data.data.token});
+        })
+        .catch(function (reason) {
+         // alert("El usuario no esta logueado");
+          console.log(reason);
+        });
+    }
+  }
+  //MUESTRA LOS PRODUCTOS AGREGADOS AL CARRITO O MUESTRA "CARRITO VACIO"
   function showProducts(arrayProductosCart) {
-    
     if (arrayProductosCart.length > 0) {
       subTotalItems(arrayProductosCart);
       return arrayProductosCart.map((product) => (
@@ -29,7 +57,7 @@ export default function Carrito() {
       return <div className="empty_cart">TU CARRITO ESTA VACÍO.</div>
     }
   }
-
+  //CALCULA EL MONTO TOTAL DE LA COMPRA
   function subTotalItems(arrayProductosCart, product) {
     if (arrayProductosCart !== undefined) {
       arrayProductosCart.forEach((element) => {
@@ -39,33 +67,68 @@ export default function Carrito() {
       subTotal = product.price;
     }
   }
-
+  //CHECKOUT -> CREA LA ORDEN -> VACIA EL CARRITO -> ENVIA MAIL DE CONFIRMACION
   function generateOrder() {
-    var f = new Date();
-    var fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
-
-    //CORREGIR --> EL PRIMER AXIOS ES A ORDEN Y DENTRO DEL FOREACH UN AXIOS A LINEA DE ORDEN POR CADA PRODUCTO
-
-    items.forEach(item => {
-        const body = { token:token, userId, fecha, cantidad:item.count, price: item.price * item.count, stockXColorId: item.stockXColorId  };
-        axios({
-            method: "POST",
-            url: `http://localhost:3001/orden/add`,
-            data: body,
-            })
-            .then(function (res) {
-              console.log(res.data);
-              alert("Se concreto la compra")
-            })
-            .catch((reason) =>
-              console.log("No se pudo crear la orden " + reason)
-            ); 
-    });
-    //ACA HAY QUE VACIAR EL CARRITO!!!!
-    //ENVIAR MAIL CONFIRMANDO LA COMPRA
-    //ENVIAR MAIL DE ORDEN DESPACHADA
+    if (isLogin) {
+      var f = new Date();
+      var fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
+      const body = { fecha, userId:userLogin.userId, token:userLogin.token};
+      axios({
+              method: "POST",
+              url: `http://localhost:3001/orden/add`,
+              data: body,
+              })
+              .then(function (res) {
+                items.forEach(item => {
+                const bodyLinea = { cantidad:item.count, price:item.price * item.count, ordenId:res.data.id, stockXColorId: items.stockXColorId};
+                axios({
+                  method: "POST",
+                  url: `http://localhost:3001/lineaDeOrden/add`, //FALTA CREAR ESTA RUTA!!!!!!!!!
+                  data: bodyLinea,
+                  })
+                  .then(function (res) {
+                    res.status(200).json(res);
+                  })
+                  .catch((reason) =>
+                    console.log("No se pudo crear la orden " + reason)
+                  );
+                })
+              })
+              .catch((reason) =>
+                console.log("No se pudo crear la orden " + reason)
+              )
+    } else {
+      setcheckoutIsLogin(true);
+    }
   }
+                
+/*
+      items.forEach(item => {
+          const body = { token:userLogin.token, userId:userLogin.userId, fecha, cantidad:item.count, price: item.price * item.count, stockXColorId: item.stockXColorId  };
+          axios({
+              method: "POST",
+              url: `http://localhost:3001/orden/add`,
+              data: body,
+              })
+              .then(function (res) {
+                console.log(res.data);
+                alert("Se concreto la compra")
+              })
+              .catch((reason) =>
+                console.log("No se pudo crear la orden " + reason)
+              ); 
+      });
+      */
+      //ACA HAY QUE VACIAR EL CARRITO!!!!
+      //ENVIAR MAIL CONFIRMANDO LA COMPRA
+      //ENVIAR MAIL DE ORDEN DESPACHADA
 
+
+      
+  //SI EL USUARIO HACE EL CHECKOUT SIN ESTAR LOGUEADO LO REDIRECCIONA A LA RUTA DE LOGIN
+  if (checkoutIsLogin){
+    return <Redirect to="/usuario/login/"/>;
+  }
   return (
     <div className="container_add_user">
       <NavBar />

@@ -64,7 +64,6 @@ function NavBar() {
       return (
         <div className="user_bar">
           <Link to="/usuario/login" className="login">
-            {" "}
             <span> Login </span>
           </Link>
           <Link to="/usuario/registrarse" className="register">
