@@ -19,12 +19,14 @@ export default function Carrito() {
   let arrayProductosCart = items;
  
   function showProducts(arrayProductosCart) {
-    // console.log(arrayProductosCart)
-    if (arrayProductosCart !== undefined) {
+    
+    if (arrayProductosCart.length > 0) {
       subTotalItems(arrayProductosCart);
       return arrayProductosCart.map((product) => (
         <ProductItemCart product={product} subTotal={subTotal} />
       ));
+    } else {
+      return <div className="empty_cart">TU CARRITO ESTA VACÍO.</div>
     }
   }
 
@@ -38,10 +40,12 @@ export default function Carrito() {
     }
   }
 
-  function generateOrden() {
+  function generateOrder() {
     var f = new Date();
     var fecha = f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear();
-    
+
+    //CORREGIR --> EL PRIMER AXIOS ES A ORDEN Y DENTRO DEL FOREACH UN AXIOS A LINEA DE ORDEN POR CADA PRODUCTO
+
     items.forEach(item => {
         const body = { token:token, userId, fecha, cantidad:item.count, price: item.price * item.count, stockXColorId: item.stockXColorId  };
         axios({
@@ -68,23 +72,25 @@ export default function Carrito() {
       <div className="catalogo_bg"></div>
       <h3>Carrito de compras</h3>
       <div className="container_cart">
+        
         <div className="products">
           <div className="cart_head">
-            <h5 className="head_1">PRODUCTO</h5>
-            <h5 className="head_2">DESCRIPCION</h5>
-            <h5 className="head_3">COLOR</h5>
-            <h5 className="head_4">PRECIO</h5>
-            <h5 className="head_5">CANTIDAD</h5>
+              <h5 className="head_1">PRODUCTO</h5>
+              <h5 className="head_2">DESCRIPCION</h5>
+              <h5 className="head_3">COLOR</h5>
+              <h5 className="head_4">PRECIO</h5>
+              <h5 className="head_5">CANTIDAD</h5>
           </div>
           <div className="productos">{showProducts(arrayProductosCart)}</div>
         </div>
 
         <div className="finish">
-          <div className="total">TOTAL: $ {subTotal}</div>
-          <button className="comprar" onClick={e => generateOrden()}>
+          <div className="total">TOTAL: {" $  " + subTotal}</div>
+          <button className="comprar" onClick={e => generateOrder()}>
             FINALIZAR COMPRA
           </button>
         </div>
+
       </div>
     </div>
   );

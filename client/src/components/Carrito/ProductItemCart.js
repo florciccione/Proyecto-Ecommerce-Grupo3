@@ -11,7 +11,6 @@ export default function ProductItemCart({ product }) {
   var [subtotal, setSubtotal] = useState(0);
 
   function subtotalItem(cant) {
-    // console.log(cant)
     dispatch(increaseQuantity({ cant, product }));
     setSubtotal(product.count * product.price);
   }

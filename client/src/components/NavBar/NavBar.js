@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../Redux/actions/productsAction.js";
 import { logoutUser } from "../Redux/actions/userAction.js";
+
+import axios from "axios";
+
 //CSS
 import "./NavBar.css";
-import axios from "axios";
 
 //BARRA DE NAVEGACION DEL SITIO
 function NavBar() {
@@ -17,11 +19,9 @@ function NavBar() {
     if (!isLogin) {
       verifyLogin(login);
     }
-    console.log("esto se repite");
   }, []);
 
   function userLogout() {
-    console.log("esto se ejecuta");
     dispatch(logoutUser());
     setLogin(false);
   }
@@ -49,7 +49,6 @@ function NavBar() {
     }
   }
   function algo() {
-    console.log(isLogin);
     if (isLogin) {
       return (
         <div className="user_bar">
