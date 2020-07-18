@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addToCart } from "../Redux/actions/cartAction.js";
-
+import axios from "axios";
 // CSS
 import "./Product.css";
 //COMPONENTES
@@ -10,16 +10,46 @@ import ReviewList from './ReviewList.js';
 import StarRating from "./StarRating.js";
 
 export default function Product({ id }) {
-  var [selectedColor, setSelectedColor] = useState("");
+  var [selectedColor, setSelectedColor] = useState(""); 
+  const [isLogin, setLogin] = useState();
 
   const arrayProductos = useSelector((state) => state.products.products);
   const items = useSelector((state) => state.cart);
+  const login = useSelector((state) => state.login.login);
 
   const productDetail = arrayProductos.find(
     (product) => parseInt(product.id) == id
   );
   const dispatch = useDispatch();
+  
+  useEffect(() => {
+    if (!isLogin) {
+      verifyLogin(login);
+    }
+  }, []);
 
+   //VERIFICA SI HAY UN USUARIO LOGUEADO Y CAMBIA EL ESTADO DE isLogin a TRUE
+  function verifyLogin(login) {
+    if (login.data === undefined) {
+      // setLogin(false);
+    } else {
+      var body = {
+        token: login.data.data.token,
+      };
+      axios({
+        method: "POST",
+        url: "http://localhost:3001/user/me",
+        data: body,
+      })
+        .then(function () {
+          setLogin(true);
+        })
+        .catch(function (reason) {
+          alert("El usuario no esta logueado");
+          console.log(reason);
+        });
+    };
+  }
   //RETORNA LA IMAGEN DE PORTADA DEL PRODUCTO
   function showImg(colors) {
     return colors.find((color) => color.stockXColor.main).stockXColor.image;
@@ -63,10 +93,9 @@ export default function Product({ id }) {
       img.setAttribute("src", imageUrl);
     }
   }
-  //COMPRUEBA SI EL PRODUCTO TIENE REVIEWS
+  //COMPRUEBA SI EL PRODUCTO TIENE REVIEWS QUE MOSTRAR
   function haveReview(productDetail){
-   // console.log(productDetail);
-    if(productDetail.reviews){
+    if(productDetail.reviews.length > 0){
       return  <ReviewList reviews={productDetail.reviews}/>;
     }
   }
@@ -89,6 +118,12 @@ export default function Product({ id }) {
     } else {
       alert("Debe seleccionar un color");
     }
+  }
+  //SI HAY UN USUARIO LOGUEADO MUESTRA EL COMPONENTE PARA DEJAR UNA REVIEW
+  function isLoginUser(){
+      if (isLogin) {
+        return <StarRating id={id}/>
+      }
   }
 
   return (
@@ -133,10 +168,7 @@ export default function Product({ id }) {
           </div>
         </div>
       </div>
-      <StarRating id={id}/>
-      <div className="container_reviews_product">
-          <h2>Reviews</h2>
-      </div>
+      {isLoginUser()}
       {haveReview(productDetail)}
     </div>
   );

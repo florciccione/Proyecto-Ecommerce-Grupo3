@@ -19,12 +19,14 @@ export default function Carrito() {
   let arrayProductosCart = items;
  
   function showProducts(arrayProductosCart) {
-    // console.log(arrayProductosCart)
-    if (arrayProductosCart !== undefined) {
+    
+    if (arrayProductosCart.length > 0) {
       subTotalItems(arrayProductosCart);
       return arrayProductosCart.map((product) => (
         <ProductItemCart product={product} subTotal={subTotal} />
       ));
+    } else {
+      return <div className="empty_cart">TU CARRITO ESTA VACÍO.</div>
     }
   }
 

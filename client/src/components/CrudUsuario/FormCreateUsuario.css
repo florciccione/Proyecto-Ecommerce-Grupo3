@@ -22,14 +22,21 @@
     width: 100%;
 }
 .form_input_submit input{
-    width: 250px;
+    width: 20%;
     color: white;
-    background-color: #2e2e2e;
+    background-color: black;
     border: none;
+    text-align: center;
     cursor: pointer;
+    margin-left: 30px;
+    padding: 12px;
+    font-size: 12px;
+    font-family: 'Graphik';
+    font-weight: 450;
+    margin: 10px 0;
 }
 .form_input_submit input:hover{
-    background-color: rgb(87, 87, 87);
+    background-color: #9ba0a5;
 }
 .container_add_user h3{
     font-size: 40px;

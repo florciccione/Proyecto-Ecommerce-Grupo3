@@ -35,7 +35,13 @@
     flex-direction: column;
     margin-bottom: 35px;
 }
-
+.empty_cart{
+    font-family: 'Graphik';
+    margin: auto;
+    text-align: center;
+    color: #919191;
+    padding: 40px 0;
+}
 .finish{
     width: 400px;
     font-family: 'Graphik';

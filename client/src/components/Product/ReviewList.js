@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ReviewItem from './ReviewItem.js';
-import StarRating from './StarRating';
 
 // CSS
 import "./ReviewList.css";
@@ -12,7 +11,9 @@ function showReviewItems(reviews){
 }
    return (
     <div className="review_list">
-      {/*<StarRating id={id}/>*/}
+        <div className="container_reviews_product">
+            <h2>Reviews</h2>
+        </div>
        {showReviewItems(reviews)}
    </div>
 )

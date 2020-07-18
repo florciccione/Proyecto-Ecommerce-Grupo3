@@ -83,7 +83,7 @@ export default function FormCreateUsuario() {
         </div>
 
         <div className="form_input_submit">
-          <input type="submit" name="submit" value="Registrarse" />
+          <input type="submit" name="submit" value="REGISTRARSE" />
         </div>
       </form>
     </div>
