@@ -23,6 +23,7 @@ export default function FormCreateUsuario() {
     return <Link to={"/"}></Link>;
   }
   if (login.data) {
+    //Esto esta redireccionando
     return <Redirect to="/" />;
   }
   return (
