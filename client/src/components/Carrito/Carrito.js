@@ -80,19 +80,22 @@ export default function Carrito() {
               })
               .then(function (res) {
                 items.forEach(item => {
-                const bodyLinea = { cantidad:item.count, price:item.price * item.count, ordenId:res.data.id, stockXColorId: items.stockXColorId};
+                const bodyLinea = { cantidad:item.count, price:item.price * item.count, ordenId:res.data.id, stockXColorId: item.stockXColorId};
                 axios({
                   method: "POST",
                   url: `http://localhost:3001/lineaDeOrden/add`, //FALTA CREAR ESTA RUTA!!!!!!!!!
                   data: bodyLinea,
                   })
                   .then(function (res) {
-                    res.status(200).json(res);
+                    console.log("Se realizó la compra");
                   })
-                  .catch((reason) =>
-                    console.log("No se pudo crear la orden " + reason)
-                  );
+                  .catch((reason) =>{
+                    console.log("No se pudo crear la orden " + reason);
+                  });
                 })
+              })
+              .then(function(res){
+                alert("Se realizó la compra");
               })
               .catch((reason) =>
                 console.log("No se pudo crear la orden " + reason)

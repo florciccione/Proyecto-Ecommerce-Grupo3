@@ -75,7 +75,7 @@ function isValidToken(req, res, next) {
   });
 }
 express.post("/add", isValidToken, function (req, res) {
-  const { userId, fecha, cantidad, price, stockXColorId } = req.body;
+  const { userId, fecha } = req.body;
   Orden.create(
     {
       state: "completo",
@@ -83,23 +83,15 @@ express.post("/add", isValidToken, function (req, res) {
       userId: userId,
     },
   )
-    .then(function (orden) {
-      lineaDeOrden.create(
-        {
-          cantidad: cantidad,
-          price: price,
-          ordenId: orden.id,
-          stockXColorId: stockXColorId
-        }
-      )
-      res.status(200).json(orden);
-    })
-    .catch(function (error) {
-      res.status(404).json({
-        message: "Ocurrió un error, no se pudo crear la orden",
-        data: error,
-      });
+  .then(function(orden){
+    res.status(200).json(orden);
+  })
+  .catch(function (error) {
+    res.status(404).json({
+      message: "Ocurrió un error, no se pudo crear la orden",
+      data: error,
     });
+  });
 });
 
 // Modificar el estado de una orden, una orden puede tener los siguientes estados de este flujo:
