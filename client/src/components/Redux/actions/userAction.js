@@ -2,6 +2,7 @@ import axios from "axios";
 export const SUCCESS_LOGIN = "SUCCESS_LOGIN";
 export const FAIL_LOGIN = "FAIL_LOGIN";
 export const LOGOUT_USER = "LOGOUT_USER";
+export const UPDATE_USER = "UPDATE_USER";
 
 export function loginUser(data) {
   return (dispatch) => {
@@ -13,7 +14,7 @@ export function loginUser(data) {
       .then(function (res) {
         //console.log(res.data);
         dispatch(sucessLogin(res));
-        alert("La cuenta se creo con éxito");
+        alert("Se logueó con exito");
       })
       /* .then(function () {
               
@@ -26,7 +27,28 @@ export function loginUser(data) {
     // alert("No se pudo crear la cuenta de usuario " + reason)
   };
 }
-
+/* export function updateUser(data) {
+  return (dispatch) => {
+    axios({
+      method: "PUT",
+      url: `http://localhost:3001/user/modify`,
+      data: data,
+    })
+      .then(function (res) {
+        dispatch(updateUser(res));
+      })
+      .catch((reason) =>
+        console.log("No se pudo modificar los datos " + reason)
+      );
+  };
+} */
+/* export const updatedUSer = (user) => {
+  return {
+    type: UPDATE_USER,
+    payload: user,
+  };
+};
+ */
 export const logoutUser = () => {
   return {
     type: LOGOUT_USER,

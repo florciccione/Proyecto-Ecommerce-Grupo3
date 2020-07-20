@@ -8,6 +8,7 @@ const routerColor = require("./routerColors.js");
 const routerUser = require("./routerUser.js");
 const routerOrden = require("./routerOrden.js");
 const routerReview = require("./routerReview.js");
+const routerLineaDeOrden = require("./routerLineaDeOrden.js");
 
 const router = Router();
 
@@ -20,5 +21,6 @@ router.use("/color", routerColor);
 router.use("/user", routerUser);
 router.use("/orden", routerOrden);
 router.use("/review", routerReview);
+router.use("/lineaDeOrden", routerLineaDeOrden);
 
 module.exports = router;

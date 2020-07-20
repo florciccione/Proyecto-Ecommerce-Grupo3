@@ -2,6 +2,7 @@ import {
   SUCCESS_LOGIN,
   FAIL_LOGIN,
   LOGOUT_USER,
+  UPDATE_USER,
 } from "../actions/userAction.js";
 
 const initialState = {

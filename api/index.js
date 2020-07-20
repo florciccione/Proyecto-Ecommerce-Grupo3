@@ -45,22 +45,21 @@ const productos = [
     image: "urlFotoCollar",
   }, //1
   {
-    name: "Pulsera Cubos",
-    description: "Pulsera en gamuza con cristales cúbicos y detalles de metal.",
-    price: "1150",
-    idCategory: "5",
-    keywords: "pulseras,gamuza,metal,cristales,cubos,cúbicos,cuadrados",
-    image: "urlFotoPulsera",
+    name: "Collar Toledo",
+    description:
+      "Collar doble de metal con piedra agata y borla de metal.",
+    price: "1250",
+    idCategory: "1",
+    keywords: "collares,cortos,agata,metal,borla",
+    image: "urlFoto",
   }, //2
   {
-    name: "Pulsera Quebec",
-    description:
-      "Pulsera elastizada triple de cristal de roca facetado, con detalles de metal.",
-    price: "850",
-    idCategory: "5",
-    keywords:
-      "pulseras,elastizada,triple,metal,cristales,brazalete,fiesta,noche",
-    image: "urlFoto",
+    name: "Aro Argolla Strass",
+    description: "Aro argollas de cristal facetado con strass.",
+    price: "650",
+    idCategory: "6",
+    keywords: "strass,aros,argollas,fiesta,noche",
+    image: "urlFotoAritos",
   }, //3
   {
     name: "Pulsera Medieval",
@@ -72,30 +71,23 @@ const productos = [
     image: "urlFoto",
   }, //4
   {
-    name: "Aro Argolla Strass",
-    description: "Aro argollas de cristal facetado con strass.",
-    price: "650",
-    idCategory: "6",
-    keywords: "strass,aros,argollas,fiesta,noche",
-    image: "urlFotoAritos",
-  }, //5
-  {
-    name: "Choker zig-zag",
-    description:
-      "Choker con diseño en zig-zag y detalles de metal, confeccionado en perlas o metal color niquel.",
-    price: "690",
-    idCategory: "3",
-    keywords: "chokers,perlas,metal,niquel,gargantillas",
-    image: "urlFoto",
-  }, //6
-  {
     name: "Collar Rusia",
     description: "Collar de cristal de roca facetado con detalles de metal.",
     price: "1490",
     idCategory: "1",
     keywords: "collares,cortos,cristales,negro,noche,fiesta",
     image: "c-rusia-boreal2.jpg",
-  }, //7
+  },//5
+  {
+    name: "Pulsera Quebec",
+    description:
+      "Pulsera elastizada triple de cristal de roca facetado, con detalles de metal.",
+    price: "850",
+    idCategory: "5",
+    keywords:
+      "pulseras,elastizada,triple,metal,cristales,brazalete,fiesta,noche",
+    image: "urlFoto",
+  }, //6  
   {
     name: "Collar India",
     description:
@@ -104,16 +96,24 @@ const productos = [
     idCategory: "2",
     keywords: "collares,largos,cristales,negro,blanco,madera,bohemio,hippie",
     image: "c-india_bco2.jpg",
-  }, //8
+  }, //7
   {
-    name: "Collar Toledo",
+    name: "Choker zig-zag",
     description:
-      "Collar doble de metal con piedra agata y borla de metal.",
-    price: "1250",
-    idCategory: "1",
-    keywords: "collares,cortos,agata,metal,borla",
+      "Choker con diseño en zig-zag y detalles de metal, confeccionado en perlas o metal color niquel.",
+    price: "690",
+    idCategory: "3",
+    keywords: "chokers,perlas,metal,niquel,gargantillas",
     image: "urlFoto",
-  }, //9
+  },//8
+  {
+    name: "Pulsera Cubos",
+    description: "Pulsera en gamuza con cristales cúbicos y detalles de metal.",
+    price: "1150",
+    idCategory: "5",
+    keywords: "pulseras,gamuza,metal,cristales,cubos,cúbicos,cuadrados",
+    image: "urlFotoPulsera",
+  },//9
   {
     name: "Rosario de perlas",
     description:
@@ -151,7 +151,7 @@ const stockColor = [
     main: true,
     productId: "1",
     colorId: "1",
-  }, // collar tiene 3u. y es negro
+  }, // mismo producto, cambio color
   {
     cantidad: "7",
     image: "p-noruega-rojo.jpg",
@@ -160,34 +160,28 @@ const stockColor = [
     main: false,
   }, //PRODUCTO DOS ==========================================================================
   {
-    cantidad: "5",
-    image: "cubos-gamuza.jpg",
-    productId: "2",
-    colorId: "3",
+    cantidad: "2",
+    image: "c-toledo.jpg",
     main: true,
-  },
-  // cambio de producto
-  {
-    cantidad: "1",
-    image: "cubos-gamuza2.jpg",
     productId: "2",
+    colorId: "9",
+  },
+  //PRODUCTO TRES ==========================================================================
+  {
+    cantidad: "3",
+    image: "a-argolla-strass-negro.jpg",
+    main: true,
+    productId: "3",
+    colorId: "1",
+  }, 
+  {
+    cantidad: "2",
+    image: "a-argolla-strass-ambar.jpg",
+    main: false,
+    productId: "3",
     colorId: "4",
-    main: false,
-  }, //PRODUCTO TRES ==========================================================================
-  {
-    cantidad: "8",
-    image: "p-quebec-humo.jpg",
-    productId: "3",
-    colorId: "5",
-    main: true,
   },
-  {
-    cantidad: "16",
-    image: "p-quebec-azul.jpg",
-    productId: "3",
-    colorId: "6",
-    main: false,
-  }, //PRODUCTO CUATRO =======================================================================
+  //PRODUCTO CUATRO =======================================================================
   {
     cantidad: "8",
     image: "p-medieval-ambar.jpg",
@@ -203,68 +197,76 @@ const stockColor = [
     main: false,
   }, //PRODUCTO CINCO =========================================================================
   {
-    cantidad: "3",
-    image: "a-argolla-strass-negro.jpg",
-    main: true,
-    productId: "5",
-    colorId: "1",
-  }, 
-  {
-    cantidad: "2",
-    image: "a-argolla-strass-ambar.jpg",
-    main: false,
-    productId: "5",
-    colorId: "4",
-  },  //PRODUCTO SEIS ==========================================================================
-  {
-    cantidad: "3",
-    image: "ch-zz-niquel.jpg",
-    main: true,
-    productId: "6",
-    colorId: "5",
-  }, 
-  {
-    cantidad: "1",
-    image: "ch-zz-perla.jpg",
-    main: false,
-    productId: "6",
-    colorId: "11",
-  },//PRODUCTO SIETE =========================================================================
-  {
     cantidad: "1",
     image: "c-rusia-negro.jpg",
     main: true,
-    productId: "7",
+    productId: "5",
     colorId: "1",
   }, 
   {
     cantidad: "2",
     image: "c-rusia-boreal.jpg",
     main: false,
-    productId: "7",
+    productId: "5",
     colorId: "10",
-  },  //PRODUCTO OCHO ==========================================================================
+  }, //PRODUCTO SEIS ==========================================================================
+  {
+    cantidad: "8",
+    image: "p-quebec-humo.jpg",
+    productId: "6",
+    colorId: "5",
+    main: true,
+  },
+  {
+    cantidad: "16",
+    image: "p-quebec-azul.jpg",
+    productId: "6",
+    colorId: "6",
+    main: false,
+  }, //PRODUCTO SIETE =========================================================================
   {
     cantidad: "2",
     image: "c-india-negro.jpg",
     main: true,
-    productId: "8",
+    productId: "7",
     colorId: "1",
   },
   {
     cantidad: "3",
     image: "c-india-bco.jpg",
     main: false,
-    productId: "8",
+    productId: "7",
     colorId: "12",
+  },  //PRODUCTO OCHO ==========================================================================
+  {
+    cantidad: "3",
+    image: "ch-zz-niquel.jpg",
+    main: true,
+    productId: "8",
+    colorId: "5",
+  }, 
+  {
+    cantidad: "1",
+    image: "ch-zz-perla.jpg",
+    main: false,
+    productId: "8",
+    colorId: "11",
   },//PRODUCTO NUEVE ==========================================================================
   {
-    cantidad: "2",
-    image: "c-toledo.jpg",
-    main: true,
+    cantidad: "5",
+    image: "cubos-gamuza.jpg",
     productId: "9",
-    colorId: "9",
-  },//PRODUCTO DIEZ ===========================================================================
+    colorId: "3",
+    main: true,
+  },
+  // cambio de color
+  {
+    cantidad: "1",
+    image: "cubos-gamuza2.jpg",
+    productId: "9",
+    colorId: "4",
+    main: false,
+  }, //PRODUCTO DIEZ ===========================================================================
   {
     cantidad: "4",
     image: "r-perla-chico.jpg",
@@ -322,7 +324,7 @@ const ordenes = [
   { state: "completo", fecha: "24/05/2020", userId: "1" },
   { state: "completo", fecha: "20/04/2020", userId: "3" },
   { state: "cancelado", fecha: "12/03/2020", userId: "4" },
-  { state: "completo", fecha: "24/05/2020", userId: "1" },
+  { state: "completo", fecha: "14/01/2020", userId: "1" },
   { state: "creado", fecha: "14/07/2020", userId: "4" },
   { state: "completo", fecha: "04/06/2020", userId: "3" },
 ];
@@ -330,7 +332,15 @@ const lineaOrden = [
   { cantidad: "1", price: "1050", stockXColorId: "1", ordenId: "1" },
   { cantidad: "2", price: "1150", stockXColorId: "5", ordenId: "1" },
   { cantidad: "1", price: "850", stockXColorId: "3", ordenId: "2" },
-  { cantidad: "1", price: "650", stockXColorId: "4", ordenId: "2" },
+  { cantidad: "1", price: "650", stockXColorId: "8", ordenId: "2" },
+  { cantidad: "1", price: "690", stockXColorId: "6", ordenId: "3" },
+  { cantidad: "2", price: "1150", stockXColorId: "2", ordenId: "3" },
+  { cantidad: "1", price: "750", stockXColorId: "10", ordenId: "3" },
+  { cantidad: "1", price: "1250", stockXColorId: "9", ordenId: "4" },
+  { cantidad: "2", price: "990", stockXColorId: "4", ordenId: "4" },
+  { cantidad: "1", price: "1490", stockXColorId: "7", ordenId: "5" },
+  { cantidad: "1", price: "1150", stockXColorId: "2", ordenId: "6" },
+  { cantidad: "1", price: "720", stockXColorId: "11", ordenId: "7" },
 
 ];
 const usuarios = [
@@ -368,6 +378,18 @@ const usuarios = [
     password: "cualquiera",
     adress: "calle 5",
   },
+  {
+    name: "María José Gonzalez",
+    email: "maria@gmail.com",
+    password: "cualquiera",
+    adress: "calle 6",
+  },
+  {
+    name: "Silvana Perez",
+    email: "silvana@gmail.com",
+    password: "cualquiera",
+    adress: "calle 7",
+  },
 ];
 const reviews = [
   {
@@ -391,16 +413,32 @@ const reviews = [
     title: "Muy lindo",
     review: "Siempre que lo uso me lo ponderan",
     ranking: "5",
-    idUsuario:"3",
-    idProduct: "6"
+    idUsuario:"6",
+    idProduct: "8"
   },
   {
     id: "4",
-    title: "Me encanto!",
-    review: "Re linda la pulsera",
+    title: "Me encantaron!",
+    review: "Re lindos los aros, me gustaron mucho",
     ranking: "5",
     idUsuario:"2",
     idProduct: "3"
+  },
+  {
+    id: "5",
+    title: "Muy contenta con mi compra",
+    review: "Me gusto mucho el producto, mejor de lo que esperaba!",
+    ranking: "5",
+    idUsuario:"3",
+    idProduct: "2"
+  },
+  {
+    id: "6",
+    title: "Hermoso",
+    review: "Estoy encantada con el collar, muy lindo y bien terminado. Muy recomendable.",
+    ranking: "4",
+    idUsuario:"7",
+    idProduct: "5"
   },
 ];
 
