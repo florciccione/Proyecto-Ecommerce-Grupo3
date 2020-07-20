@@ -1,15 +1,30 @@
-const { Orden, User, Product, stockXColor, lineaDeOrden } = require("../models");
+const {
+  Orden,
+  User,
+  Product,
+  stockXColor,
+  lineaDeOrden,
+} = require("../models");
 const { Op } = require("sequelize");
 const express = require("express").Router();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-
+const api_key = "8381382195e41d085e0f199b313cbcad-a83a87a9-063cbc74";
+const domain = "sandbox5b0b711707ab4143bdc3afec9d3e1c1b.mailgun.org";
+//const mailgun = require("mailgun-js")({ apiKey: api_key, domain: domain });
+const data = {
+  from: "Juan Galarce <j6alarce@gmail.com>",
+  to: "blasxphemian@gmail.com",
+  subject: "Natalia Torres - Joyas",
+  text:
+    "Compra Realizada, espere confirmacion de despacho. Gracias por su preferencia",
+};
 // Trae las ordenes de un usuario idUsuario
 express.get("/:userId", function (req, res) {
   Orden.findAll({
     where: {
       userId: req.params.userId,
-    }
+    },
   })
     .then(function (orden) {
       res.status(200).json(orden);
@@ -24,7 +39,7 @@ express.get("/:userId", function (req, res) {
 // Trae todas las ordenes
 express.get("/", function (req, res) {
   Orden.findAll({
-   include: [
+    include: [
       {
         model: User,
         as: "user",
@@ -52,7 +67,6 @@ express.get("/", function (req, res) {
 //TODO: Controlar que no existe una orden ya creada para un usuario usar método findOrCreate
 //TODO: la orden debe relacionarse mediante la linea de orden hacia los productos y pertenecer a un unico usuario (idUsuario)
 
-
 //MIDDLEWARE PARA VERIFICAR SI EL USUARIO ESTA LOGUEADO CON UN TOKEN VALIDO
 function isValidToken(req, res, next) {
   var token = req.body.token;
@@ -75,24 +89,17 @@ function isValidToken(req, res, next) {
   });
 }
 express.post("/add", isValidToken, function (req, res) {
-  const { userId, fecha, cantidad, price, stockXColorId } = req.body;
-  Orden.create(
-    {
-      state: "completo",
-      fecha: fecha,
-      userId: userId,
-    },
-  )
+  const { userId, fecha } = req.body;
+  Orden.create({
+    state: "completo",
+    fecha: fecha,
+    userId: userId,
+  })
     .then(function (orden) {
-      lineaDeOrden.create(
-        {
-          cantidad: cantidad,
-          price: price,
-          ordenId: orden.id,
-          stockXColorId: stockXColorId
-        }
-      )
       res.status(200).json(orden);
+      /*  mailgun.messages().send(data, function (error, body) {
+        console.log(body);
+      }); */
     })
     .catch(function (error) {
       res.status(404).json({

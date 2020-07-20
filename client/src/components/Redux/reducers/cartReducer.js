@@ -1,8 +1,8 @@
 import {
   ADD_TO_CART,
   CLEAR_PRODUCT,
-  SUBTOTAL_PRODUCT_CART,
   INCREASE_QUANTITY,
+  CLEAR_CART,
 } from "../actions/cartAction";
 
 const initialState = [];
@@ -31,8 +31,18 @@ export default function (state = initialState, action) {
       return cartItems;
 
     case CLEAR_PRODUCT:
-        
-      return [...state.filter((item) =>  item.selectedColor !== action.payload.selectedColor || item.id !== action.payload.id)]; ;
+      return [
+        ...state.filter(
+          (item) =>
+            item.selectedColor !== action.payload.selectedColor ||
+            item.id !== action.payload.id
+        ),
+      ];
+
+    case CLEAR_CART:
+      let itemsCart = [...state];
+      itemsCart = initialState;
+      return itemsCart;
 
     case INCREASE_QUANTITY:
       // const productSelected = action.payload;
@@ -40,7 +50,7 @@ export default function (state = initialState, action) {
         (item) => item.id === action.payload.product.id
       );
       itemSelected.count = action.payload.cant;
-      return [...state]; 
+      return [...state];
 
     default:
       return state;
